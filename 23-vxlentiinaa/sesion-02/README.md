@@ -33,11 +33,16 @@ OSC:
 
 MQTT: los arduino se conectaran a traves de mosquitto y se enviaran cosas desde mosquitto
 
+[Mosquitto](https://mosquitto.org/) 
+
+[Homebrew]
+
 ---
 
 **EJEMPLO 01**
 
 - Código para escribir textos en la pantalla de Arduino
+
 - 
 ```cpp
 // ejemplo01
@@ -103,7 +108,10 @@ void loop() {
 
 Biblioteca: ArduinoMqttClient.h
 
-haremos cambios en Mqtt
+Haremos cambios en Mqtt
+
+- Este código sirve para que el Arduino que recibe, reciba un mensaje.
+- Debemos tomar esta base de intercomunicación y hacer que funcionen entre sí.
 
 ---
 
@@ -114,6 +122,17 @@ const char broker[] = "10.174.124.28";
 int port = 1883;
 const char topic[] = "asistencia/20260316";
 ```
+
+## Código Recibir
+
+`arduino_secrets.h`
+
+```cpp
+#define SECRET_SSID "pixel9"
+#define SECRET_PASS "mateo123"
+```
+
+`ejemplo02Recibir.ino`
 
 ```cpp
 // ejemplo02Recibir
