@@ -197,3 +197,7 @@ mosquitto -c mosquitto.conf
 ```cpp
 
 ```
+
+## enlaces
+
+<https://mosquitto.org/documentation/authentication-methods/>

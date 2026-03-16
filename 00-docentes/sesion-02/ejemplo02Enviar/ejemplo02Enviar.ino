@@ -46,7 +46,7 @@ void setup()
   }
 
   // conectarse a wifi
-  Serial.print("conectandose a red");
+  Serial.print("conectandose a red ");
   Serial.println(ssid);
 
   while (WiFi.begin(ssid, pass) != WL_CONNECTED)
@@ -60,12 +60,12 @@ void setup()
 
   // ID del cliente
   // cada cliente debe tener una ID unica
-  mqttClient.setId("matbutom");
+  mqttClient.setId("agustinaaceituno");
 
   // autenticacion con username y clave
-  mqttClient.setUsernamePassword("matbutom", "dis9079");
+  mqttClient.setUsernamePassword("agustinaaceituno", "dis9079");
 
-  Serial.print("tratando de conectarse al MQTT broker");
+  Serial.print("tratando de conectarse al MQTT broker ");
   Serial.println(broker);
 
   if (!mqttClient.connect(broker, port))
