@@ -15,7 +15,7 @@ ARDUINO UNO R4 WIFI (https://mcielectronics.cl/?gad_source=1&gad_campaignid=1650
 Semver
 cable usb c
 
-##Arduino: 
+## Arduino: 
   1. placa desarrollo (microcontrolador arduino uno r4 wifi)
   2. software arduino IDE
   3. lemguaje programación
@@ -29,5 +29,5 @@ void loop () {
 setup:inicio del programa, estado inicial, entradas y salidas.
 loop: bucle infinito, despúes de set up, actualizar estado del programa.
 
-##MQTT
+## MQTT
   1. recibir y distribuir mensajes
