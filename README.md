@@ -1,6 +1,6 @@
 # dis9079-2026-1
 
-DIS9079 Interacciones inalámbricas, primer semestre 2026
+dis9079 interacciones inalámbricas, primer semestre 2026
 
 lunes, 2:30 a 5:20pm
 
@@ -8,41 +8,48 @@ lunes, 2:30 a 5:20pm
 04:00 a  04:20pm - descanso
 04:20 a 05:20pm - segunda parte
 
-## Equipo docente
+## equipo docente
 
-* Aarón Montoya <https://github.com/montoyamoraga>: profesore
-* Mateo Arce <https://github.com/matbutom>: ayudante
+* aarón Montoya <https://github.com/montoyamoraga>: profesore
+* mateo Arce <https://github.com/matbutom>: ayudante
 
-## Unidades
+## unidades
 
-## Calendario detallados
+## calendario
 
-| Sesión                         | Fecha       | Temas                                                |
-| :----------------------------- | :---------- | :--------------------------------------------------- |
-| [01](./00-docentes/sesion-01/) | 03-09 lun   | intro a interacciones inalámbricas, github, markdown |
-| [02](./00-docentes/sesion-02/) | 03-16 lun   | protocolos de comunicación OSC y MQTT                |
-| [03](./00-docentes/sesion-03/) | 03-23 lun   | microcontroladores para aplicaciones inalámbricas    |
-| [04](./00-docentes/sesion-04/) | 03-30 lun   | estrategias para mensajes inalámbricos               |
-| [05](./00-docentes/sesion-05/) | 04-06 lun   | solemne 1                                            |
-| [06](./00-docentes/sesion-06/) | 04-13 lun   | TODO                                                 |
-| [07](./00-docentes/sesion-07/) | 04-20 lun   | TODO                                                 |
-| [08](./00-docentes/sesion-08/) | 04-27 lun   | TODO                                                 |
-| receso                         | 05-01/09    | semana de receso                                     |
-| [09](./00-docentes/sesion-09/) | 05-11 lun   | TODO                                                 |
-| [10](./00-docentes/sesion-10/) | 05-18 lun   | solemne 2                                            |
-| [11](./00-docentes/sesion-11/) | 05-25 lun   | TODO                                                 |
-| [12](./00-docentes/sesion-12/) | 06-01 lun   | TODO                                                 |
-| [13](./00-docentes/sesion-13/) | 06-08 lun   | TODO                                                 |
-| [14](./00-docentes/sesion-14/) | 06-15 lun   | TODO                                                 |
-| [15](./00-docentes/sesion-15/) | 06-22 lun   | examen                                               |
+| sesión                         | fecha       | temas                                                 |
+| :----------------------------- | :---------- | :---------------------------------------------------- |
+| [01](./00-docentes/sesion-01/) | 03-09 lun   | intro a interacciones inalámbricas, github, markdown  |
+| [02](./00-docentes/sesion-02/) | 03-16 lun   | protocolos de comunicación MQTT en microcontroladores |
+| [03](./00-docentes/sesion-03/) | 03-23 lun   | comunicación inalámbrica entre distintos dispositivos |
+| [04](./00-docentes/sesion-04/) | 03-30 lun   | estrategias para mensajes inalámbricos                |
+| [05](./00-docentes/sesion-05/) | 04-06 lun   | solemne 1                                             |
+| [06](./00-docentes/sesion-06/) | 04-13 lun   | TODO                                                  |
+| [07](./00-docentes/sesion-07/) | 04-20 lun   | TODO                                                  |
+| [08](./00-docentes/sesion-08/) | 04-27 lun   | TODO                                                  |
+| receso                         | 05-01/09    | semana de receso                                      |
+| [09](./00-docentes/sesion-09/) | 05-11 lun   | TODO                                                  |
+| [10](./00-docentes/sesion-10/) | 05-18 lun   | solemne 2                                             |
+| [11](./00-docentes/sesion-11/) | 05-25 lun   | TODO                                                  |
+| [12](./00-docentes/sesion-12/) | 06-01 lun   | TODO                                                  |
+| [13](./00-docentes/sesion-13/) | 06-08 lun   | TODO                                                  |
+| [14](./00-docentes/sesion-14/) | 06-15 lun   | TODO                                                  |
+| [15](./00-docentes/sesion-15/) | 06-22 lun   | examen                                                |
 
-## Evaluaciones
+## asistencia
 
-La nota final del curso se compone de:
+Desde 2026, para aprobar un curso en Diseño UDP, es necesario asistir a un mínimo del 80% de las sesiones.
 
-* 50% examen
-* 50% nota presentación
+## evaluaciones
 
-## Bibliografía
+este curso de profundización tiene 2 solemnes en fechas establecidas por la escuela.
+
+el promedio de ambas solemnes recibe el nombre de nota de presentación NP.
+
+para poder rendir el examen final, es necesario obtener una nota de presentación NP >= 3.5 y cumplir con el requisito de asistencia mínima.
+
+para la nota final del curso, se pondera 70% NP y 30% examen final.
+
+## bibliografía
 
 * <https://itp.nyu.edu/physcomp/>
