@@ -36,13 +36,13 @@
 
 ---
 
-**Microcontroladores y microcomputadoes**
+## **Microcontroladores y microcomputadoes**
 + BeagleBoard
 + Bela Platform
 + Electro-Smith
 ---
 
-**Mainframe**
+## **Mainframe**
 + Computadora alto rendimiento
 + Gran capacidad memoria y rendimiento
 + Gestiona transacciones en tiempo real
