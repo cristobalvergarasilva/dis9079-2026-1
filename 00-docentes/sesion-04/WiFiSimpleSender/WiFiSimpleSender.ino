@@ -49,7 +49,7 @@ unsigned long previousMillis = 0;
 int count = 0;
 
 // MODIFICAR
-const char mqttId[] = "arduinoAaron";
+const char mqttId[] = "arduino01";
 const char mqttPass[] = "dis9079";
 
 void setup() {

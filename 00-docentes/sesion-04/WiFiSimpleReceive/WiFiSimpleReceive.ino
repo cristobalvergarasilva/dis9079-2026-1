@@ -25,7 +25,6 @@
 #include <WiFiS3.h>
 #endif
 
-#include "arduino_secrets.h"
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h
 char ssid[] = "dis9079";   // your network SSID (name)
 char pass[] = "75288273";  // your network password (use for WPA, or use as key for WEP)
@@ -39,12 +38,13 @@ char pass[] = "75288273";  // your network password (use for WPA, or use as key 
 WiFiClient wifiClient;
 MqttClient mqttClient(wifiClient);
 
-const char broker[] = "192.168.0.100";
+// const char broker[] = "192.168.0.100";
+const char broker[] = "10.21.19.28";
 int port = 1883;
 const char topic[] = "arduino/simple";
 
 // MODIFICAR
-const char mqttId[] = "arduinoAaron";
+const char mqttId[] = "user1";
 const char mqttPass[] = "dis9079";
 
 void setup() {

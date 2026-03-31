@@ -925,3 +925,25 @@
 1771863481: New connection from 10.24.242.32:51250 on port 1883.
 1771863481: New client connected from 10.24.242.32:51250 as montoyamoraga (p4, c1, k60, u'matbutom').
 1771863705: mosquitto version 2.1.2 terminating
+1774898427: mosquitto version 2.1.2 starting
+1774898427: Config loaded from mosquitto.conf.
+1774898427: Bridge support available.
+1774898427: Persistence support available.
+1774898427: TLS support available.
+1774898427: TLS-PSK support available.
+1774898427: Websockets support available.
+1774898427: Plugin builtin-security has registered to receive 'basic-auth' events.
+1774898427: Opening ipv4 listen socket on port 1883.
+1774898427: mosquitto version 2.1.2 running
+1774898445: mosquitto version 2.1.2 terminating
+1774898460: mosquitto version 2.1.2 starting
+1774898460: Config loaded from mosquitto.conf.
+1774898460: Bridge support available.
+1774898460: Persistence support available.
+1774898460: TLS support available.
+1774898460: TLS-PSK support available.
+1774898460: Websockets support available.
+1774898460: Plugin builtin-security has registered to receive 'basic-auth' events.
+1774898460: Opening ipv4 listen socket on port 1883.
+1774898460: mosquitto version 2.1.2 running
+1774898510: mosquitto version 2.1.2 terminating
