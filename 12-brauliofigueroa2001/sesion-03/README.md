@@ -71,3 +71,5 @@ vscode
 - existe una carpeta con un password
 
 - linea 69 pixel9, linea 70 mateo123, comentar linea uqe incluye arduinosecrets.h, reemplazar lineas con mi grupo08
+
+PENDIENTE SUBIR PANTALLAZOS DE LA INSTALACIÓN DE VSCODE Y DE LAS LIBRERÍAS DE RASPI, TAMBIÉN FOTOS DE RASPI
