@@ -78,6 +78,8 @@ vscode
 
 - linea 69 pixel9, linea 70 mateo123, comentar linea uqe incluye arduinosecrets.h, reemplazar lineas con mi grupo08
 
-- al final de todo no nos pudimos conectar, este fue el error: 
+- al final de todo no nos pudimos conectar, este fue el error:
 
-PENDIENTE SUBIR PANTALLAZOS DE LA INSTALACIÓN DE VSCODE Y DE LAS LIBRERÍAS DE RASPI, TAMBIÉN FOTOS DE RASPI
+![error](./imagenes/arduinoerrormqtt.JPG)
+
+
