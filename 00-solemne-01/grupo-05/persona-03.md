@@ -4,6 +4,8 @@
 
 ## sobre adafruit i/o
 
+## 04.04.26
+
 * Lo primero que hice fue instalar biblioteca de Adafruit IO para Arduino y crear mi cuenta en adafruit IO luego puse los códigos de enviarArduino, los leí para entenderlos y saber que debía modificar, puse mis datos en config.h y ver si el código se subía bien.
 
 ![instalando-biblioteca](./imagenes/instalada.png)
@@ -54,6 +56,8 @@
 La actualización realmente se toma su tiempo, ha pasado una hora desde que empezó.
 
 ![largaupdate](./imagenes/update3.png)
+
+Okay, ha pasado un poco más de hora y media y aún no se termina de actualizar, terminaré esta misión mañana.
 
 ## sobre artista, diseñadora o producto que usa electrónica o computación inalámbricas
 
@@ -125,10 +129,10 @@ Lo interesante de su trabajo no es solo la tecnología, sino cómo la usa para c
 
 #### Fuentes
 
-<https://www.quebec.ca/en/news/actualites/detail/rafael-lozano-hemmer-at-the-mac-an-embodied-experience>
-<https://en.wikipedia.org/wiki/Rafael_Lozano-Hemmer>
-<https://www.unsw.edu.au/news/2023/08/the-interactive-art-of-rafael-lozano-hemmer--psychic-resonance-->
-<https://www.lozano-hemmer.com/pulse_room.php>
-<https://www.lozano-hemmer.com/border_tuner__sintonizador_fronterizo.php>
-<https://www.lozano-hemmer.com/remote_pulse.php>
+* <https://www.quebec.ca/en/news/actualites/detail/rafael-lozano-hemmer-at-the-mac-an-embodied-experience>
+* <https://en.wikipedia.org/wiki/Rafael_Lozano-Hemmer>
+* <https://www.unsw.edu.au/news/2023/08/the-interactive-art-of-rafael-lozano-hemmer--psychic-resonance-->
+* <https://www.lozano-hemmer.com/pulse_room.php>
+* <https://www.lozano-hemmer.com/border_tuner__sintonizador_fronterizo.php>
+* <https://www.lozano-hemmer.com/remote_pulse.php>
 
