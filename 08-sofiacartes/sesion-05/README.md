@@ -165,3 +165,6 @@ Para usuarios que utilizan la plataforma de configuración sin código, la gesti
 - **Funcionamiento:** Los feeds se crean automáticamente al momento de añadir un nuevo componente a la placa desde el panel de control de Adafruit IO.
 
 *información sacada de: <https://learn.adafruit.com/adafruit-io-basics-dashboards>*
+
+![instalaciónAdaIO](./imagenes/instalaciónAdaIO.jpg)
+![proceso1](./imagenes/proceso1.gif)
