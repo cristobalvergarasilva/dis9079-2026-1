@@ -10,7 +10,11 @@
 
 ## materiales usados en solemne-01
 
+
+
 ## código usado con Adafruit IO
+
+
 
 ### código para enviar
 <img width="1900" height="940" alt="Captura de pantalla 2026-04-06 160014" src="https://github.com/user-attachments/assets/a316168d-0b0f-4ed2-9a27-c916991a1805" />
