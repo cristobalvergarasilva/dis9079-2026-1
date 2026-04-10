@@ -18,18 +18,13 @@ Dicho esto, unimos las conexiones del RGB al protoboard y del protoboard al Ardu
 
 Lo primero sería conectar las 4 patas del LED RGB al protoboard, después poner 3 resistencia 220Ω, estas deben estar así:
 
-* **R** - La luz roja o luz red es la de izquierda inicial; esta tiene que ir acompañada de una resistencia de 220Ω conectada a R y a su vez conectada al pin 4 del Arduino.
-* **GND** - La segunda pata (asumiendo la izquierda R) es la de a tierra, debe ir conectada directo al Arduino en el pin 3V.
-* **G** - La luz verde o luz green es la siguiente después de la GND, esta tiene que ir con una resistencia de 220 Ω y a su vez conectada al pin 5 del Arduino.
-* **B** - La luz azul o luz blue es la siguiente después de la G, esta tiene que ir con una resistencia de 220 Ω y a su vez conectada al pin 2 del Arduino.
-
 Debe quedar así:
 
 ![LED conectado a arduino](./imagenes/circuitoled.jpg)
 
 conexiones:
 
-patas del LED
+patas del LED, (R) (G) y (B) cada uno debe ir acompañado de una resistencia para no quemar el LED
 
 - patita 1 (R) a pin 4
 - patita 2 (ánodo) a vcc
