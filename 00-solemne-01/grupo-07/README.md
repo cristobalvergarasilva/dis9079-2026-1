@@ -8,16 +8,29 @@
 
 ## descripción del proyecto
 
-Un Arduino UNO R4 WiFi conectado a un computador , con un LED físico conectado al pin 13. 
+El Arduino se conecta a una red WiFi y luego establece comunicación con Adafruit IO usando el protocolo MQTT en Arduino Ide.
+Desde cualquier otro computador o celular, entras al dashboard de Adafruit IO en el navegador y presionas un botón toggle. Ese click viaja por internet hasta los servidores de Adafruit, que se lo reenvían al Arduino. El Arduino recibe el mensaje y enciende o apaga el LED.
+
+Partimos utilzando el codigo de ejemplo que subio Aaron a Github para aprender como funcionaban las conecciones base auna nube pero de primeras no funcionaba, y tras un rato investigando dimos con que estabamos dando mal las credenciales que habia que cambiar del codigo, puntualmente la clave que estabamos poniendo la personal para ingresar al sitio pero resulta que era la AIO Key, que es una clave alphanumerica que te da el Adafruit IO para poder conectarte a la nube.
+Luego de solucionar eso el codigo estaba bien pero aun asi no se conectaba, solo aparecia una serie de puntos infinitos (...........) que no nos dimos cuenta hasta que en clases Aaron actualizó los Arduinos que tenian ese error y se soluciono, resulta que al final de los puntos habia un mensaje de "Please upgrade the WiFiS3 firmware!" pero no alcanzaba a verse.
+Una vez actualizado el Arduino pudimos conectar bien con Adafruit IO y probamos con un ejercicio que nos dio Aaron que consistia en conectarse a un feed en Adafruit IO el cual estaba conectado a una Dashboard con un contador.
+
+
+
+
+## conexiones 
+![runway](./imagenes/conexiones.jpg)
 
 ![arduino conectado al led](./imagenes/arduino-conectado-a-led.jpeg)
 
-El Arduino se conecta a una red WiFi y luego establece comunicación con Adafruit IO usando el protocolo MQTT en Arduino Ide.
-
-Desde cualquier otro computador o celular, entras al dashboard de Adafruit IO en el navegador y presionas un botón toggle. Ese click viaja por internet hasta los servidores de Adafruit, que se lo reenvían al Arduino. El Arduino recibe el mensaje y enciende o apaga el LED.
 
 ## materiales usados en solemne-01
-
+- 1 Arduino UNO R4 WIFI 
+- 1 protoboard 400 puntos
+- 1 pin LED 
+- 1 OHM resistor de 220
+- 1 cable Dupont M/M
+  
 ## código usado con Adafruit IO
 
 ### código para enviar
