@@ -40,3 +40,9 @@ Serie de dispositivos especulativos diseñados para adaptar el cuerpo humano a o
 
 Proyecto enfocado en el desarrollo de biomateriales a partir de sustancias naturales, capaces de degradarse y responder al entorno.
 -> Me llama la atención la relación directa entre cuerpo y tecnología, donde el diseño funciona como una extensión del usuario.
+
+-
+
+El trabajo de Neri Oxman propone una forma distinta de entender el diseño industrial, donde los objetos dejan de ser elementos estáticos y pasan a ser sistemas que interactúan con su entorno.
+
+Considero que su enfoque es relevante porque integra tecnología, ciencia y sostenibilidad, abriendo nuevas posibilidades para el desarrollo de materiales y productos más adaptativos.
