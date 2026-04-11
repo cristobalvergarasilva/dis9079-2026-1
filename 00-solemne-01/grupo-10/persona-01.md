@@ -7,9 +7,18 @@ investigaciones individuales
 
 Como mi primer ramos sobre conexiones, al principio todo es muy nuevo entonces empecé a investigar sobre arduino IO y su método de uso. Ya que va siendo una plataforma para la creación de proyectos y controlar placas Arduino haciendo posible controlar dispositivos como sensores y luces. Al momento de instalar Arduino y las bibliotecas solicitadas hubo un momento donde me encontré con un error el cual al momento de corregirlo quise ver que más se podía llegar a hacer con la placa asi que busque codigos para ver que todo funcionara bien además de subir los códigos de la clase, de esta manera fui aprendiendo sobre los códigos como es que se suben a la plataforma y sobre qué se puede ir modificando para personalizarlo.
 
+![proceso](./imagenes/aa_aprendido_1.jpg)
+
+![proceso](./imagenes/aa_aprendido_2.jpg)
+
+![proceso](./imagenes/aa_aprendido_3.jpg)
+
 ### Proceso de instalación
 
 Al momento de instalar Arduino lo fui haciendo siguiendo la clase cada momento y a la vez leyendo la clase del dia, luego fijarse bien si instale la version correcta para el mac e instalar las bibliotecas Library Manager -> ArduinoMQTTClient (v0.1.8 o más reciente) y Library Manager -> ArduinoGraphics, ademas de Boards Manager -> Arduino Uno R4 Boards (v1.5.3 o más reciente).
+
+![instalacion](./imagenes/aa_instalacion_arduino.png)
+![instalacion](./imagenes/aa_instalacion_bibliotecas.png)
 
 ### Dificultades encontradas
 
