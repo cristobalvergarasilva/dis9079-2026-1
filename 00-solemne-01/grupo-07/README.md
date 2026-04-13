@@ -175,4 +175,7 @@ https://github.com/adafruit/Adafruit_IO_Arduino
 **Adafruit IO basics color** 
 
 https://learn.adafruit.com/adafruit-io-basics-color
-Arduino cheat sheet http://docs.arduino.cc/tutorials/uno-r4-wifi/cheat-sheet/?utm_source=chatgpt.com
+
+**Arduino cheat sheet** 
+
+http://docs.arduino.cc/tutorials/uno-r4-wifi/cheat-sheet/?utm_source=chatgpt.com
