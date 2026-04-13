@@ -12,7 +12,8 @@ investigaciones individuales
 
 ---
 
-+ dashboard: interfaz grafica de adafruit io con botones o campos de texto
++ dashboard: es la parte visual, puedes arrastrar y soltar bloques (gráficas, botones, mapas, deslizadores) para crear tu propia interfaz de control sin saber programar diseño web
++ feed: es donde se guarda la información, el "feed" es como una pequeña base de datos para un solo sensor
 + nube: servidor de adafruit que gestiona los feeds que son canales de datos
 + hardware: arduino r4 wifi se conecta al router local para escuchar los cambios en la nube
 + algunas librerias importantes: Adafruit IO Arduino, Adafruit MQTT, ArduinoHttpClient
