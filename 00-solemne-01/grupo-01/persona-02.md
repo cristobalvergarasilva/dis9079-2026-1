@@ -217,11 +217,11 @@ Envía datos a la nube
 
 ## Solución
 
--Código: Serial.begin(115200)
+- Código: Serial.begin(115200)
 
--Monitor serial estaba en 9600
+- Monitor serial estaba en 9600
 
--Se corrigió a 115200
+- Se corrigió a 115200
 
 <img width="1112" height="589" alt="Baudio auduino" src="https://github.com/user-attachments/assets/65ba7c18-ab59-43ae-88b0-3bdae3e7ecaf" />
 
@@ -236,7 +236,9 @@ El cableado o el contacto en la protoboard activó el sistema de Reset. Esto cor
 
 ![boton reset](https://github.com/user-attachments/assets/9651f897-9fdf-4552-9906-e6e76dd1af50)
 
+
  Datos visualizados en Adafruit IO
+
 
 <img width="1470" height="956" alt="prueba 1 grupo01" src="https://github.com/user-attachments/assets/06febfc2-47be-4c84-9614-2be0a94c92ba" />
 
@@ -418,9 +420,9 @@ Es una especie híbrida, conformada por diversos organismos que coexisten en sim
 
 Sus obras son robots biotecnológicos que viven en entornos de ríos contaminados.
 
--La Tecnología: Utiliza celdas de combustible microbianas que generan electricidad a partir de la descomposición de materia orgánica en el agua.
+- La Tecnología: Utiliza celdas de combustible microbianas que generan electricidad a partir de la descomposición de materia orgánica en el agua.
 
--Inalámbrico/IoT: El robot se desplaza de forma autónoma buscando agua contaminada para "alimentarse". Transmite datos sobre la calidad del agua y su propia ubicación, creando un mapa vivo de la degradación ambiental. Es, literalmente, un "sensor vivo" que habita la ciudad.
+- Inalámbrico/IoT: El robot se desplaza de forma autónoma buscando agua contaminada para "alimentarse". Transmite datos sobre la calidad del agua y su propia ubicación, creando un mapa vivo de la degradación ambiental. Es, literalmente, un "sensor vivo" que habita la ciudad.
 
 
 Fotos del proyecto:
