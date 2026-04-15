@@ -94,7 +94,7 @@ También quería rescatar que en la entrevista ella habla de tener que permanece
 Tiene formación tanto en ingeniería como en diseño: estudió Mechanical Engineering en The Cooper Union y luego hizo un MFA en 3D Design en Cranbrook Academy of Art.
 
 Bibliografía investigación artista: 
-https://www.vice.com/es/article/carla-diana-robots/ 
+https://www.vice.com/es/article/carla-diana-robots/   
 https://www.carladiana.com/
 
 Apuntes y proceso de trabajo:
