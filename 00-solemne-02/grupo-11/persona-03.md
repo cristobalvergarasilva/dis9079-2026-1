@@ -24,8 +24,8 @@ Los datos captados por los sensores pueden mostrarse en gráficos, pantallas o a
 
 Los sensores pueden presentar distintos problemas como:
 
-• Interferencias inalámbricas.
-• Lecturas incorrectas.
+° Interferencias inalámbricas.
+° Lecturas incorrectas.
 • Falta de calibración.
 • Sensibilidad excesiva.
 • Daños por humedad o temperatura.
