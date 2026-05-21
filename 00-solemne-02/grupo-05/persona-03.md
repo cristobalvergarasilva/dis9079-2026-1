@@ -94,6 +94,8 @@ El controlador incluye 504 bytes de RAM de datos de pantalla gráfica (GDDRAM) e
 
 ###  Nokia 5110
 
+El Nokia 5110 a a fines de los años 90', más específicamente en 
+
 ### Fuentes Proyecto
 
 + <https://www.xataka.com/moviles/nokia-5110-telefonos-con-historia-iii>
