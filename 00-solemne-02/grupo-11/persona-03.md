@@ -32,8 +32,11 @@ Los sensores pueden presentar distintos problemas como:
 
 Estos errores afectan la precisión de los datos y el funcionamiento del sistema. Por ello es importante realizar mantenimiento y configurar correctamente el sensor.
 
-Proyecto o empresa que utiliza sensores
-La empresa Tesla utiliza múltiples sensores en sus vehículos eléctricos y autónomos. Los automóviles incorporan sensores ultrasónicos, cámaras y radares para detectar obstáculos, medir distancias y ayudar en la conducción automática. Gracias a estos sensores, el vehículo puede interpretar el entorno y responder en tiempo real.
+La empresa Tesla utiliza una gran cantidad de sensores en sus vehículos eléctricos y autónomos. Los automóviles Tesla incorporan cámaras, radares, sensores ultrasónicos y sistemas de inteligencia artificial que permiten analizar el entorno en tiempo real.
+
+Estos sensores ayudan al vehículo a detectar obstáculos, medir distancias, identificar peatones, reconocer señales de tránsito y mantener el automóvil dentro del carril. Toda la información captada se procesa automáticamente para asistir al conductor o incluso controlar el automóvil de forma autónoma mediante el sistema Autopilot.
+
+El proyecto de conducción autónoma de Tesla representa uno de los ejemplos más avanzados del uso de sensores en interacción inalámbrica y automatización. Los vehículos recopilan grandes cantidades de datos constantemente y los transmiten para mejorar el sistema mediante aprendizaje automático. Gracias a esto, los sensores permiten aumentar la seguridad, reducir accidentes y desarrollar nuevas tecnologías de movilidad inteligente.
 
 # Actuador
 
@@ -65,8 +68,12 @@ Entre los problemas más frecuentes en actuadores se encuentran:
 
 Estos inconvenientes pueden afectar el rendimiento y la seguridad del sistema automatizado.
 
-Proyecto o empresa que utiliza actuadores
-La empresa Boston Dynamics utiliza actuadores avanzados en robots como Spot y Atlas. Estos robots emplean motores y sistemas hidráulicos que permiten caminar, correr, levantar objetos y mantener equilibrio automáticamente. Los actuadores son esenciales para generar movimientos similares a los humanos o animales.
+La empresa Boston Dynamics es reconocida mundialmente por desarrollar robots avanzados que utilizan actuadores de alta precisión. Algunos de sus robots más conocidos son Atlas y Spot.
+
+El robot Atlas utiliza actuadores hidráulicos y eléctricos que le permiten caminar, correr, saltar y mantener el equilibrio de forma similar a un ser humano. Por otro lado, Spot es un robot cuadrúpedo diseñado para desplazarse en terrenos difíciles y realizar tareas de inspección industrial.
+
+Los actuadores son fundamentales en estos proyectos, ya que permiten transformar señales digitales en movimientos físicos complejos. Gracias a sensores y actuadores trabajando juntos, los robots pueden reaccionar al entorno en tiempo real, evitar obstáculos y ejecutar tareas automáticas.
+Boston Dynamics ha demostrado cómo los actuadores pueden utilizarse en áreas como seguridad, construcción, exploración y asistencia industrial. Sus proyectos representan uno de los mayores avances en robótica e interacción tecnológica moderna.
 
 # Bibliografía
 
