@@ -330,11 +330,13 @@ while True:
 
 **Agregamos una nueva parte al código para poder solucionar el error en el que sólo se enviaba "1" hacia Adafruit IO**
 
+![codigo2](./imagenes/codigoRaspi2.JPG)
+
 - La línea "if not estado_anterior and estado_actual:" hace lo opuesto a "if estado_anterior and not estado_actual:" , es decir, si anteriormente el botón estaba presionado (false) y ahora ya no lo está (true) entonces significa que alguien soltó el botón, por lo tanto envía 0 a Adafruit
 
-- 
+- La línea "time.sleep(0.25)" en ambos casos (apretar botón y soltar botón) sirve para que el botón registre solamente 1 lectura en 1 pulsada, es un anti-rebote
 
-- por último tenemos el antirebote "time.sleep(0.25)" que evita que el botón registre muchas lecturas en una sola pulsada
+- Por último, a diferencia de antes, ahora si es que hay un error intenta reconectarse automáticamente a Adafruit IO. Anteriormente sólo imprimía el mensaje del error
 
 ## Errores en Raspberry Pi Pico 2w
 
