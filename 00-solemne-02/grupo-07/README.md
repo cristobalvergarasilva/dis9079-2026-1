@@ -5,7 +5,7 @@
 - Benjamín Álvarez - [benjaminalvarez21](https://github.com/benjaminalvarez21)
 - Anays Cornejo - [Anaysval](https://github.com/Anaysval)
 - Agustina Aceituno - 
-- Antonia Fuentealba - 
+- Antonia Fuentealba - [AntFuentealba](https://github.com/AntFuentealba)
   
 ## Descripción textual del proyecto
 
