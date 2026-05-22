@@ -57,22 +57,23 @@ Durante las primeras pruebas realizamos la ejecución del código inicial, pero 
 Con ayuda de nuestro compañero, nos dimos cuenta de que nuestra Raspberry Pi Pico 2W no contaba con algunas librerías necesarias para el correcto funcionamiento del programa, por lo que procedimos a instalarlas y configurar nuevamente el entorno de trabajo.
 
 Además, observamos que la visualización del proyecto en Visual Studio Code aparecía con el ícono de Adobe Illustrator, lo que inicialmente nos generó confusión respecto al tipo de archivo y su configuración dentro del programa. Luego de revisar esto, continuamos realizando ajustes hasta lograr avanzar correctamente con el desarrollo del proyecto.
-
+![VisualStudioCode](imagenes/Visualizacion.jpg)
 ## Código usado para recibir 
 
 ### Proceso
-## Desarrollo y resolución de errores
 
 Al inicio de la sesión, realizamos una prueba utilizando un código desarrollado previamente por nuestra compañera, el cual ya había sido verificado y funcionaba correctamente. Posteriormente, decidimos desarrollar el proceso por nuestra cuenta, lo que derivó en una serie de errores, principalmente relacionados con el cableado.
 
 El primer inconveniente fue la conexión de alimentación: el cable estaba conectado a 5V, cuando lo correcto era utilizar 13V, ya que la conexión inicial solo permitía verificar el funcionamiento del LED, pero no era la adecuada para el comportamiento esperado del sistema.
 
 Una vez corregido ese punto, nos encontramos con un segundo problema: el LED no lograba apagarse correctamente. Para resolverlo, desarrollamos dos códigos adicionales, modificando distintas secciones de la programación y realizando múltiples pruebas. Sin embargo, ninguna de las modificaciones solucionó el inconveniente.
+![Arduino](imagenes/error_prendido.jpg)
 
 Finalmente, determinamos que el problema no estaba en el código, sino en la configuración interna de la Raspberry Pi Pico 2W. El dispositivo había sido modificado previamente y solo mantenía activa la señal de encendido del LED (valor `1`), mientras que la señal de apagado (valor `0`) no funcionaba correctamente. Al identificar este origen, volvimos al código inicial y pudimos continuar con el desarrollo del proyecto.
 
 Como resultado, se logró establecer exitosamente la conexión entre la Raspberry Pi Pico 2W y el LED, completando el objetivo de la práctica.
-
+![Arduino](imagenes/arduino_conectado.png)
+![Arduino](imagenes/prueba1.png)
 ## Imágenes del proyecto
 
 ## Animaciones del proyecto
