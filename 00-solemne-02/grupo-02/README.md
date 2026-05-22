@@ -156,6 +156,7 @@ while True:
 ```
 ### Proceso
 Durante las primeras pruebas realizamos la ejecución del código inicial, pero el sistema no funcionó correctamente, ya que la luz LED no lograba encenderse. Debido a esto, fue necesario revisar y modificar el código para identificar el problema.
+![raspberry](imagenes/raspberry_cableado.jpeg)
 
 Con ayuda de nuestro compañero, nos dimos cuenta de que nuestra Raspberry Pi Pico 2W no contaba con algunas librerías necesarias para el correcto funcionamiento del programa, por lo que procedimos a instalarlas y configurar nuevamente el entorno de trabajo.
 
@@ -245,7 +246,7 @@ Al inicio de la sesión, realizamos una prueba utilizando un código desarrollad
 El primer inconveniente fue la conexión de alimentación: el cable estaba conectado a 5V, cuando lo correcto era utilizar 13V, ya que la conexión inicial solo permitía verificar el funcionamiento del LED, pero no era la adecuada para el comportamiento esperado del sistema.
 
 Una vez corregido ese punto, nos encontramos con un segundo problema: el LED no lograba apagarse correctamente. Para resolverlo, desarrollamos dos códigos adicionales, modificando distintas secciones de la programación y realizando múltiples pruebas. Sin embargo, ninguna de las modificaciones solucionó el inconveniente.
-![Arduino](imagenes/error_prendido.jpg)
+![error](imagenes/Luz_prendida.jpg)
 
 Finalmente, determinamos que el problema no estaba en el código, sino en la configuración interna de la Raspberry Pi Pico 2W. El dispositivo había sido modificado previamente y solo mantenía activa la señal de encendido del LED (valor `1`), mientras que la señal de apagado (valor `0`) no funcionaba correctamente. Al identificar este origen, volvimos al código inicial y pudimos continuar con el desarrollo del proyecto.
 
@@ -257,7 +258,7 @@ Como parte adicional de la práctica, quisimos comprobar si el sistema funcionab
 ![Arduino](imagenes/prueba1.jpg)
 ## Imágenes del proyecto
 Pruebas realizas de larga distancia
-
+![prueba1](imagenes/prueba_larga_distancia.jpeg)
 ## Animaciones del proyecto
 
 ## Bibliografía
