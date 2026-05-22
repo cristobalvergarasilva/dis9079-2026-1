@@ -154,7 +154,9 @@ En el caso del LED el "filtrado" no ocurre en el sensor sino en la **recepción 
 <img width="330" height="350" alt="image" src="https://github.com/user-attachments/assets/a2cd9eac-e623-4dd7-a03f-72dad2a178c6" />
 <img width="330" height="350" alt="image" src="https://github.com/user-attachments/assets/cc7a45a8-01a7-4247-87a2-fb9c89f4c850" />
 
-**Leo Villareal** es un artista estadounidense conocido por instalaciones de luz a gran escala. Su obra más famosa, *The Bay Lights*, cubre el puente Bay Bridge de San Francisco con miles de LEDs blancos controlados por software. El resultado es una instalación lumínica dinámica que cambia constantemente sin repetir nunca el mismo patrón.
+Leo Villareal es un artista estadounidense conocido por instalaciones de luz a gran escala. Su obra más famosa, The Bay Lights, cubrió el puente Bay Bridge de San Francisco con 25,000 LEDs blancos distribuidos a lo largo de 2.9 km de cables verticales. El resultado es una instalación lumínica dinámica que cambia constantemente sin repetir nunca el mismo patrón.
+Lo técnicamente interesante es que Villareal desarrolló software propio para generar los patrones, los algoritmos se inspiraban en cosas reales como las olas de la bahía, el viento y el flujo del tráfico en el puente. Es arte generativo: el código produce resultados únicos cada vez, así que la instalación nunca muestra lo mismo dos veces.
+Estuvo encendida desde el 5 de marzo de 2013 hasta el 5 de marzo de 2023, exactamente 10 años. En 2024 comenzó su reinstalación con el doble de LEDs (50,000), financiada con 11 millones de dólares en donaciones privadas.
 
 <img width="330" height="350" alt="image" src="https://github.com/user-attachments/assets/088d2ad5-905e-4a53-86ae-f615999fde3b" />
 <img width="330" height="350" alt="image" src="https://github.com/user-attachments/assets/2cd96a80-e882-4e65-a8ac-da8c18afd0bb" />
@@ -162,8 +164,7 @@ En el caso del LED el "filtrado" no ocurre en el sensor sino en la **recepción 
 <img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/24512e60-8c80-4344-b189-ba7c98f18a02" />
 <img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/b962d7dc-2172-4371-bca1-e4946120fbec" />
 
-
-Lo que me parece interesante de este referente es que cada LED en esa instalación es exactamente lo mismo que el nuestro: un actuador que responde a una señal eléctrica. La diferencia es que Villareal tiene miles de ellos coordinados por un sistema central que les manda instrucciones en tiempo real, igual que Adafruit IO le manda instrucciones al nuestro. La lógica es `dato en red → respuesta lumínica`, a cualquier escala. Lo que nosotros hicimos en clase con un LED y un botón es, en esencia, la misma arquitectura que esa instalación de varios millones de dólares.
+Lo que me parece interesante de este referente es que cada LED en esa instalación es exactamente lo mismo que el nuestro: un actuador que responde a una señal eléctrica. La diferencia es que Villareal tiene miles de ellos coordinados por un sistema central que les manda instrucciones en tiempo real, igual que Adafruit IO le manda instrucciones al nuestro. La lógica es dato en red → respuesta lumínica, a cualquier escala. Lo que hicimos en clase con un LED y un botón es, en esencia, la misma arquitectura que esa instalación de varios millones de dólares.
 
 ---
 
@@ -178,5 +179,6 @@ Lo que me parece interesante de este referente es que cada LED en esa instalaci�
 - [Cómo conectar un LED con Arduino](https://docs.arduino.cc/built-in-examples/basics/Blink/)
 - [LEDs — guía completa SparkFun](https://learn.sparkfun.com/tutorials/light-emitting-diodes-leds/all)
 - [Calcular resistencia para LED](https://learn.adafruit.com/adafruit-arduino-lesson-2-leds/leds)
+- [The Bay Lights — reinstalación y financiamiento](https://www.thebaylights.org/)
 - [Leo Villareal — The Bay Lights](http://villareal.net/the-bay-lights-2013-the-bay-bridge-sf-ca)
 - [Protocolo MQTT explicado](https://io.adafruit.com/api/docs/mqtt.html)
