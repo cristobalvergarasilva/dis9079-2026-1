@@ -144,7 +144,7 @@ while True:
 ```
 Este código nos fue facilitado por Mateo, quien nos ayudó durante todo el proceso. Lo que hace en resumen es conectar la Raspberry Pi Pico 2w al wifi y enviar datos al feed asignado de nuestro grupo, estos datos se envían cuando se presiona el botón, envía de 1 a la vez.
 
-Después de varios intentos de intentar conectarse al wifi, finalmente la placa lo pudo lograr, pulsamos el botón y enviaba datos a Adafruit IO y notamos que existía un pequeño delay al enviar el dato
+Después de varios intentos de intentar conectarse al wifi, finalmente la placa lo pudo lograr, pulsamos el botón y enviaba datos a Adafruit IO y notamos que existía un pequeño delay al enviar el dato.
 
 ![datos](./imagenes/adafruitBoton2.JPG)
 
@@ -154,7 +154,7 @@ Después de varios intentos de intentar conectarse al wifi, finalmente la placa 
 
 **Imagen 04**, *datos enviados a  Adafruit IO con fecha y hora*
 
-- Un error que ocurrió después de enviar constantemente datos es que el led se quedó encendido y no volvió a apagarse
+- Un error que ocurrió después de enviar constantemente datos es que el led se quedó encendido y no volvió a apagarse.
 
 ## Código recibir, Experimentación en clases, Arduino UNO R4 Wifi
 
@@ -312,35 +312,37 @@ while True:
 ```
 **Explicación breve del código**
 
-- La primera parte del código importa las bibliotecas puestas dentro de nuestra Raspberry Pi, inicia el programa e intenta conectar la placa al WiFi asignado en las líneas "SSID: auxilio" y "PASSWORD: cabal123"
+- La primera parte del código importa las bibliotecas puestas dentro de nuestra Raspberry Pi, inicia el programa e intenta conectar la placa al WiFi asignado en las líneas "SSID: auxilio" y "PASSWORD: cabal123".
 
-- En la segunda sección del código tenemos todo lo destinado a Adafruit IO, aquí colocamos las credenciales de la cuenta
+- En la segunda sección del código tenemos todo lo destinado a Adafruit IO, aquí colocamos las credenciales de la cuenta.
 
-- La línea de código "FEED_BOTON = AIO_USERNAME + "/feeds/boton-prueba-grupo10" identifica el canal de conexión MQTT en el cuál se publicarán los mensajes que se reciban. Esta línea establece: ¿de quien es el feed? --> AIO_USERNAME y ¿qué feed es? --> boton-prueba-grupo10
+- La línea de código "FEED_BOTON = AIO_USERNAME + "/feeds/boton-prueba-grupo10" identifica el canal de conexión MQTT en el cuál se publicarán los mensajes que se reciban. Esta línea establece: ¿de quien es el feed? --> AIO_USERNAME y ¿qué feed es? --> boton-prueba-grupo10.
 
-- La tercera parte del código establece el funcionamiento del botón, lo asigna dentro del pin GP 0 que es donde está conectado y es una entrada digital, esto ocurre con la línea "boton = digitalio.DigitalInOut(board.GP0)"
+- La tercera parte del código establece el funcionamiento del botón, lo asigna dentro del pin GP 0 que es donde está conectado y es una entrada digital, esto ocurre con la línea "boton = digitalio.DigitalInOut(board.GP0)".
 
-- "mqtt.loop()" mantiene en todo momento la conexión con Adafruit
+- "mqtt.loop()" mantiene en todo momento la conexión con Adafruit.
 
-- "estado_actual = boton.value" muestra el valor del botón y lee si es que el botón está presionado o no, en este caso, true --> botón en reposo (no presionado) y false --> botón presionado
+- "estado_actual = boton.value" muestra el valor del botón y lee si es que el botón está presionado o no, en este caso, true --> botón en reposo (no presionado) y false --> botón presionado.
 
-- Cuando se de la condición "if estado_anterior and not estado_actual:" significa que el estado anterior es distinto del estado actual del botón, por ende, detecta que alguien SÍ presionó el botón
+- Cuando se de la condición "if estado_anterior and not estado_actual:" significa que el estado anterior es distinto del estado actual del botón, por ende, detecta que alguien SÍ presionó el botón.
 
-- Cuando estado_anterior = estado_actual, significa que no está presionado el botón porque ambos estados son iguales, por lo que no pasa nada, el botón únicamente activa la lectura cuando el estado actual es distinto del estado anterior
+- Cuando estado_anterior = estado_actual, significa que no está presionado el botón porque ambos estados son iguales, por lo que no pasa nada, el botón únicamente activa la lectura cuando el estado actual es distinto del estado anterior.
 
 **Agregamos una nueva parte al código para poder solucionar el error en el que sólo se enviaba "1" hacia Adafruit IO**
 
 ![codigo2](./imagenes/codigoRaspi2.JPG)
 
-- La línea "if not estado_anterior and estado_actual:" hace lo opuesto a "if estado_anterior and not estado_actual:" , es decir, si anteriormente el botón estaba presionado (false) y ahora ya no lo está (true) entonces significa que alguien soltó el botón, por lo tanto envía 0 a Adafruit
+- La línea "if not estado_anterior and estado_actual:" hace lo opuesto a "if estado_anterior and not estado_actual:" , es decir, si anteriormente el botón estaba presionado (false) y ahora ya no lo está (true) entonces significa que alguien soltó el botón, por lo tanto envía 0 a Adafruit.
 
-- La línea "time.sleep(0.25)" en ambos casos (apretar botón y soltar botón) sirve para que el botón registre solamente 1 lectura en 1 pulsada, es un anti-rebote
+- La línea "time.sleep(0.25)" en ambos casos (apretar botón y soltar botón) sirve para que el botón registre solamente 1 lectura en 1 pulsada, es un anti-rebote.
 
-- Por último, a diferencia de antes, ahora si es que hay un error intenta reconectarse automáticamente a Adafruit IO. Anteriormente sólo imprimía el mensaje del error
+- Por último, a diferencia de antes, ahora si es que hay un error intenta reconectarse automáticamente a Adafruit IO. Anteriormente sólo imprimía el mensaje del error.
+
+![codigoultimaparte](./imagenes/codigoRaspi3.JPG)
 
 ## Errores en Raspberry Pi Pico 2w
 
-Hubo diversos errores durante el proceso, al enfrentarse nuevamente a Raspberry Pi Pico 2w y abrir vscode, enviar el código, aparecía lo siguiente
+Hubo diversos errores durante el proceso, al enfrentarse nuevamente a Raspberry Pi Pico 2w y abrir vscode, enviar el código, aparecía lo siguiente:
 
 ![error1](./imagenes/errorparabitacora1.JPG)
 
