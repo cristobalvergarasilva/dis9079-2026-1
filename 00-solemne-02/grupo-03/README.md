@@ -19,8 +19,13 @@
 + Cable Micro USB
 ## Sensor usado
 Para el sensor decidimos utilizar un boton - pulsador conectado a nuestra raspberry, permitiendonos enviar el mensaje a la nube con tan solo presionarlo, se presiona cuatro veces para proyectar los cuatro mensajes. 
+
+![imagenes](./imagenes/boton_pulsador.jpg)
+
 ## Actuador usado
 Para el actuador utilizamos una panatalla OLED, conectada a nuestro arduino permitiendo así que se proyecten los cuatro mensajes.
+
+![imagenes](./imagenes/pantalla-oled.jpg)
 ## Código usado para enviar
 
 ```cpp 
