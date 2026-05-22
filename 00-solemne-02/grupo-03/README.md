@@ -17,10 +17,35 @@
 + Pantalla OLED
 + Cable USB-C
 + Cable Micro USB
-## Sensor usado
-Para el sensor decidimos utilizar un boton - pulsador conectado a nuestra raspberry, permitiendonos enviar el mensaje a la nube con tan solo presionarlo, se presiona cuatro veces para proyectar los cuatro mensajes. 
-## Actuador usado
-Para el actuador utilizamos una panatalla OLED, conectada a nuestro arduino permitiendo así que se proyecten los cuatro mensajes.
+## Sensor usado  
+```
+pulsador táctil
+``` 
+Para el sensor decidimos utilizar un botón pulsador conectado a nuestra Raspberry Pi, ya que nos permitía transformar una acción física muy simple en el envío de un mensaje a la nube. En este caso, el botón funciona como el punto de inicio del sistema: al presionarlo, la Raspberry detecta la acción y envía un mensaje al feed de Adafruit IO.
+
+El sistema está pensado como una secuencia de cuatro mensajes. Cada vez que se presiona el botón, se envía una parte distinta: primero “Sonríe por mí”, luego “amigo”, después “yo sonrío por ti” y finalmente “...”. Después de la cuarta pulsación, la secuencia vuelve a empezar desde el primer mensaje.
+
+Durante las pruebas nos dimos cuenta de que la forma de presionar el botón también influía en el funcionamiento. No bastaba con tocarlo muy rápido, porque a veces costaba que se enviara correctamente el siguiente mensaje. En nuestro caso, funcionaba mejor mantenerlo presionado hasta que el mensaje se enviara y luego soltarlo, para que el sistema pudiera reconocer bien una pulsación antes de pasar a la siguiente. Esto nos ayudó a entender que la interacción con el sensor no era solo técnica, sino también corporal. El botón necesitaba un gesto claro: presionar, esperar y soltar. Así, cada pulsación se volvía una pequeña acción de comunicación, donde el contacto físico activaba el envío de una parte del mensaje. 
+
+## Actuador usado 
+
+Para el actuador utilizamos una pantalla OLED conectada a nuestro Arduino, permitiendo que se proyectaran visualmente los cuatro mensajes enviados desde la Raspberry. En este caso, la pantalla funcionaba como la salida del sistema: recibía la información desde Adafruit IO y la transformaba en texto visible.
+
+Durante el proceso tuvimos algunos problemas con el código encargado de recibir el texto. En un momento, el Arduino no lograba conectarse correctamente a Adafruit IO, por lo que la pantalla mostraba un mensaje de error. Después de resolver la conexión, nos dimos cuenta desde el software de Arduino que el código ya estaba funcionando y que el Arduino sí estaba recibiendo los mensajes. Sin embargo, la pantalla OLED se había quedado pegada con el mensaje de error anterior, por lo que visualmente parecía que el sistema seguía fallando.
+
+Para solucionar eso, tuvimos que ajustar el código con Chatgpt para que la pantalla se limpiara y actualizara cada vez que llegara un nuevo mensaje. La parte clave fue agregar una función que reiniciara lo que estaba mostrando la pantalla antes de escribir el nuevo contenido: 
+```
+display.clearDisplay();
+```
+Esa instrucción limpia la pantalla antes de mostrar un nuevo mensaje 
+```
+display.display();
+```
+la pantalla se actualiza y muestra el contenido nuevo. Gracias a eso, la OLED dejó de quedarse pegada con el mensaje de error y empezó a mostrar correctamente los mensajes recibidos desde Adafruit IO.
+
+Esto nos permitió entender que la pantalla no se actualiza sola: necesita que el código primero borre lo anterior, escriba el nuevo mensaje y finalmente lo proyecte. 
+
+
 ## Código usado para enviar
 
 ```cpp 
