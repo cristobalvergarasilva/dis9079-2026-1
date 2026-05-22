@@ -159,65 +159,71 @@ Muchos proyectos de Teenage Engineering utilizan potenciómetros como parte cent
 
 <img src="./imagenes/teenage.png" alt="teenage" width="300">
 
-individual - INVESTIGACIÓN ACTUADOR
-Investigación del actuador: Servomotor SG90
-¿Qué es un actuador?
+### Investigación del actuador: Servomotor SG90
 
-Un actuador es un componente capaz de transformar energía eléctrica en movimiento físico. Dentro de sistemas interactivos, los actuadores permiten que los datos digitales produzcan respuestas visibles o mecánicas en el mundo real.
+`¿Qué es un actuador?`
 
-¿Qué es el servomotor SG90?
+Un actuador es un componente capaz de transformar energía eléctrica en movimiento físico. Dentro de sistemas interactivos, los actuadores permiten que los datos digitales produzcan respuestas visibles o mecánicas en el mundo real. En este caso, utilizamos un actuador eléctrico es un dispositivo electromecánico que convierte la energía eléctrica en fuerza y movimiento mecánico. Utiliza un motor eléctrico (como corriente continua, motores paso a paso o servomotores) para generar un movimiento rotativo o lineal, permitiendo abrir, cerrar, posicionar o bloquear objetos. 
 
-El SG90 es un micro servomotor controlado mediante señales PWM. Permite mover su eje hacia posiciones angulares específicas, generalmente entre 0° y 180°.
+`¿Qué es el servomotor SG90?`
 
-Es uno de los actuadores más utilizados en proyectos de robótica, diseño interactivo y prototipado debido a:
+El SG90 es un micro servomotor controlado mediante señales PWM. Permite mover su eje hacia posiciones angulares específicas, generalmente entre 0° y 180°. Tiene un conector universal tipo “S” que encaja perfectamente en la mayoría de los receptores de radio control. Los cables en el conector están distribuidos de la siguiente forma:
 
-Bajo costo.
-Tamaño compacto.
-Fácil programación.
-Compatibilidad con Arduino y Raspberry Pi.
-Funcionamiento dentro del proyecto
+|Rojo|Café|Naranjo|
+|--|--|--|
+|Alimentación|Tierra|Señal|
+|(+)|(-)|PWM|
 
-En este proyecto, el Arduino recibe los datos enviados desde Adafruit IO y los utiliza para controlar el ángulo del servomotor SG90.
+- Es uno de los actuadores más utilizados en proyectos de robótica, diseño interactivo y prototipado debido a:
+  - Bajo costo
+  - Tamaño compacto
+  - Fácil programación
+  - Compatibilidad con Arduino y Raspberry Pi
+  - Funcionamiento dentro del proyecto
 
-El servo mueve el corazón giratorio del robot LUMI dependiendo de la posición del potenciómetro. Además, cuando alcanza cierto ángulo, se activa un LED amarillo como respuesta visual.
+En este proyecto, el Arduino recibe los datos enviados desde Adafruit IO y los utiliza para controlar el ángulo del servomotor SG90. El servo mueve el corazón giratorio del robot LUMI dependiendo de la posición del potenciómetro. Además, cuando alcanza cierto ángulo, se activa un LED amarillo como respuesta visual.
 
-Filtrado y control de movimiento
+`Filtrado y control de movimiento`
 
-Para evitar movimientos erráticos del servomotor se realizaron:
+- Para evitar movimientos erráticos del servomotor se realizaron:
+  - Definir el máximo del ángulo.
+  - Mapeo de datos.
+  - Actualización progresiva del movimiento.
+  - Control de velocidad mediante delays.
 
-Límites máximos y mínimos de ángulo.
-Mapeo de datos.
-Actualización progresiva del movimiento.
-Control de velocidad mediante retardos.
+`Problemas comunes`
 
-Esto permitió que el movimiento del corazón de LUMI fuera más fluido y expresivo.
+- Los SG90 pueden presentar pequeños movimientos involuntarios debido al ruido eléctrico o señales inestables.
+- Problemas de alimentación
+- Definir el límite del ángulo
+- El servo no siempre alcanza exactamente los 180° reales.
 
-Problemas comunes
-Vibración del servo
+`Visualización de datos y movimiento`
 
-Los SG90 pueden presentar pequeños movimientos involuntarios debido al ruido eléctrico o señales inestables.
+- Los datos enviados por el sensor se transforman en movimiento mecánico dentro de LUMI, permitiendo visualizar información invisible mediante interacción cinética y luz; girando el corazón y prendiendo la luz.
 
-Problemas de alimentación
+`Artista / proyecto / empresa relacionada`
 
-El consumo de corriente del servo puede provocar reinicios del Arduino si no existe suficiente energía disponible.
+### [Robot Araña](https://fselectronics.cl/products/robot-arana-12-dof-arduino-12-servo-sg90)
 
-Límites mecánicos
+El Robot Araña 12 DOF es un robot inspirado en el movimiento de las arañas, diseñado para explorar principios de robótica, mecánica e interacción electrónica mediante el uso de Arduino y múltiples servomotores SG90.
 
-El servo no siempre alcanza exactamente los 180° reales.
+`Funcionalidad`
 
-Sobrecalentamiento
+- Cada pata del robot está compuesta por tres articulaciones principales:
+  - Coxa: controla la rotación lateral de la pata.
+  - Femur: controla la elevación y descenso.
+  - Tibia: controla la extensión y apoyo de la pierna.
 
-Un uso continuo o forzado puede generar temperatura excesiva en el motor.
+- La combinación de estos movimientos permite que el robot:
+  - camine
+  - gire
+  - mantenga equilibrio
+  - cambie de postura
 
-Visualización de datos y movimiento
+El sistema es controlado mediante un microcontrolador Arduino, el cual envía señales PWM a los servomotores SG90 para coordinar el desplazamiento del robot.
 
-La relación entre visualización digital y movimiento físico fue central en el proyecto.
+<img src="./imagenes/robotArana" alt="robot" width="300">
 
-Los datos enviados por el sensor se transforman en movimiento mecánico dentro de LUMI, permitiendo visualizar información invisible mediante interacción cinética y luz.
+https://zbotic.in/quadruped-spider-robot-12-servo-arduino/
 
-Proyecto / obra relacionada
-Proyectos interactivos con Arduino y servomotores
-
-Muchos proyectos de arte interactivo utilizan servomotores para traducir datos en movimiento físico. Un ejemplo común son instalaciones robóticas que reaccionan a sensores de movimiento, sonido o internet.
-
-En comunidades de electrónica y robótica, los SG90 son ampliamente utilizados en proyectos experimentales de interacción física y diseño de comportamiento cinético.
