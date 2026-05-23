@@ -4,6 +4,7 @@ lunes 18 mayo 2026
 
 solemne 2
 
+
 ## Apuntes en clases
 
 - Sensores: Dispositivo diseñado para detectar cambios en el entorno.
@@ -12,6 +13,7 @@ solemne 2
 Lo que queremos realizar en la solemne 2 es que desde la Raspberry pi envíe datos de un botón on/off  hacia el Arduino
 y que este encienda una luz o emita algún sonido.
 
+
 ### Pseudocódigo
 
 |Raspberry Pi Pico 2 W|Adafruit IO|Arduino UNO R4 wifi|
@@ -19,21 +21,25 @@ y que este encienda una luz o emita algún sonido.
 |Botón|MQTT|LED|
 |ON/OFF|feed:estado|verde/rojo|
 
+
 1. Presionar elbotón en la raspberry > alterna entre ON y OFF
 2. La Raspberry publica "ON" "OFF" en el feed de Adafruit IO
 3. El Arduino recibe el mensaje y enciende el LED correspondiente
+
 
 #### Raspberry Pi Pico 2W
 
 - Cada vez que presionas el botón, alterna entre ON y OFF (no es necesario mantenerlo)
 - El LED integrado de la placa te muestra el estado actual (encendido=ON, apagado=OFF)
 - Publica el texto "ON" u "OFF" en el feed estado de Adafruit IO
+
   
 #### Arduino UNO R4 Wifi
 
 - Recibe "ON" -> Enciende LED verde (D2), apaga el rojo
 - Recibe "OFF" -> enciende LED rojo (D3), apaga el verde
 - Al arrancar, ambos  LEDS parpadean 3 veces para confirmar que la conexión fue exitosa
+
   
 #### Arduino UNO R4 Wifi
 
@@ -60,10 +66,12 @@ Después decidimos cambiarlo
 
 Lo que queremos realizar en la solemne 2 es que desde la Raspberry pi envíe datos mediante un potenciómetro hacía el Arduino y que este encienda una luz y mueva un servomotor. Los datos enviados se verán reflejados en el feed de Adafruit.
 
+
 |Raspberry Pi Pico 2 W|Adafruit IO|Arduino UNO R4 wifi|
 |---|---|---|
 |Potenciómetro|MQTT|Led + servomotor|
 |ángulo|Feed: estado|enciende led y mueve servo|
+
 
 1. Girar el potenciómetro en la Raspberry -> va cambiandi el ángulo
 2. La Raspberry publica e ángulo en el feed de Adafruit IO
@@ -71,6 +79,9 @@ Lo que queremos realizar en la solemne 2 es que desde la Raspberry pi envíe dat
 
 
 ### Raspberry Pi Pico 2 W
+
+<img width="467" height="329" alt="Raspberry" src="https://github.com/user-attachments/assets/0f6a0751-dd77-4d67-92a2-f48b539962e8" />
+
 
 La placa **Raspberry Pi Pico 2 W** será la encargada de capturar los datos generados por un potenciómetro B500K conectado a una de sus entradas analógicas.
 
@@ -93,6 +104,10 @@ Gracias a esta plataforma, es posible establecer una comunicación remota entre 
 ---
 
 ### Arduino IDE y Arduino UNO R4 WiFi
+
+
+<img width="374" height="316" alt="ArduinoUNOR4WiFi" src="https://github.com/user-attachments/assets/7e6bcf66-3666-4d89-b116-868560d81628" />
+
 
 El **Arduino UNO R4 WiFi** será programado mediante el software **Arduino IDE** y se conectará a Adafruit IO para recibir los datos publicados en el feed *“moluscos”*.
 
@@ -118,10 +133,10 @@ Además, dentro del archivo `.ino`, se debe reemplazar el texto `TU_USUARIO_ADAF
 ## Investigación del sensor: Potenciómetro B500K
 
 
-### ¿Qué es un potenciómetro?
-
 <img width="414" height="434" alt="sensorPotenciómetro" src="https://github.com/user-attachments/assets/c62d049b-a491-4db0-8a17-3d5d3ed09a3b" />
 
+
+### ¿Qué es un potenciómetro?
 
 El potenciómetro es un componente electrónico utilizado para variar manualmente la resistencia dentro de un circuito. Funciona como un resistor variable que permite modificar valores eléctricos, principalmente voltaje o corriente, dependiendo de la posición de su perilla o eje giratorio.
 
@@ -510,10 +525,14 @@ Imágenes del proyecto:
 <img width="513" height="351" alt="Moritz01" src="https://github.com/user-attachments/assets/e45e43b9-ec55-4669-a60e-4bd444d8586d" />
 
 
+
+
 <img width="646" height="441" alt="Moritz02" src="https://github.com/user-attachments/assets/a4eddcc1-009e-4f65-99a3-cb925f138bc1" />
 
 
+
 ## Código que envía, en Raspberry PI Pico 2 W
+
 
 ```cpp
 #  LIBRERIA necesaria en /lib:
@@ -608,4 +627,308 @@ while True:
             pass
 
     time.sleep(0.1)
-´´´
+
+```
+
+
+## Código que recibe, en Arduino IDE
+
+
+```cpp
+// Grupo 08
+// Arduino UNO R4 WiFi — Adafruit IO → Servo SG90 + LED rojo
+
+//  Recibe ángulo (0-180°) desde Adafruit IO
+//  → Mueve el servo SG90 a ese ángulo
+//  → Si ángulo >= 150°: LED rojo enciende (señal de término)
+//  → Si ángulo <  150°: LED rojo apagado
+#include <WiFiS3.h>
+#include <ArduinoMqttClient.h>
+#include <Servo.h>
+
+// configuracion de los datos
+const char* WIFI_SSID     = "blablabla";
+const char* WIFI_PASSWORD = "blablabla";
+
+const char* AIO_SERVER    = "io.adafruit.com";
+const int   AIO_PORT      = 1883;
+const char* AIO_USERNAME  = "blablabla";
+const char* AIO_KEY       = "blablabla";
+
+const char* FEED_ANGULO   = "blablabla/feeds/moluscos";
+
+// definir pines del servo y led
+const int PIN_SERVO    = 9;
+const int PIN_LED_ROJO = 3;
+
+// angulo a partir del cual enciende el LED (señal de termino)
+const int ANGULO_TERMINO = 125;
+
+// wifi + servo
+WiFiClient   wifiClient;
+MqttClient   mqttClient(wifiClient);
+Servo        miServo;
+
+// se ejecuta al recibir el mensaje
+void onMqttMessage(int messageSize) {
+  String payload = "";
+  while (mqttClient.available()) {
+    payload += (char)mqttClient.read();
+  }
+
+  int angulo = payload.toInt();
+  angulo = constrain(angulo, 0, 180);  // seguridad: limita al rango del servo
+
+  Serial.print("Ángulo recibido: ");
+  Serial.print(angulo);
+  Serial.println("°");
+
+  // mueve el servo
+  miServo.write(angulo);
+
+  // LED rojo: enciende si llego al angulo de termino
+  if (angulo >= ANGULO_TERMINO) {
+    digitalWrite(PIN_LED_ROJO, HIGH);
+    Serial.println("  → LED ROJO encendido ✓ (término alcanzado)");
+  } else {
+    digitalWrite(PIN_LED_ROJO, LOW);
+    Serial.print("  → Servo en ");
+    Serial.print(angulo);
+    Serial.print("° (falta ");
+    Serial.print(ANGULO_TERMINO - angulo);
+    Serial.println("° para término)");
+  }
+}
+
+// setup
+void setup() {
+  Serial.begin(115200);
+  delay(1500);
+
+  // pines
+  pinMode(PIN_LED_ROJO, OUTPUT);
+  digitalWrite(PIN_LED_ROJO, LOW);
+
+  miServo.attach(PIN_SERVO);
+  miServo.write(0);   // posicion inicial: 0°
+
+  Serial.println("=== Arduino UNO R4 WiFi — Servo SG90 + LED ===\n");
+
+  // wifi
+  Serial.print("Conectando a WiFi");
+  while (WiFi.begin(WIFI_SSID, WIFI_PASSWORD) != WL_CONNECTED) {
+    Serial.print(".");
+    delay(1000);
+  }
+  Serial.println();
+  Serial.print("  ✓ IP: ");
+  Serial.println(WiFi.localIP());
+
+  // mqtt
+  mqttClient.setId("ArduinoUNOR4_servo");
+  mqttClient.setUsernamePassword(AIO_USERNAME, AIO_KEY);
+  mqttClient.onMessage(onMqttMessage);
+
+  Serial.print("Conectando a Adafruit IO...");
+  while (!mqttClient.connect(AIO_SERVER, AIO_PORT)) {
+    Serial.print(".");
+    delay(1000);
+  }
+  Serial.println();
+  Serial.println("  ✓ Conectado a Adafruit IO");
+
+  mqttClient.subscribe(FEED_ANGULO);
+  Serial.println("  ✓ Suscrito al feed: moluscos");
+  Serial.print("\nEsperando datos... LED enciende al llegar a ");
+  Serial.print(ANGULO_TERMINO);
+  Serial.println("°\n");
+
+  // parpadeo de confirmacion
+  for (int i = 0; i < 3; i++) {
+    digitalWrite(PIN_LED_ROJO, HIGH); delay(150);
+    digitalWrite(PIN_LED_ROJO, LOW);  delay(150);
+  }
+}
+
+// loop
+void loop() {
+  // reconexion automatica
+  if (!mqttClient.connected()) {
+    Serial.println("[MQTT] Desconectado. Reconectando...");
+    digitalWrite(PIN_LED_ROJO, LOW);
+    miServo.write(0);
+
+    while (!mqttClient.connect(AIO_SERVER, AIO_PORT)) {
+      Serial.print(".");
+      delay(2000);
+    }
+    mqttClient.subscribe(FEED_ANGULO);
+    Serial.println("\n  ✓ Reconectado");
+  }
+
+  mqttClient.poll();
+}
+
+```**Código que recibe, en Arduino IDE**
+
+Luego, en el código que recibe. El arduino lee estos valores y procede a mover el servomotor, cuando llegue a un ángulo límite, se prende una luz amarilla.
+
+```cpp
+// Grupo 08
+// Arduino UNO R4 WiFi — Adafruit IO → Servo SG90 + LED rojo
+
+//  Recibe ángulo (0-180°) desde Adafruit IO
+//  → Mueve el servo SG90 a ese ángulo
+//  → Si ángulo >= 150°: LED rojo enciende (señal de término)
+//  → Si ángulo <  150°: LED rojo apagado
+#include <WiFiS3.h>
+#include <ArduinoMqttClient.h>
+#include <Servo.h>
+
+// configuracion de los datos
+const char* WIFI_SSID     = "blablabla";
+const char* WIFI_PASSWORD = "blablabla";
+
+const char* AIO_SERVER    = "io.adafruit.com";
+const int   AIO_PORT      = 1883;
+const char* AIO_USERNAME  = "blablabla";
+const char* AIO_KEY       = "blablabla";
+
+const char* FEED_ANGULO   = "blablabla/feeds/moluscos";
+
+// definir pines del servo y led
+const int PIN_SERVO    = 9;
+const int PIN_LED_ROJO = 3;
+
+// angulo a partir del cual enciende el LED (señal de termino)
+const int ANGULO_TERMINO = 125;
+
+// wifi + servo
+WiFiClient   wifiClient;
+MqttClient   mqttClient(wifiClient);
+Servo        miServo;
+
+// se ejecuta al recibir el mensaje
+void onMqttMessage(int messageSize) {
+  String payload = "";
+  while (mqttClient.available()) {
+    payload += (char)mqttClient.read();
+  }
+
+  int angulo = payload.toInt();
+  angulo = constrain(angulo, 0, 180);  // seguridad: limita al rango del servo
+
+  Serial.print("Ángulo recibido: ");
+  Serial.print(angulo);
+  Serial.println("°");
+
+  // mueve el servo
+  miServo.write(angulo);
+
+  // LED rojo: enciende si llego al angulo de termino
+  if (angulo >= ANGULO_TERMINO) {
+    digitalWrite(PIN_LED_ROJO, HIGH);
+    Serial.println("  → LED ROJO encendido ✓ (término alcanzado)");
+  } else {
+    digitalWrite(PIN_LED_ROJO, LOW);
+    Serial.print("  → Servo en ");
+    Serial.print(angulo);
+    Serial.print("° (falta ");
+    Serial.print(ANGULO_TERMINO - angulo);
+    Serial.println("° para término)");
+  }
+}
+
+// setup
+void setup() {
+  Serial.begin(115200);
+  delay(1500);
+
+  // pines
+  pinMode(PIN_LED_ROJO, OUTPUT);
+  digitalWrite(PIN_LED_ROJO, LOW);
+
+  miServo.attach(PIN_SERVO);
+  miServo.write(0);   // posicion inicial: 0°
+
+  Serial.println("=== Arduino UNO R4 WiFi — Servo SG90 + LED ===\n");
+
+  // wifi
+  Serial.print("Conectando a WiFi");
+  while (WiFi.begin(WIFI_SSID, WIFI_PASSWORD) != WL_CONNECTED) {
+    Serial.print(".");
+    delay(1000);
+  }
+  Serial.println();
+  Serial.print("  ✓ IP: ");
+  Serial.println(WiFi.localIP());
+
+  // mqtt
+  mqttClient.setId("ArduinoUNOR4_servo");
+  mqttClient.setUsernamePassword(AIO_USERNAME, AIO_KEY);
+  mqttClient.onMessage(onMqttMessage);
+
+  Serial.print("Conectando a Adafruit IO...");
+  while (!mqttClient.connect(AIO_SERVER, AIO_PORT)) {
+    Serial.print(".");
+    delay(1000);
+  }
+  Serial.println();
+  Serial.println("  ✓ Conectado a Adafruit IO");
+
+  mqttClient.subscribe(FEED_ANGULO);
+  Serial.println("  ✓ Suscrito al feed: moluscos");
+  Serial.print("\nEsperando datos... LED enciende al llegar a ");
+  Serial.print(ANGULO_TERMINO);
+  Serial.println("°\n");
+
+  // parpadeo de confirmacion
+  for (int i = 0; i < 3; i++) {
+    digitalWrite(PIN_LED_ROJO, HIGH); delay(150);
+    digitalWrite(PIN_LED_ROJO, LOW);  delay(150);
+  }
+}
+
+// loop
+void loop() {
+  // reconexion automatica
+  if (!mqttClient.connected()) {
+    Serial.println("[MQTT] Desconectado. Reconectando...");
+    digitalWrite(PIN_LED_ROJO, LOW);
+    miServo.write(0);
+
+    while (!mqttClient.connect(AIO_SERVER, AIO_PORT)) {
+      Serial.print(".");
+      delay(2000);
+    }
+    mqttClient.subscribe(FEED_ANGULO);
+    Serial.println("\n  ✓ Reconectado");
+  }
+
+  mqttClient.poll();
+}
+```
+## Bibliografía
+
+- Arduino.cl. (sf). Micro Servomotor SG90 9g. Arduino.cl. https://arduino.cl/producto/micro-servo-motor-sg90-9g
+
+- Arduino.cl. (sf). Ejemplo análogo con potenciómetro. Arduino.cl. https://arduino.cl/ejemplo-analogo-con-potenciometro/?srsltid=AfmBOopNZdWYQtTXaZWpSAN4Bjrw3WSeNnmfDP10xmWbFMU7vnoCf1vW
+  
+- Adafruit.com.(sf).Adafruit.com. https://learn.adafruit.com/welcome-to-adafruit-io?view=all
+
+- Circuitpython.org.(sf).Raspberry_pi_pico2_w. Circuitpython.org https://circuitpython.org/board/raspberry_pi_pico2_w/
+
+- Afel.cl.(s.f).micro servomotor sg90. Afel.cl.https://afel.cl/products/micro-servomotor-sg90?_pos=1&_psq=servomotor&_ss=e&_v=1.0
+  
+- Afel.cl.(s.f).potenciometro 500k-ohm. Afel.cl. https://afel.cl/products/potenciometro-500k-ohm?_pos=4&_psq=pote&_ss=e&_v=1.0
+
+- Erin Gee. (s.f.). Biography. https://eringee.net/biography/
+
+- Erin Gee. (s.f.). Swarming Emotional Pianos. https://eringee.net/swarming-emotional-pianos/
+
+- Moritz Simon Geist. (s.f.). About. https://www.moritzsimongeist.com/about
+
+- Moritz Simon Geist. (s.f.). Vibrations. https://www.moritzsimongeist.com/works/vibrations
+
+
+
