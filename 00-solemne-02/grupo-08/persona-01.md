@@ -48,6 +48,7 @@ Lo que queremos realizar en la solemne 2 es que desde la Raspberry pi envíe dat
 - Recibe "OFF" -> enciende LED rojo (D3), apaga verde
 - Al arrancar, ambos LEDS parpadean 3 veces para confirmar que l aconexión fue existosa
 
+---
 
 NO OLVIDAR!
 
