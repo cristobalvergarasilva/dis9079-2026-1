@@ -624,11 +624,11 @@ Para ayudarles a entender lo que hicimos, iniciamos con un taller práctico para
 
 - *Circuito Receptáculo:* Luisa entregó LEDs y resistencias a las nuevas integrantes, explicándoles paso a paso cómo identificar la polaridad del componente y por qué es vital la resistencia de 220Ω para proteger el Arduino.
 
+ ![arduino](./imagenes/leds3.JPG)
 
-- *Circuito Emisor:* Braulio lideró la explicación de la Raspberry Pi Pico 2 W, mostrando cómo conectar el botón de 4 pines y recordando la importancia de la configuración Pull-UP interna para evitar el ruido eléctrico.
+- *Circuito Emisor:* Braulio lideró la explicación de la Raspberry Pi Pico 2 W, mostrando cómo conectar el botón de 4 pines,recordando la importancia de la configuración Pull-UP interna para evitar el ruido eléctrico y revisando nuevamente si la placa Raspberry Pi Pico 2w tenía todas las bibliotecas necesarias
 
-<p align="center">
-<img width="550" height="420" alt="image" src="https://github.com/user-attachments/assets/d5bd1241-2c3d-4a62-9dd8-3319063ed601" /></p>
+![raspi](./imagenes/raspi2.JPG)
 
 ---
 
@@ -639,6 +639,10 @@ Para asegurar que el equipo pudiera replicar el sistema de forma autónoma, le e
 Explicamos que la arquitectura de archivos en MicroPython es distinta a la de un PC. Los puntos clave fueron:
 
 - *Estructura de Carpetas:* Instruímos al equipo en la creación de una carpeta /lib en la raíz de la placa. Es fundamental que las bibliotecas de comunicación (como umqtt.simple) se alojen allí para que el intérprete las encuentre.
+
+- En este punto surgió un error debido a que la otra Raspberry Pi Pico 2w no tenía todas las bibliotecas y archivos necesarios para funcionar bien
+
+ 
   
 - *Automatización con main.py:* Les enseñamos que para que la Raspberry funcione de forma independiente (sin estar conectada al PC), el archivo debe guardarse obligatoriamente con el nombre main.py. Si se guarda con otro nombre, el programa no se ejecutará al recibir energía.
 
