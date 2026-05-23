@@ -411,6 +411,13 @@ void MQTT_connect() {
 
 ![Potenciometro](./imagenes/potenciometro_funcionando.gif)
 
+![nico help](./imagenes/nico_llamando_a_mateo.gif)
+
+![luz boton](./imagenes/luz-se-enciende.gif)
+
+![vidrio](./imagenes/vidrio.gif)
+
+
 
 ## Bibliografía
 
