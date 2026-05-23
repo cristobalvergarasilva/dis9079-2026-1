@@ -1,6 +1,6 @@
 # solemne-02
 
-### Integrantes
+## Integrantes
 
 - Braulio Figueroa / github: [brauliofigueroa2001](https://github.com/brauliofigueroa2001)
 - Luisa Toro / github: [Luisaatoro9](https://github.com/Luisaatoro9)
@@ -9,7 +9,7 @@
 
 ---
 
-### Lista de Materiales — Proyecto Interacción Inalámbrica
+## Lista de Materiales — Proyecto Interacción Inalámbrica
 
 **Hardware**
 
@@ -42,7 +42,7 @@
 
 ---
 
-### 1. Introducción y Organización
+## 1. Introducción y Organización
 
 Esta sesión fue el punto de encuentro de todo lo aprendido en el semestre. El objetivo: lograr que una Raspberry Pi Pico 2 W (emisor) controle un LED en un Arduino UNO R4 WiFi (receptor) a través de la nube.
 
@@ -54,11 +54,11 @@ Nos organizamos inicialmente en duplas para asegurar que cada parte funcionara d
 
 ---
 
-### Avance en clases dúo Braulio Figueroa y Luisa toro
+## Avance en clases dúo Braulio Figueroa y Luisa toro
 
 ---
 
-### Sensor usado - Boton
+## Sensor usado - Botón pulsador de 4 pines
 
 El objetivo es tener un código de enviar desde un Raspberry Pi Pico 2W y un código de recibir en un Arduino Uno R4 Wifi, utilizaremos un botón como primer acercamiento para poder crear una especie de "puerta" que nos dé la opción de activar y desactivar el envío de lecturas de datos hacia Adafruit IO, de esta manera, el servidor de IO no colapsa y evitamos problemas.
 
@@ -77,17 +77,11 @@ Luego de esta duda, lo que hicimos fue conectar un botón de 4 pines al módulo 
 **Paso 1: Controlar el envío de datos:**
 Se usó un botón físico para decidir cuándo mandar información a Adafruit IO. Así no se satura el canal con datos constantes, el tráfico queda limpio y la conexión se mantiene estable. En el código que nos mandó Mateo, se establece que el botón debe estar conectado al pin GP0, ya que, este pin entiende una lógica de 2 estados, HIGH y LOW, lo cuál sirve para el funcionamiento del botón (presionado, no presionado). La otra conexión que debemos hacer es a GND.
 
-<p align="center">
-  <img width="770" height="348" alt="image" src="https://github.com/user-attachments/assets/6881ddfc-664e-4bce-ac3e-c526681bc3ab" />
-</p>
+![raspi](./imagenes/raspi1.png)
 
-<p align="center">
-  <em>
-    En esta imagen se evidencia la conexión del botón con la Raspberry Pi Pico 2 W.
-  </em>
-</p>
+*En esta imagen se evidencia la conexión del botón con el Raspberry Pi Pico 2w*
 
-## Código usado para enviar, experimentación en clases - Raspberry Pi Pico 2w
+ ## Código usado para enviar, experimentación en clases - Raspberry Pi Pico 2w
 
 ```cpp
 import time
@@ -211,6 +205,44 @@ Después de varios intentos de intentar conectarse al wifi, finalmente la placa 
 
 - Un error que ocurrió después de enviar constantemente datos es que el led se quedó encendido y no volvió a apagarse.
 
+## Actuador usado - Led
+
+Paso 1: Validar el hardware primero: Montamos el LED con su resistencia de 220Ω en la protoboard. Primero hicimos una prueba de alimentación directa a 5V para confirmar que el LED encendía, y después una prueba de control con un código de parpadeo en el pin 13. Ver que el LED respondía bien fue la señal para avanzar a la parte inalámbrica con confianza.
+
+![led](./imagenes/led1.JPG)
+
+*Esta imagen muestra la conexión del positivo del LED al pin 5V del Arduino para corroborar el correcto encendido del LED.*
+
+![led2](./imagenes/leds2.JPG)
+
+*Estas imágenes muestran el proceso de conexión del LED al pin de la placa.*
+
+## Código utilizado para la prueba de encendido y apagado en el pin 13 reflejándolo en un led
+
+```cpp
+void setup() {
+
+  Serial.begin(115200);
+
+  pinMode(13, OUTPUT);
+}
+
+void loop() {
+
+  digitalWrite(13, HIGH);
+
+  Serial.println("LED ENCENDIDO");
+
+  delay(500);
+
+  digitalWrite(13, LOW);
+
+  Serial.println("LED APAGADO");
+
+  delay(500);
+}
+```
+
 ## Código recibir, Experimentación en clases, Arduino UNO R4 Wifi
 
 **colocar aquí código, gif queda al final de toda esta parte de proceso**
@@ -219,6 +251,19 @@ Después de varios intentos de intentar conectarse al wifi, finalmente la placa 
 
 ## Avance en clases Marlén Soto y Marcela Zúñiga
 
+Inicialmente, nuestro proyecto consistía en desarrollar un sistema IoT distribuido utilizando una Raspberry Pi, un Arduino UNO R4 WiFi, un sensor ultrasónico HC-SR04 y un micro servo motor SG90, conectados mediante la plataforma Adafruit IO utilizando el protocolo MQTT.
+
+La Raspberry Pi tendría la función de controlar el sensor ultrasónico HC-SR04, medir la distancia de un objeto y enviar periódicamente los datos obtenidos hacia Adafruit IO a través de internet. Posteriormente, el Arduino UNO R4 WiFi consultaría la información almacenada en la plataforma y, según la distancia recibida, controlaría el movimiento del servo motor SG90.
+
+El objetivo principal del proyecto era demostrar la comunicación inalámbrica entre distintos dispositivos mediante tecnologías IoT, integrando la adquisición de datos físicos, la transmisión en la nube y el control remoto de actuadores en tiempo real. Además, para evitar saturar el servicio gratuito de Adafruit IO, el sistema incorporaría intervalos de tiempo entre cada envío de datos.
+
+## Proceso realizado en clases
+
+Durante el desarrollo del proyecto comenzamos realizando el cableado de la Raspberry Pi junto con el sensor de distancia. Debido a que no teníamos experiencia previa trabajando con este tipo de sensores ni con la Raspberry Pi, fue necesario investigar profundamente el funcionamiento del hardware y sus conexiones, proceso que nos tomó aproximadamente una hora.
+
+Posteriormente, trabajamos en la programación del sensor y del botón, pero surgieron diversas dificultades relacionadas con librerías necesarias para el funcionamiento del sistema y múltiples errores en el código. Intentamos resolver estos problemas durante otra hora adicional, investigando posibles soluciones y realizando distintas pruebas, pero no logramos que el sistema funcionara correctamente dentro del tiempo disponible.
+
+Finalmente, debido a la falta de tiempo para continuar avanzando con nuestro proyecto inicial, tuvimos que incorporarnos al Grupo 10, integrado por Braulio Figuerio y Luisa Toro, con el fin de continuar el trabajo práctico de la clase.
 ## Descripción del proyecto
 
 ## Actuador usado - Led
