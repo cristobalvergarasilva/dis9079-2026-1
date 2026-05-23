@@ -754,7 +754,6 @@ void loop() {
 
 - Igor Fonseca. (2018). Joy Robot (Robô Da Alegria). Hackster.io. https://www.hackster.io/igorF2/joy-robot-robo-da-alegria-bba54f
 
-
 - Igor Fonseca. (s.f.). IgorF2 Profile. Hackster.io. https://www.hackster.io/igorF2
 
 
