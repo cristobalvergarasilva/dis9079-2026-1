@@ -104,7 +104,7 @@ Como sensor de posición rotacional o lineal, su funcionamiento se basa en el pr
 
 ### Investigación del actuador: Servomotor SG90
 
-<img src="./imagenes/servojpg" alt="final" width="300">
+<img src="./imagenes/servo.jpg" alt="final" width="300">
 
 Imágen de: <https://afel.cl/products/micro-servomotor-sg90?_pos=1&_psq=servomotor&_ss=e&_v=1.0>
 
