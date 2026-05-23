@@ -323,7 +323,7 @@ void loop() {
 
 ## Bibliografía
 
-Arduino.cl. (s.f.). Micro Servo Motor SG90 9g. Arduino.cl. <https://arduino.cl/producto/micro-servo-motor-sg90-9g>
-Arduino.cl. (s.f.). Ejemplo análogo con potenciómetro. Arduino.cl. <https://arduino.cl/ejemplo-analogo-con-potenciometro/?srsltid=AfmBOopNZdWYQtTXaZWpSAN4Bjrw3WSeNnmfDP10xmWbFMU7vnoCf1vW>
-adafruit.com.(s.f.).adafruit.com. <https://learn.adafruit.com/welcome-to-adafruit-io?view=all>
-circuitpython.org.(s.f).raspberry_pi_pico2_w. circuitpython.org <https://circuitpython.org/board/raspberry_pi_pico2_w/>
+- Arduino.cl. (s.f.). Micro Servo Motor SG90 9g. Arduino.cl. <https://arduino.cl/producto/micro-servo-motor-sg90-9g>
+- Arduino.cl. (s.f.). Ejemplo análogo con potenciómetro. Arduino.cl. <https://arduino.cl/ejemplo-analogo-con-potenciometro/?srsltid=AfmBOopNZdWYQtTXaZWpSAN4Bjrw3WSeNnmfDP10xmWbFMU7vnoCf1vW>
+- Adafruit.com.(s.f.).Adafruit.com. <https://learn.adafruit.com/welcome-to-adafruit-io?view=all>
+- Circuitpython.org.(s.f).Raspberry_pi_pico2_w. Circuitpython.org <https://circuitpython.org/board/raspberry_pi_pico2_w/>
