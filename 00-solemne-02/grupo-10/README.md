@@ -349,16 +349,15 @@ Posteriormente, trabajamos en la programación del sensor y del botón, pero sur
 | Adafruit IO | Dashboard y broker MQTT para visualizar y transmitir los datos |
 | PuTTY | Monitor serie para ver en tiempo real lo que hace la Raspberry |
 
-
-
 ## Actuador usado - Led
 
-**Paso 1: Validar el hardware primero:**
-Montamos el LED con su resistencia de **220Ω** en la protoboard. Primero hicimos una prueba de alimentación directa a 5V para confirmar que el LED encendía, y después una prueba de control con un código de parpadeo en el **pin 13**. Ver que el LED respondía bien fue la señal para avanzar a la parte inalámbrica con confianza.
+El actuador utilizado en el proyecto fue una luz LED, empleada para representar visualmente la recepción de datos enviados desde la Raspberry Pi Pico 2W hacia el Arduino UNO R4 WiFi mediante Adafruit IO.
+
+Su función principal dentro del sistema es encenderse o apagarse dependiendo del estado del botón conectado a la Raspberry Pi Pico 2W, permitiendo demostrar la comunicación inalámbrica y el control remoto de actuadores en tiempo real mediante tecnologías IoT.
 
 ## Sensor usado
 
-## Actuador usado
+El sensor utilizado en esta etapa del proyecto fue un botón pulsador de 4 pines, empleado como entrada digital para el envío de datos hacia Adafruit IO, estos datos están traducidos en ceros (botón suelto) y unos (botón presionado)
 
 ## Código usado para enviar Raspberry Pi Pico 2w
 
@@ -498,11 +497,15 @@ while True:
 
 ![codigoultimaparte](./imagenes/codigoRaspi3.JPG)
 
+**Imagen 11** *muestra la última parte del código de enviar*
+
 ## Errores en Raspberry Pi Pico 2w
 
 Hubo diversos errores durante el proceso, al enfrentarse nuevamente a Raspberry Pi Pico 2w y abrir vscode, enviar el código, aparecía lo siguiente:
 
 ![error1](./imagenes/errorparabitacora1.JPG)
+
+**Imagen 12** *primer error*
 
 Esto sucedía porque estábamos presionando el ícono de flecha en vscode para correr el código, aparecían estos avisos y el código no funcionaba correctamente, la placa no se conectaba a Wifi. 
 
@@ -512,6 +515,8 @@ Otro error al momento de iniciar vscode era el modo restringido
 
 ![error2](./imagenes/errorPython.JPG)
 
+**Imagen 13** *segundo error*
+
 Esto aparecía cada vez que abríamos vscode en un computador, debemos apretar trust para poder seguir adelante. Lo que hacía este error era que de alguna manera restringe a Python y este no puede operar con normalidad, es como si lo "reprimiera". No encontramos la forma de evitar que se abriera esta ventana cada vez que abríamos vscode por lo que siempre teníamos que apretar "trust" para continuar.
 
 Uno de los errores más importantes fue el hecho de que el LED se quedaba encendido tras presionar el botón reiteradas veces. Esto ocurría porque el código en un inicio (lunes) al enviar datos a adafruit, sólo enviaba el valor 1, esto hacía que el LED detectara sólo la opción de encenderse, entonces después de cierto rato presionando el botón repetidamente se bugeaba y dejaba de funcionar correctamente.
@@ -520,7 +525,11 @@ Este error se solucionó al agregar esta parte extra al código, la cuál hace q
 
 ![errorsolucion3](./imagenes/codigoBoton2.JPG)
 
+**Imagen 14** *parte extra código*
+
 ![errorsolucion4](./imagenes/0y1Raspi.JPG)
+
+**Imagen 15** *mensajes enviados con Raspi*
 
 De esta manera ahora en los feeds aparecía que se enviaban 0 y 1 respectivamente, lo cuál hace que el led se encienda y se apague sin bugearse, independiente de la cantidad de veces que presionemos el botón.
 
@@ -597,6 +606,8 @@ void handleMessage(AdafruitIO_Data *data) {
 
 Para documentar cómo logramos la comunicación entre dispositivos de distinta arquitectura, desarrollamos este diagrama que detalla el camino que recorre la información desde la intención del usuario hasta la respuesta física
 
+![diagrama](./imagenes/diagrama.JPG)
+
 El Puente de Datos (Adafruit IO) El feed compartido, llamado boton-prueba-grupo10, actúa como el punto de encuentro o "puente". Es fundamental entender que la Raspberry y el Arduino no están conectados entre sí, ambos están conectados a este Broker MQTT. El feed recibe el impulso y lo mantiene disponible para cualquier dispositivo que esté escuchando
 
 Conclusión del diagrama: Esta estructura demuestra nuestra capacidad para integrar dos lenguajes de programación distintos (Python y C++) en una sola solución funcional, logrando una interacción con latencia mínima y alta estabilidad gracias al manejo correcto de los eventos y la sincronización de la red.
@@ -609,15 +620,10 @@ Tras la integración de nuestras dos compañeras al grupo, decidimos realizar un
 
 ### 1. Mentoría y Armado de Hardware
 
-Para nivelar los conocimientos técnicos, iniciamos con un taller práctico liderado por los integrantes Braulio y Luisa:
+Para ayudarles a entender lo que hicimos, iniciamos con un taller práctico para replicar y trabajar a la par, esto fue liderado por Braulio y Luisa:
 
 - *Circuito Receptáculo:* Luisa entregó LEDs y resistencias a las nuevas integrantes, explicándoles paso a paso cómo identificar la polaridad del componente y por qué es vital la resistencia de 220Ω para proteger el Arduino.
-<img width="330" height="350" alt="image" src="https://github.com/user-attachments/assets/7d7d0fd9-de85-407a-8b4c-27254682a7b0" />
 
-<img width="330" height="350" alt="image" src="https://github.com/user-attachments/assets/0f535e20-4df7-4f12-9076-ad1b21625587" />
-<img width="330" height="350" alt="image" src="https://github.com/user-attachments/assets/324b9751-9669-4ad2-be80-f6f05fbbd75f" />
-
-<div align="center"> <video src="https://github.com/user-attachments/assets/1835f022-0868-4183-b9ba-8e42ec270b21" width="315" autoplay loop muted playsinline></video> </div>
 
 - *Circuito Emisor:* Braulio lideró la explicación de la Raspberry Pi Pico 2 W, mostrando cómo conectar el botón de 4 pines y recordando la importancia de la configuración Pull-UP interna para evitar el ruido eléctrico.
 
