@@ -8,7 +8,7 @@ Para la Pantalla OLED 128x84 px se debe implementar la app PuTTY que es la que h
 
 ## Sensor
 
-El sensor está conectado en la misma protoboard en la que está la pantalla OLED con la Raspberry Pi Pico 2 W, en este caso es el potenciómetro de 10k el cual se activa girando la perilla y posteriormente pulsando el botón que es el que corrobora los cambios realizados desde su última posición.
+El sensor está conectado en la misma protoboard en la que está la pantalla OLED con la Raspberry Pi Pico 2 W, en este caso es el potenciómetro de 100k el cual se activa girando la perilla y posteriormente pulsando el botón que es el que corrobora los cambios realizados desde su última posición.
 
 Este está conectado mediante un cable USB a tipo micro USB a una computadora portátil diferente a la que está conectado el actuador.
 
