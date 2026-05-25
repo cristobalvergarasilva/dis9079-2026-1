@@ -498,7 +498,7 @@ El movimiento generado por los SG90 hace que el robot parezca “vivo” y cerca
 
 <img width="555" height="549" alt="Joy Robot02" src="https://github.com/user-attachments/assets/5aa09049-7a3b-4d7f-8cc2-06862e18f855" />
 
-Imagenes sacadas de https://www.hackster.io/igorF2/joy-robot-robo-da-alegria-bba54f 
+Imagenes y gif sacados de https://www.hackster.io/igorF2/joy-robot-robo-da-alegria-bba54f 
 
 
 ## Código que envía, en Raspberry PI Pico 2 W
