@@ -33,6 +33,6 @@ En esta actividad realizamos los siguientes procesos:
 
 Además, comprendimos la importancia de utilizar bibliotecas externas para simplificar procesos de programación y mejorar la interacción entre hardware y software en proyectos electrónicos.
 
-instalamos la libreria [Arduino_Capacitivetou](https://github.com/arduino-libraries/Arduino_CapacitiveTouch)  
+instalamos la biblioteca [Arduino_Capacitivetou](https://github.com/arduino-libraries/Arduino_CapacitiveTouch)  
 
 ![Arduino](imagenes/arduino_capacitivetou.png)
