@@ -104,6 +104,8 @@ Como sensor de posición rotacional o lineal, su funcionamiento se basa en el pr
 
 <img src="./imagenes/sofia_imagenes/moog.jpg" alt="final" width="300">
 
+Imagen de: <https://www.moogmusic.com/synthesizers/matriarch/>
+
 El Moog Matriarch es un sintetizador analógico semimodular creado por Moog Music. Está pensado para crear sonidos experimentales. Combina un teclado tradicional con un sistema modular lleno de conexiones “patch points” para modificar el sonido manualmente.
 
 el sonido moviendo controles físicos en tiempo real.
