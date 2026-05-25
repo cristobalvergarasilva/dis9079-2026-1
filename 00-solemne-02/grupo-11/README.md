@@ -2,8 +2,8 @@
 
 ## Integrantes
 
-- Martina Alegria / AlegriaColoma
 - Antonella Lavalle / antolavalle
+- Martina Alegria / AlegriaColoma
 - Catalina Salinas / catasal
 
 ## Descripción textual del proyecto
