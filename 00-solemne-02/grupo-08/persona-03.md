@@ -116,7 +116,8 @@ Un potenciómetro rotativo es un divisor de tensión variable. Tiene tres termin
 En TX-6: Tiene 18 potenciómetros rotativos. Alimentados a Vcc interna, el wiper va al ADC del procesador. Resolución suficiente para 128 pasos MIDI (7 bit) o más fino según firmware.
 
 <img src="./imagenes/valentina_imagenes/teenage4.png" alt="tinkercad" width="300">
-Imagen hecha con Claude:
+
+Imagen hecha con Claude: <https://claude.ai>
 
 2. **Filtrado de la señal**
 Un potenciómetro analógico sin filtrar produce valores ruidosos: pequeñas variaciones eléctricas, vibración mecánica del eje, o simplemente la rugosidad de la pista resistiva. En equipos de audio como el TX-6, esto se resuelve en dos capas.
@@ -130,8 +131,9 @@ En mezcladores como el TX-6 también se aplica detección de umbral: solo se rep
 3. **Visualización de datos**
 ¿Cómo se ve el valor crudo de un potenciómetro? A continuación, tres tipos de lectura típicos en un microcontrolador con ADC de 10 bits (rango 0–1023).
 
-<img src="./imagenes/valentina_imagenes/teenage5-png" alt="tinkercad" width="300">
-Imagen hecha con Claude: 
+<img src="./imagenes/valentina_imagenes/teenage5.png" alt="tinkercad" width="300">
+
+Imagen hecha con Claude: <https://claude.ai>
 
 4. **Problemas comunes**
 
@@ -172,6 +174,8 @@ El SG90 es un micro servomotor controlado mediante señales PWM. Permite mover s
 |(+)|(-)|PWM|
 
 <img src="./imagenes/valentina_imagenes/servomotor.png" alt="tinkercad" width="300">
+
+Imagen de: <https://afel.cl/products/micro-servomotor-sg90>
 
 **PWM**
 
@@ -239,9 +243,9 @@ El Robot Araña 12 DOF es un robot inspirado en el movimiento de las arañas, di
 
 El sistema es controlado mediante un microcontrolador Arduino, el cual envía señales PWM a los servomotores SG90 para coordinar el desplazamiento del robot.
 
-<img src="./imagenes/valentina_imagenes/robotArana1.png" alt="robot" width="300">
+<img src="./imagenes/valentina_imagenes/robotArana1.png" alt="robot" width="300"> <img src="./imagenes/valentina_imagenes/robotArana2.png" alt="robot" width="300">
 
-<img src="./imagenes/valentina_imagenes/robotArana2.png" alt="robot" width="300">
+Imagenes de: <https://fselectronics.cl/products/robot-arana-12-dof-arduino-12-servo-sg90>
 
 `Diseño`
 
@@ -259,6 +263,8 @@ El sistema es controlado mediante un microcontrolador Arduino, el cual envía se
 
 - Robot interactivo que te invita reflexionar de manera lúdica sobre nuestras relaciones con las máquinas
 - And-y, nace a partir del siguiente encargo: crear una máquina saludadora. Con eso en mente, diseñamos un robot que genera una experiencia interactiva, donde en cada fase tiene una respuesta diferente. And-y funciona mediante los inputs de sensores ultrasónicos, generando outputs como servo motor, motor joystick y mp3. Cada etapa del proyecto implicó diversas dificultades, aciertos, bocetos, pruebas y prototipos.
+
+Imagen sacada por nosotras: <https://github.com/vxlentiinaa/AND-Y>
 
 `código, clase servo`
 
@@ -445,30 +451,21 @@ void loop() {
 
 4. Luego de que ya mandara los datos, se ve reflejado en Adafruit IO
 
-<img src="./imagenes/valentina_imagenes/raspberryPublicando.png" alt="valores" width="600">
+<img src="./imagenes/valentina_imagenes/raspberryPublicando.png" alt="valores" width="600"> 
 
 <img src="./imagenes/valentina_imagenes/raspberry2Funcionando.png" alt="valores" width="600">
 
 5. Finalmente, funcionó super!!!
 
-<img src="./imagenes/valentina_imagenes/finalFuncionando.png" alt="valores" width="600">
+<img src="./imagenes/valentina_imagenes/finalFuncionando.png" alt="valores" width="600"> 
 
 <img src="./imagenes/valentina_imagenes/anguloPublicando.png" alt="valores" width="600">
 
 ## Fotos del proyecto
 
-<img src="./imagenes/valentina_imagenes/lumi1.jpg" alt="valores" width="400">
+<img src="./imagenes/valentina_imagenes/lumi1.jpg" alt="valores" width="400"> <img src="./imagenes/valentina_imagenes/lumi2.jpg" alt="valores" width="400"> <img src="./imagenes/valentina_imagenes/lumi3.jpg" alt="valores" width="400"> <img src="./imagenes/valentina_imagenes/lumi4.jpg" alt="valores" width="400"> <img src="./imagenes/valentina_imagenes/lumi5.jpg" alt="valores" width="400"> <img src="./imagenes/valentina_imagenes/lumi6.jpg" alt="valores" width="400">
 
-<img src="./imagenes/valentina_imagenes/lumi2.jpg" alt="valores" width="400">
-
-<img src="./imagenes/valentina_imagenes/lumi3.jpg" alt="valores" width="400">
-
-<img src="./imagenes/valentina_imagenes/lumi4.jpg" alt="valores" width="400">
-
-<img src="./imagenes/valentina_imagenes/lumi5.jpg" alt="valores" width="400">
-
-<img src="./imagenes/valentina_imagenes/lumi6.jpg" alt="valores" width="400">
-
+Imagenes sacadas por nosotras :)
 
 ## Bibliografía
 
@@ -479,3 +476,5 @@ FSElectronics. (s.f.). Robot Araña 12 Dof Arduino + 12 Servo SG90. FSElectronic
 Wikipedia contributors. (s.f.). Potenciómetro. En Wikipedia, la enciclopedia libre. Recuperado el 22 de mayo de 2026. <https://es.wikipedia.org/wiki/Potenci%C3%B3metro>
 
 Teenage Engineering. (s.f.). OP–1 field. Teenage Engineering. <https://teenage.engineering>
+
+Ruz, V. (s.f.). AND-Y [Repositorio de GitHub]. GitHub. <https://github.com/vxlentiinaa/AND-Y>
