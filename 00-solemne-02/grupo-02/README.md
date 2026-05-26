@@ -63,7 +63,7 @@ Estos errores aparecían debido a que CircuitPython requiere librerías específ
 | adafruit_ticks.mpy |
 | adafruit_hcsr04.mpy |
 
-## Librerías instaladas
+## Bibliotecas instaladas
 
 ![Librerías instaladas](imagenes/librerias_instaladas.png)
 
@@ -415,9 +415,10 @@ void handleMessage(AdafruitIO_Data *data) {
 ### Proceso
 Al inicio de la sesión, realizamos una prueba utilizando un código desarrollado previamente por nuestra compañera, el cual ya había sido verificado y funcionaba correctamente. Posteriormente, decidimos desarrollar el proceso por nuestra cuenta, lo que derivó en una serie de errores, principalmente relacionados con el cableado.
 
-El primer inconveniente fue la conexión de alimentación: el cable estaba conectado a 5V, cuando lo correcto era utilizar 13V, ya que la conexión inicial solo permitía verificar el funcionamiento del LED, pero no era la adecuada para el comportamiento esperado del sistema.
+El primer inconveniente fue la conexión de alimentación: el cable estaba conectado al pin 5, cuando lo correcto era utilizar el pin 13, ya que la conexión inicial solo permitía verificar el funcionamiento del LED, pero no era la adecuada para el comportamiento esperado del sistema.
 
 Una vez corregido ese punto, nos encontramos con un segundo problema: el LED no lograba apagarse correctamente. Para resolverlo, desarrollamos dos códigos adicionales, modificando distintas secciones de la programación y realizando múltiples pruebas. Sin embargo, ninguna de las modificaciones solucionó el inconveniente.
+
 ![error](imagenes/luz_prendida.jpg)
 
 Finalmente, determinamos que el problema no estaba en el código, sino en la configuración interna de la Raspberry Pi Pico 2W. El dispositivo había sido modificado previamente y solo mantenía activa la señal de encendido del LED (valor `1`), mientras que la señal de apagado (valor `0`) no funcionaba correctamente. Al identificar este origen, volvimos al código inicial y pudimos continuar con el desarrollo del proyecto.
