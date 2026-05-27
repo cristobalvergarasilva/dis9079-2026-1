@@ -46,11 +46,11 @@ A la Raspberry le sumamos una pantalla OLED de 128x64 px para poder ver los dato
 
 ## Proceso y errores
 
-En el proceso es importante tener cuidado en los pequeños detalles ya que si no se les da la importancia necesaria puede no funcionar el proyecto, como en nuestro caso que tuvimos un fallo al conectar mal los jumpers con los pines de la Raspberry Pi Pico 2 W y eso daba un error desconocido en la pantalla del código que, con la ayuda de la IA y fijándonos mejor dónde debía conectarse cada cable, pudimos solucionar esto en la parte de la protoboard que tiene las conexiones del sensor.
+En el proceso es importante tener cuidado en los pequeños detalles, ya que si no se les da la importancia necesaria puede hacer que el proyecto no funcione, en nuestro caso que tuvimos un fallo al conectar mal los cables (jumpers) a los pines de la Raspberry, la patita SDA va conectada al pin 31 y la patita SCL va al pin 32, y por error los pusimos en SDA en 28 y SCL en 27 y eso daba un error en la consola, por lo que con ayuda de la IA y revisando dónde debía conectarse cada cable, pudimos solucionar esto en la protoboard.
 
-Durante el desarrollo del proyecto alimentamos el circuito utilizando los mismos computadores al conectar los microcontroladores mediante USB. Uno de los puntos importantes fue el uso de WiFi compartido desde un celular, ya que gracias a eso pudimos mantener conectadas ambas placas a la nube.
+El circuito es alimentado mediante los computadores que utilizamos para subir los códigos a los microcontroladores, mediante USB. El WiFi es compartido desde el hotspot de un celular ya que es necesario para mantener conectadas ambas placas a la nube.
 
-Era importante no alejarse demasiado del circuito para evitar perder señal y que la información pudiera seguir enviándose correctamente.
+Podemos enviar la señal estando cada computador + microcontrolador en lugares diferentes pero cercanos, para evitar perder señal y que la información pueda seguir enviándose correctamente.
 
 ![proceso](./imagenes/proceso.jpeg)
 
@@ -58,19 +58,23 @@ Uno de los detalles que encontramos fue que el servomotor no realizaba una vuelt
 
 Pensamos que la velocidad en la que se movía dependía del potenciómetro y cambiamos el de 10k por uno de 100k. El cambio no generó una gran diferencia en el movimiento del servomotor, pero sí ayudó a mantener una conexión más firme y cómoda, ya que el nuevo potenciómetro se ajustaba mejor a la protoboard (no bailaba el potenciómetro).
 
-La comunicación entre los microcontroladores funcionó en tiempo real después de pulsar el botón, aunque existía un pequeño retraso mecánico en la reacción del servomotor. Además, para que la información se enviara correctamente y se generara el movimiento, era necesario mantener el botón presionado durante el envío de datos.
+La comunicación entre los microcontroladores funcionó en tiempo real después de pulsar el botón, aunque existía un pequeño retraso mecánico en la reacción del servomotor. Además, para que la información se enviara correctamente y se generara el movimiento, era necesario mantener el botón presionado brevemente para poder enviar el dato.
 
-La pantalla OLED muestra en tiempo real la información de hacia dónde se mueve el servomotor, además de indicar la posición a la que acaba de girar. También tiene una imagen que acompaña visualmente la dirección del movimiento realizado, mostrando lo que ocurre al hacer el giro de perilla.
+La pantalla OLED muestra en tiempo real la información de el valor del poltenciómetro y también hacia dónde se mueve el servomotor, indica la posición (grado) a la que acaba de girar. También tiene una imagen que acompaña visualmente (un gatito) la dirección del movimiento realizado, mostrando lo que ocurre al hacer el giro de perilla.
 
 En caso de que el internet se desconecte o la nube deje de responder, el sistema deja de registrar datos, por lo que no se producen movimientos en el servomotor ni actualizaciones en la pantalla OLED.
 
-Para el proceso del código se usó VS Code, para simulaciones de cómo se vería el gato rotando. En el camino descubrimos que existen 2 formas de poner una imagen en la pantalla usando el rasberry, la primera sería ponerlo en la placa directamente como archivo .bmp el cual es un formato de bits o de 0 y 1, también hay un formato llamado Bytearray, el cual es una secuencia modificables de bytes, se usan valores de 0 y 255 o en otras palabras, ceros y unos, se uso esta pagina para convertir la imagen <https://javl.github.io/image2cpp/>
+Para el proceso del código se usó VS Code, también se utilizó para simulaciones de cómo se vería el gato rotando. En el camino descubrimos que existen 2 formas de poner una imagen en la pantalla usando la Rasberry, la primera sería ponerlo en la placa directamente como archivo .bmp el cual es un formato de bits o de 0 y 1, también hay un formato llamado Bytearray, el cual es una secuencia modificables de bytes, se usan valores de 0 y 255 o en otras palabras, ceros y unos.
 
-Tras investigar y probar cual era la mejor opción, usamos el segundo ya que si queríamos que rotará de manera mas fluida necesitamos que estuviera dentro del codigo, asi cada vez que rotaba no tenía que llamar al archivo dentro de la raíz del raspberry, para realizar la rotación, para esto le pedimos a la ia que nos ayudará para que hiciera los cálculos y el código, para hacerlo se le pidió que tomara de punto base el ángulo 0 y que en este el gato este acostado hacia la izquierda, para derecha lo contrario, 180 y acostado a la derecha, está hecho de manera que en 90, el gatito se encuentre parado también se aplico que su punto de rotación estuviera en el centro.  
+Tras investigar y probar cual era la mejor opción, usamos la segunda ya que si queríamos que rotará de manera más fluida necesitamos que estuviera dentro del código, así cada vez que rotaba no tenía que llamar al archivo dentro de la raíz de la Raspberry para realizar la rotación, para esto le pedimos a la IA que nos ayudara para que hiciera los cálculos y el código, para hacerlo se le pidió que tomara de punto base el ángulo 0 y que en este ángulo el gato debe estar acostado horizontalmente hacia la izquierda, para el ángulo 180 que sea lo contrario, es decir acostado horizontalmente hacia la derecha, está hecho de manera que en el ángulo 90, el gatito se encuentre parado verticalmente, también se aplicó que su punto de rotación estuviera en el centro. Se usó esta página para convertir la imagen: <https://javl.github.io/image2cpp/>
 
-Debido a que el gato se veía con bajos FPS (frames por segundo o "va pegado"), se usó un lienzo de 54x54 en donde se realizaría todo este movimiento. A su vez, creó un caché local para que no busque tan repetitivamente por la RAM, la RAM en un almacenamiento aparte que se usa en tiempo real. En nuestro caso, lo usamos para guardar la imagen ahí y llamarla cada que se haga el cálculo de rotación.
+### Resultado del gatito
 
-Para el Arduino también se usó IA para el código, pero tomando de referencia el trabajo hecho por el profesor con el servo, se usó para el recibimiento de la información del feed. En este caso no tuvimos problemas graves, solo nos faltó descargar la biblioteca Adafruit MQTT Library.
+![gatito espacial](imagenes/cat2.bmp)
+
+Debido a que el gato se veía con bajos FPS (frames por segundo o "va pegado"), se usó un lienzo de 54x54 px en donde se realizaría todo este movimiento. A su vez, se creó un caché local para que no busque tan repetitivamente por la RAM (la RAM es un almacenamiento aparte que se usa en tiempo real). En nuestro caso, lo usamos para guardar la imagen ahí y llamarla cada que se haga el cálculo de rotación.
+
+Para el Arduino también se usó IA para el código, pero tomando de referencia los archivos de ejemplo subidos por Mateo para el servomotor, también se usó para el recibimiento de la información del feed. En este caso no tuvimos muchos problemas, solo en una ocasión nos dió un error y al buscarlo era porque faltaba descargar la biblioteca Adafruit MQTT Library.
 
 ## Código usado para enviar
 
