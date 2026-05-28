@@ -47,6 +47,9 @@ Una vez que el circuito registra los datos del cambio eléctrico, el proceso sig
  El microcontrolador transforma la variación de capacitancia analógica en datos digitales (valores numéricos de intensidad, velocidad y cercanía).Estos datos se envían en tiempo real a una computadora que ejecuta un software de diseño sonoro.
 Cada planta tiene asignada una "voz" o comportamiento digital distinto según su morfología y la textura de sus hojas. Si se aproximan despacio, el sonido puede ser un murmullo, si se acaricia con fuerza, la textura del sonido cambia a un canto o una vibración acústica compleja, logrando que el público actúe como el director de una orquesta botánica y viva.
 
+### Video de la instalación:
+https://youtu.be/eq0gsRlq6QQ?si=2Ot1rfZ0_YO14i3S
+
 
 ## Actuador
 
