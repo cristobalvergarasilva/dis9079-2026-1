@@ -86,6 +86,8 @@ En esta  instalación de arte cinético,el artista utiliza 830 servomotores como
 La obra está compuesta por una matriz de 830 pequeñas piezas cuadradas de madera, y cada una de ellas está acoplada directamente al eje de un servomotor independiente.Una cámara central oculta el sensor, captura la silueta y los movimientos de la persona que se para frente a la obra. Después una computadora procesa esa imagen en tiempo real, calcula los niveles de luz y sombra de cada zona, y envía comandos eléctricos individuales a los 830 servomotores.
 Al recibir la señal, los motores actúan de inmediato rotando cada pieza de madera hacia arriba o hacia abajo y como la luz del techo incide de manera distinta según la inclinación de la madera, está va generando zonas claras y oscuras, entonces los actuadores logran como “dibujar” mecánicamente el reflejo y la sombra del espectador en tiempo real.
 
+### Video de la instalación:
+https://youtu.be/kV8v2GKC8WA?si=m1vpbGqpopvJbepU
 
 ## Bibliografía
 * https://www.nxp.com/products/MPR121?hl=es-CL
@@ -93,6 +95,7 @@ Al recibir la señal, los motores actúan de inmediato rotando cada pieza de mad
 * https://www.scenocosme.com/akousmaflore_en.htm?hl=es-CL
 * https://docs.arduino.cc/libraries/servo/#Usage/Examples
 * https://www.smoothware.com/danny/?hl=es-CL
+* https://www.bitforms.art/artwork/wooden-mirror-2
 
 
 
