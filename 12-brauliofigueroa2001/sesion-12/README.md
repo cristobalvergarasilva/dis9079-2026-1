@@ -28,6 +28,13 @@ hay muchos lugares que necesitan a gente como nosotros y ustedes les pueden dar 
 
 yeseul.com
 
+yeseul slow dimming study rice, cuando uno define un proyecto como no tan avanzado, lo definimos como "estudio" "yo estaba haciendo un estudio de esto"
+
+everest pipkin, proyecto de los aviones
+
+- api, conexión entre computadores o programa de computadores
+
+- hay hartas api, hay una del weather
 
 
 
