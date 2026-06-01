@@ -1,6 +1,6 @@
 # sesion-12
 
-lunes 01 junio 2026fuen
+lunes 01 junio 2026
 
 ## Apuntes de clase
 
