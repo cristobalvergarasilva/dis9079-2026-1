@@ -44,6 +44,25 @@ ustedes pueden con código, preguntar cuál es la primera palabra de un párrafo
 
 - patrimonio bot, claudio ruiz apretaba un botón cuando se acordaba y esto hacía que publicara en instagram un objeto random en base a una descripción?? algo así, no lo entendí mucho
 
+ideas dadas con apis?
+
+- cada vez que pase un satélite, hacer que un motor se mueva o algo suene, cada vez que pase un asteroide a menos de 1500 kilómetros, que algo se mueva
+
+## Examen
+
+- grupos de 3 a 4 personas, excepciones puntuales si es que tienen notas sobre 6.7
+
+- individual: investigación sobre apis, bitácoras, 
+
+- grupal: demo entre rep 180 y salvsanf2221 en video y funcionamiento en vivo entre extremos de la sala, código ordenado, docs textual ordenado
+
+- requisitos: usar arrays, usar al menos un microcontrolador, comentar el código, declarar toda ia usada con lujo de detalles, incluyendo prompts y todo lo que hayan hecho,
+  
+
+  
+
+
+
 
 
 
