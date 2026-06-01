@@ -57,6 +57,22 @@ ideas dadas con apis?
 - grupal: demo entre rep 180 y salvsanf2221 en video y funcionamiento en vivo entre extremos de la sala, código ordenado, docs textual ordenado
 
 - requisitos: usar arrays, usar al menos un microcontrolador, comentar el código, declarar toda ia usada con lujo de detalles, incluyendo prompts y todo lo que hayan hecho,
+
+
+**¿qué queremos hacer?**
+
+alteraciones de los paisajes de hojas en base al viento, cuánto se mueve una hoja en un árbol que se agita en el día a día? siempre hay cosas sucediendo cuando no las vemos, mundos infinitos que pasan desapercibidos, quizá que el vaivén de estos movimientos haga un dibujo, el cómo las plantas hablan?
+
+persona sensible a su entorno natural
+
+traducir los impulsos de las plantas a sonidos, arduino conectado a las plantas con algún sensor, envía datos de las plantas y un nodo receptor recibe esto y lo transforma en algo, en un sonido? la voz de las plantas, voces naturales
+
+traducir la frecuencia de las plantas en una imagen según si su frecuencia es alta o baja
+
+  el proyecto consiste mostrar y traducir mundos que pasan desapercibidos en el día a día como lo es el de las plantas, la idea es dar voz y hacer relevante estos entornos para poder mostrarlos como un organismo vivo y existente. Lo que se envía es información de la frecuencia de la planta/hongo y lo que se recibe es una traducción sonora de lo que "dice" la planta
+
+quizá los sonidos sean muy difíciles de enviar y se puede traducir mejor en una imagen o patrones aleatorios de luces
+
   
 
   
