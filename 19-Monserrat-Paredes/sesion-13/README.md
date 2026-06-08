@@ -7,6 +7,7 @@ lunes 08 junio 2026
 Examen: 22 de junio
 
 Edificio A: Salvador Sanfuentes (Medición de datos).
+
 Edificio B: FADD, Republica 180 (Reacción de los datos).
 
 # Contexto proyecto
