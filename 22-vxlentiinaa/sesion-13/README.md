@@ -170,3 +170,14 @@ flowchart LR
     class IO1 YellowSoft;
 
 ```
+
+### Lista de materiales, bill of materials
+
+|Componente|Cantidad|Precio|Link|
+|---|---|---|---|
+|Raspberry Pi Pico 2W|1|$14.990|<https://raspberrypi.cl/products/raspberry-pi-pico-2-w-con-headers>|
+|Arduino UNO R4 WIFI|1|$38.990|<https://mcielectronics.cl/shop/product/arduino-uno-r4-minima>|
+|Anillo LED RGB WS2812 de 16 leds|1|$3.990|<https://afel.cl/products/anillo-led-rgb-neopixel-16-leds-ws2812?_pos=3&_sid=3a945a998&_ss=r>|
+|Sensor Infrarrojo Evasor de Obstáculos|1|$2.000|<https://afel.cl/products/sensor-infrarrojo-evasor-de-obstaculos?_pos=1&_sid=96b6bad10&_ss=r>|
+|Protoboard|1|$1.500|<https://afel.cl/products/mini-protoboard-400-puntos>|
+|cables|4|$1.000|<https://afel.cl/products/pack-20-cables-de-conexion-macho-macho>|
