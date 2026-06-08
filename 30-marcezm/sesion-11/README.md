@@ -46,15 +46,15 @@ Al recibir la señal, el Arduino activaba un LED, demostrando que la transmisió
 
 ### Flujo del sistema
 
-Botón Pulsador
-       ↓
-Raspberry Pi Pico
-       ↓
-Envío de señal
-       ↓
-Arduino
-       ↓
-LED encendido
+Botón Pulsador  
+       ↓  
+Raspberry Pi Pico  
+       ↓  
+Envío de señal  
+       ↓  
+    Arduino  
+       ↓  
+LED encendido  
 
 ## Aprendizajes obtenidos
 
