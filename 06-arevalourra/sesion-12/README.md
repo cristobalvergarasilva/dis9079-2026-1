@@ -191,5 +191,16 @@ Además, sirve posteriormente para integrar el proyecto dentro del portafolio pe
 
 ---
 
+# Grupo Examen -> Grupo 4 + Isidora Pérez
 
+### Enfoque Conceptual del proyecto
 
+El cuerpo mantiene un diálogo constante con el mundo que lo rodea. Cada emoción, esfuerzo, sorpresa o momento de calma deja una huella física que muchas veces pasa desapercibida. Entre estas señales, el ritmo cardíaco constituye una manifestación silenciosa pero permanente de nuestra relación con el entorno, reflejando cambios internos que ocurren incluso antes de que seamos plenamente conscientes de ellos.
+
+Este proyecto explora la posibilidad de hacer visible aquello que normalmente permanece oculto. A partir de la captura de la frecuencia cardíaca de una persona, se propone una experiencia que traduce una señal biológica en una manifestación perceptible a distancia, permitiendo que un estado corporal íntimo pueda ser observado, interpretado y compartido mediante medios tecnológicos. De esta manera, el proyecto busca reflexionar sobre las nuevas formas de conexión que emergen cuando los datos del cuerpo abandonan su dimensión privada y se convierten en un lenguaje capaz de atravesar el espacio.
+
+### Enfoque Técnico
+
+El proyecto consiste en el desarrollo de un sistema distribuido capaz de medir, transmitir y visualizar la frecuencia cardíaca de una persona en tiempo real. Para ello, se utiliza un sensor biométrico conectado a un microcontrolador que procesa la señal obtenida y calcula los latidos por minuto (BPM). Esta información es enviada mediante comunicación inalámbrica hacia un segundo dispositivo, encargado de recibir los datos y transformarlos en una representación visual accesible para el usuario.
+
+A través de esta implementación se ponen en práctica conceptos relacionados con sensores, procesamiento de señales, transmisión de datos, comunicación entre dispositivos y visualización de información. El resultado es una plataforma que conecta una variable fisiológica del cuerpo humano con un sistema digital capaz de hacer visible un fenómeno que normalmente permanece invisible, permitiendo observar en tiempo real las variaciones del ritmo cardíaco y su comportamiento frente a distintos estímulos.
