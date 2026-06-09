@@ -184,6 +184,8 @@ flowchart LR
 
 ### Dibujos (hicimos renders con IA Manus)
 
+<img src="./imagenes/IMG_1507.jpeg" alt="totem" width="300">
+
 <img src="./imagenes/totem1.png" alt="totem" width="400"> <img src="./imagenes/totem2.png" alt="totem" width="400"> <img src="./imagenes/totem3.png" alt="totem" width="400">
 
 Más o menos representa la idea del mini totém que queremos realizar
