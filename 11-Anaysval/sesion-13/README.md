@@ -2,7 +2,9 @@
 
 lunes 08 junio 2026
 
-Esta clase fue dedicada al avance del examen, Aarón nos pidió avanzar algunos ítems. Esto fue lo que alcanzamos a avanzar hoy, ya que queríamos probar el sensor de sonido, pero no funcionaba, así que continuamos con las partes escritas y la investigación pero todo sigue en proceso ദ്ദി◝ ⩊ ◜.ᐟ
+Esta clase fue dedicada al avance del examen, Aarón nos pidió avanzar algunos ítems. Esto fue lo que alcanzamos a avanzar hoy, ya que queríamos probar el sensor de sonido, pero no funcionaba, así que continuamos con las partes escritas y la investigación.
+
+TODO SIGUE EN PROCESO ദ്ദി◝ ⩊ ◜.ᐟ
 
 ### Texto mejorado
 
