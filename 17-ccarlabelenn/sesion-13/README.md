@@ -11,3 +11,4 @@ Dentro de nuestra lluvia de ideas nos encantó el hacer una especie de muestra m
 > Esta explicación es muy a grandes rasgos, ya que en nuestra bitácora de grupo detallaremos a profundidad nuestro proyecto jeje. 
 
 ![imagenes](./imagenes/muestra.jpg)
+> créditos a la magdita por esta fotito representativa 
