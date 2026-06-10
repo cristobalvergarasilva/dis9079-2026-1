@@ -13,11 +13,13 @@ Su objetivo es planificar la lógica antes de escribir código real.
 Emisor (Arduino UNO R4 WiFi)
 INICIO
 
-Inicializar ADS1115
+    INICIO 
+    
+    Inicializar ADS1115
 
-Conectar a la red WiFi
+    Conectar a la red WiFi
 
-MIENTRAS el sistema esté activo
+    MIENTRAS el sistema esté activo
 
     Leer señal eléctrica de la planta
 
@@ -31,11 +33,11 @@ MIENTRAS el sistema esté activo
 Receptor (Computador o Raspberry Pi Pico 2 W)
 INICIO
 
-Conectarse a la red WiFi
+    Conectarse a la red WiFi
 
-Inicializar sistema de visualización
+    Inicializar sistema de visualización
 
-MIENTRAS el sistema esté activo
+    MIENTRAS el sistema esté activo
 
     Recibir dato enviado por Arduino
 
@@ -61,21 +63,21 @@ MIENTRAS el sistema esté activo
 
 Flujo General
 
-Planta
-   ↓
-Electrodos
-   ↓
-ADS1115
-   ↓
-Arduino UNO R4 WiFi
-   ↓
-Transmisión WiFi
-   ↓
-Computador / Raspberry Pi Pico 2 W
-   ↓
-Procesamiento de datos
-   ↓
-Visualización y sonido
+    Planta
+      ↓
+    Electrodos
+      ↓
+    ADS1115
+      ↓
+    Arduino UNO R4 WiFi
+      ↓
+    Transmisión WiFi
+      ↓
+    Computador / Raspberry Pi Pico 2 W
+      ↓
+    Procesamiento de datos
+      ↓
+    Visualización y sonido
 
 Lógica del Proyecto
 
