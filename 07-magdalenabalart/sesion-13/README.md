@@ -6,13 +6,13 @@ lunes 08 junio 2026
 
 comenzamos aclarando la idea del altar para el examen final. Retomamos la propuesta inicial y la ordenamos mejor, definiendo que el proyecto consiste en un **altar** compuesto por dos tótems conectados entre sí. La intención principal es que el objeto no reaccione solamente ante la presencia de una persona, sino ante el **gesto de permanecer frente a él**. Por eso, conversamos sobre la importancia de diferenciar una cercanía casual de una presencia sostenida, entendiendo la luz como una forma de memoria, compañía y vínculo afectivo.
 
-### Totem 01
+### Tótem 01
 
 A partir de esta conversación, definimos que el **Tótem 01** funcionará como el punto principal de interacción. Este será construido como un pilar o altar vertical, con un Arduino resguardado en su base y un sensor ultrasónico integrado en su estructura. Este sensor permitirá medir la distancia entre la persona y el altar, para que la luz LED aumente progresivamente según el nivel de cercanía. **Si la persona se mantiene cerca durante el tiempo necesario, la luz llegará a su máxima intensidad, indicando que la presencia fue reconocida por el sistema**.
 
 También definimos su composición, madera, impresión 3d y acrílico 
 
-### Totem 02
+### Tótem 02
 
 También aclaramos el funcionamiento del **Tótem 02**, que actuará como receptor de la información enviada desde el primer tótem. Este segundo objeto tendrá una pantalla LED y un servomotor. La información captada por el sensor del Tótem 01 se traducirá en movimiento mediante el servo, generando una respuesta física a la distancia de la persona. Cuando la presencia se complete, el Tótem 02 recibirá un mensaje que indicará que **alguien estuvo ahí, recordó o decidió hacerse presente**.
 
