@@ -22,6 +22,20 @@ Además, el proyecto incorpora una pregunta central: ¿qué pasa si el altar no 
 2. Complementar con diagramas de flujo o dibujos
 3. Escribir el pseudocódigo
 
+## Lista de compras y materiales
+ 
+| Elemento | Función dentro de la interacción | Precio |
+|---|---|---|
+| Arduino | Controla el funcionamiento del Tótem 01 y procesa la información del sensor. | |
+| Raspberry Pi Pico | Permite la conexión inalámbrica y el envío/recepción de datos entre tótems. | |
+| Sensor ultrasónico | Detecta la distancia entre la persona y el Tótem 01. | |
+| LED | Se enciende progresivamente según la cercanía de la persona. | |
+| Protoboard mini | Permite conectar y organizar los componentes electrónicos. | |
+| Cables Dupont mix | Conectan los sensores, LED, servo, pantalla y placas. | |
+| Cable USB-C | Permite alimentar o conectar el Arduino y la Raspberry Pi Pico. | |
+| Servo | Imita físicamente la distancia detectada por el sensor. | |
+| Pantalla OLED | Muestra los mensajes recibidos desde el Tótem 01. | |
+
 # Pseudocódigo
 
 ### Tótem 01
