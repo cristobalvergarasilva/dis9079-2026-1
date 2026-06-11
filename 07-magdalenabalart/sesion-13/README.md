@@ -6,17 +6,19 @@ lunes 08 junio 2026
 
 comenzamos aclarando la idea del altar para el examen final. Retomamos la propuesta inicial y la ordenamos mejor, definiendo que el proyecto consiste en un **altar** compuesto por dos tótems conectados entre sí. La intención principal es que el objeto no reaccione solamente ante la presencia de una persona, sino ante el **gesto de permanecer frente a él**. Por eso, conversamos sobre la importancia de diferenciar una cercanía casual de una presencia sostenida, entendiendo la luz como una forma de memoria, compañía y vínculo afectivo.
 
-### Totem 01
+### Tótem 01
 
 A partir de esta conversación, definimos que el **Tótem 01** funcionará como el punto principal de interacción. Este será construido como un pilar o altar vertical, con un Arduino resguardado en su base y un sensor ultrasónico integrado en su estructura. Este sensor permitirá medir la distancia entre la persona y el altar, para que la luz LED aumente progresivamente según el nivel de cercanía. **Si la persona se mantiene cerca durante el tiempo necesario, la luz llegará a su máxima intensidad, indicando que la presencia fue reconocida por el sistema**.
 
 También definimos su composición, madera, impresión 3d y acrílico 
 
-### Totem 02
+<img src="imagenes/bocetototem01.jpg" style="width: 50%;" alt="Mi imagen">
+
+### Tótem 02
 
 También aclaramos el funcionamiento del **Tótem 02**, que actuará como receptor de la información enviada desde el primer tótem. Este segundo objeto tendrá una pantalla LED y un servomotor. La información captada por el sensor del Tótem 01 se traducirá en movimiento mediante el servo, generando una respuesta física a la distancia de la persona. Cuando la presencia se complete, el Tótem 02 recibirá un mensaje que indicará que **alguien estuvo ahí, recordó o decidió hacerse presente**.
 
-quizas este diseño nos falta profundizar en su forma y su composición 
+Quizás este diseño nos falta profundizar en su forma y su composición 
 
 Durante la sesión también discutimos la pregunta que amplía el sentido del proyecto: ¿qué pasa si el altar no solo responde a quien se acerca, sino también a la ausencia de alguien? Esta idea nos permitió pensar en una segunda condición del sistema, donde la luz podría activarse de manera tenue o intermitente si pasa mucho tiempo sin que nadie se acerque. De esta forma, la ausencia también se transforma en una señal, como una presencia fantasma o una memoria que sigue habitando el espacio.
 
@@ -53,7 +55,7 @@ Además, el proyecto incorpora una pregunta central: ¿qué pasa si el altar no 
 
 ## Pseudocódigo
 
-# Totem 01: Arduino
+# Tótem 01: Arduino
 ```
 INICIO
 
@@ -102,7 +104,7 @@ Esperar un momento breve antes de volver a medir
 
 FIN 
 ```
-# Totem 02
+# Tótem 02
 ```
 INICIO
 
@@ -142,4 +144,6 @@ Esperar un momento breve antes de volver a recibir información
 
 FIN 
 ```
+## Diagrama tótem 01
 
+<img src="imagenes/diagrama_totem01.jpg" style="width: 50%;" alt="Mi imagen">
