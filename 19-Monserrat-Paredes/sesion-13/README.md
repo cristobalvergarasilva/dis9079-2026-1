@@ -24,6 +24,7 @@ cómo encontrar el maximo de un numero, estructuras logicos o planificaciones de
 Diagrama de flujo -> mermaid
 
 
+
 PROYECTO: Puente Digital
 EDIFICIO A → LID (Salvador Sanfuentes)
 EDIFICIO B → Rep180
