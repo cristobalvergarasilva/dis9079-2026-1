@@ -2,7 +2,7 @@
 
 lunes 08 junio 2026
 
-### Clase actual — Pseudocódigo y pruebas
+### Clase — Pseudocódigo y pruebas
 
 #### ¿Qué es el pseudocódigo?
 El pseudocódigo es una descripción estructurada del algoritmo escrita en lenguaje natural,
