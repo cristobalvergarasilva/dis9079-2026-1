@@ -56,11 +56,11 @@ Recibir información de la humedad de las 8 ciudades,asignarle un valor y relaci
 
 #### Ideas para el concepto de "Bruma Compacta"
 
-![maguito](imagenes/Mago.jpeg)
+![maguito](imagenes/mago.jpeg)
 
-![ruleta](imagenes/Ruleta.jpeg)
+![ruleta](imagenes/ruleta.jpeg)
 
-![botón](imagenes/Sol.jpeg)
+![control](imagenes/sol.jpeg)
 
 
 
