@@ -4,7 +4,7 @@ lunes 08 junio 2026
 
 # Trabajo en clases
 
-Esta clase fue dedicada a trabajo en clases para la última entrega del curso, por lo que con mi grupo nos dedicamos a preparar el BOM (_bill of materials_) de nuestro trabajo, para poder comprar todos los componentes que necesitamos de manera inmediata. Luego de buscar los materiales, realizamos la compra y ahora solo nos falta esperar a que estos lleguen para ponerlos a prueba!! muchos de estos componentes no los hemos usado antes, por lo que estamos emocionados y un poco confusos.
+Esta clase fue dedicada a trabajo en clases para la última entrega del curso, por lo que con mi grupo nos dedicamos a preparar el BOM (_bill of materials_) de nuestro trabajo, para poder comprar todos los componentes que necesitamos de manera inmediata. Luego de buscar los materiales, realizamos la compra y ahora solo nos falta esperar a que estos lleguen para ponerlos a prueba!! muchos de estos componentes no los hemos usado antes, por lo que estamos emocionados y un poco confundidos.
 
 Aquí dejo el BOM (en realidad es el como va de momento):
 
