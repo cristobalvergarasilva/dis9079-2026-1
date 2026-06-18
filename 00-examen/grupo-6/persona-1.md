@@ -48,5 +48,5 @@ existentes, lo que reduce el tiempo y esfuerzo de desarrollo
 
 #### Bibliografía
 
-- [immune que es la API](https://immune.institute/blog/que-es-la-api/)
-- [itsqmet](https://itsqmet.edu.ec/api/)
+- <https://immune.institute/blog/que-es-la-api/>
+- <https://itsqmet.edu.ec/api/>
