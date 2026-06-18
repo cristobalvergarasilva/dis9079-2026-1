@@ -1,6 +1,6 @@
 # persona-1
 
-sofiacartes
+sofiacartes / <https://github.com/sofiacartes>
 
 ## Investigación sobre APIs
 
@@ -13,6 +13,8 @@ desarrolladores pueden crear aplicaciones más rápido, reutilizar herramientas 
 existentes y hacer que distintos sistemas trabajen juntos de forma más fácil.
 
 <img src="./imagenes/sofia_imagenes/API.jpg" alt="final" width="500">
+
+Imagen de: <https://itsqmet.edu.ec/api/>
 
 ### Tipos de APIs
 
