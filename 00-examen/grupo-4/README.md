@@ -194,7 +194,7 @@ Aún no hemos podido mejorar la pantalla (si está buena pero creemos que son lo
 
 ---- 
 
-**CÓDIGO TRANSMISOR**
+> CÓDIGO FALLIDO
 
 ```cpp
 #include <WiFiS3.h>
@@ -325,10 +325,252 @@ void loop()
 }
 ```
 
-**CÓDIGO RECEPTOR**
-```cpp
+> CÓDIGO FALLIDO
 
+```cpp
+#include <WiFiS3.h>
+#include "AdafruitIO_WiFi.h"
+
+#include <Arduino_GFX_Library.h>
+
+// ---------------- WIFI ----------------
+#define WIFI_SSID "TU_WIFI"
+#define WIFI_PASS "TU_CLAVE"
+
+// ---------------- ADAFRUIT ----------------
+#define IO_USERNAME "TU_USUARIO"
+#define IO_KEY "TU_KEY"
+
+// FEEDS
+AdafruitIO_WiFi io(IO_USERNAME, IO_KEY, WIFI_SSID, WIFI_PASS);
+
+AdafruitIO_Feed *bpmFeed =
+  io.feed("examen-grupo04-bpm");
+
+AdafruitIO_Feed *estadoFeed =
+  io.feed("examen-grupo04-ecg");
+
+// ---------------- PANTALLA GC9A01 ----------------
+
+Arduino_DataBus *bus =
+  new Arduino_HWSPI(
+    9,    // DC
+    10    // CS
+  );
+
+Arduino_GFX *gfx =
+  new Arduino_GC9A01(
+    bus,
+    8,    // RESET
+    0,    // rotación
+    true
+  );
+
+// ---------------- VARIABLES ----------------
+
+String bpm = "--";
+String estado = "---";
+
+void dibujarPantalla()
+{
+  gfx->fillScreen(0x0000);
+
+  gfx->setTextColor(0xFFFF);
+
+  gfx->setTextSize(2);
+  gfx->setCursor(30, 40);
+  gfx->println("ECG");
+
+  gfx->setTextSize(4);
+  gfx->setCursor(40, 90);
+  gfx->println(bpm);
+
+  gfx->setTextSize(2);
+  gfx->setCursor(20, 170);
+  gfx->println(estado);
+}
+
+// ---------- CALLBACK BPM ----------
+
+void handleBPM(AdafruitIO_Data *data)
+{
+  bpm = data->toString();
+
+  Serial.print("BPM recibido: ");
+  Serial.println(bpm);
+
+  dibujarPantalla();
+}
+
+// ---------- CALLBACK ESTADO ----------
+
+void handleEstado(AdafruitIO_Data *data)
+{
+  estado = data->toString();
+
+  Serial.print("Estado recibido: ");
+  Serial.println(estado);
+
+  dibujarPantalla();
+}
+
+void setup()
+{
+  Serial.begin(115200);
+
+  gfx->begin();
+
+  gfx->fillScreen(0x0000);
+
+  gfx->setTextColor(0xFFFF);
+
+  gfx->setTextSize(2);
+  gfx->setCursor(20,120);
+  gfx->println("Conectando...");
+
+  Serial.println("Conectando Adafruit IO");
+
+  io.connect();
+
+  while(io.status() < AIO_CONNECTED)
+  {
+    Serial.print(".");
+    delay(500);
+  }
+
+  Serial.println();
+  Serial.println("Conectado!");
+
+  bpmFeed->onMessage(handleBPM);
+  estadoFeed->onMessage(handleEstado);
+
+  bpmFeed->get();
+  estadoFeed->get();
+
+  dibujarPantalla();
+}
+
+void loop()
+{
+  io.run();
+}
 ```
 
+### Miércoles 17 Junio 
 
+### 5 días para el examen
+
+El día de hoy realizamos denuevo la prueba para la pantalla y efectivamente eran los cables!!
+
+Nos dimos cuenta que los datos que nos tiraba eran solo datos aleatorios y no detectaba los pulsos reales...
+
+> CÓDIGO DE PRUEBA PANTALLA TFT LCD redonda de 1.28"
+
+- Utilizamos este código para probar la pantalla con los cables nuevos y si funcionó, refeljaba los colores respectivos.
+
+```cpp
+#include <Arduino_GFX_Library.h>
+
+// Pines de control
+#define TFT_DC   9
+#define TFT_CS   10
+#define TFT_RST  8
+
+// Colores RGB565
+#define TFT_BLACK   0x0000
+#define TFT_BLUE    0x001F
+#define TFT_RED     0xF800
+#define TFT_GREEN   0x07E0
+#define TFT_WHITE   0xFFFF
+#define TFT_YELLOW  0xFFE0
+#define TFT_CYAN    0x07FF
+#define TFT_MAGENTA 0xF81F
+
+// Configuración SPI por hardware
+Arduino_DataBus *bus = new Arduino_HWSPI(
+  TFT_DC,
+  TFT_CS
+);
+
+// Configuración pantalla GC9A01
+Arduino_GFX *gfx = new Arduino_GC9A01(
+  bus,
+  TFT_RST,
+  0,      // Rotación (0-3)
+  true    // IPS
+);
+
+void setup() {
+
+  Serial.begin(115200);
+
+  if (!gfx->begin()) {
+    Serial.println("Error al iniciar la pantalla");
+    while (1);
+  }
+
+  gfx->fillScreen(TFT_BLACK);
+
+  gfx->setTextSize(2);
+  gfx->setTextColor(TFT_WHITE);
+  gfx->setCursor(45, 110);
+  gfx->println("TEST RGB");
+
+  delay(2000);
+}
+
+void loop() {
+
+  mostrarColor(TFT_RED, "ROJO");
+  mostrarColor(TFT_GREEN, "VERDE");
+  mostrarColor(TFT_BLUE, "AZUL");
+  mostrarColor(TFT_WHITE, "BLANCO");
+  mostrarColor(TFT_YELLOW, "AMARILLO");
+  mostrarColor(TFT_CYAN, "CIAN");
+  mostrarColor(TFT_MAGENTA, "MAGENTA");
+  mostrarColor(TFT_BLACK, "NEGRO");
+}
+
+void mostrarColor(uint16_t color, const char *texto) {
+
+  gfx->fillScreen(color);
+
+  if (color == TFT_BLACK) {
+    gfx->setTextColor(TFT_WHITE);
+  } else {
+    gfx->setTextColor(TFT_BLACK);
+  }
+
+  gfx->setTextSize(3);
+
+  int16_t x1, y1;
+  uint16_t w, h;
+
+  gfx->getTextBounds(
+    texto,
+    0,
+    0,
+    &x1,
+    &y1,
+    &w,
+    &h
+  );
+
+  int16_t x = (240 - w) / 2;
+  int16_t y = (240 - h) / 2;
+
+  gfx->setCursor(x, y);
+  gfx->println(texto);
+
+  delay(2000);
+}
+```
+
+**CÓDIGO TRANSMISOR**
+```cpp
+```
+
+**CÓDIGO RECEPTOR**
+```cpp
+```
 
