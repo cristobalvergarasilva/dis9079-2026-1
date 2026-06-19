@@ -304,6 +304,8 @@ ls /Volumes/CIRCUITPY/lib/
 import code
 ```
 
+---
+
 ### Códigos anteriores
 
 Primero, probamos con este código que nos generó claude, para ver si el anillo led funcionaba. Y si, funcionaba, no tenía ningún led quemado :D
@@ -819,6 +821,14 @@ while True:
 
 ---
 
+### Nuevos pasos para la conexión oficial
+
+1. Subir cada código al microcontrolador correspondiente (`Envía` a Raspberry) (`Recibe` a Arduino)
+2. Cambiar claves WIFI (funciona mejor que cada microcontrolador tenga su propio wifi)
+3. Y listo, dejamos que fluya!
+
+---
+
 ## INput - Sensor Infrarrojo (código en Raspberry) / código que envía
 
 **Recomendaciones:**
@@ -1131,9 +1141,9 @@ void actualizarAnillo(int conteo) {
 
 <img src="./imagenes/IMG_0836.jpeg" alt="foto" width="400">
 
-### LID (casa sofi)
-
-### Rep180 (casa vale)
+| LID (casa sofi) | Rep180 (casa vale) |
+|-----------------|--------------------|
+| <img src="./imagenes/video3.gif" alt="video" width="400"> | <img src="./imagenes/video4.gif" alt="video" width="400"> |
 
 ---
 
