@@ -1127,9 +1127,13 @@ void actualizarAnillo(int conteo) {
 
 ## Demostraciones en vivo 
 
-### LID
+<img src="./imagenes/video1.gif" alt="video" width="400"> <img src="./imagenes/video2.gif" alt="video" width="400">
 
-### Rep180
+<img src="./imagenes/IMG_0836.jpeg" alt="foto" width="400">
+
+### LID (casa sofi)
+
+### Rep180 (casa vale)
 
 ---
 
