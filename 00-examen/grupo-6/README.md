@@ -293,15 +293,269 @@ ls /Volumes/CIRCUITPY/lib/
 import code
 ```
 
+### Códigos anteriores
+
+`Arduino`
+
+- Teníamos este código para el anillo led, donde Arduino se tardaba en leer los valores desde Adafruit IO.
+  - El problema es que `mqttClient.poll()` en el loop() compite con otras tareas (reconexión WiFi, actualización del anillo, etc.), y MQTT sobre TCP tiene latencia natural. Entonces, lo que hicimos fue: reducir `keep alive`así evitamos "bloqueos" en el loop.
+  - El problema principal está en las líneas 95-107: cada vuelta del loop() revisa WiFi.status() y mqttClient.connected(), lo cual añade overhead constante incluso cuando todo está bien. Es decir, vuelve a conectar cada vez que se manda un dato.
+
+```cpp
+#include <WiFiS3.h>
+#include <ArduinoMqttClient.h>
+#include <Adafruit_NeoPixel.h>
+
+// CONFIGURACI=N ANILLO LED
+#define LED_PIN   6
+#define NUM_LEDS  16
+
+Adafruit_NeoPixel ring(NUM_LEDS, LED_PIN, NEO_GRB + NEO_KHZ800);
+
+// CONFIGURACION WIFI
+char ssid[] = "blabla";
+char pass[] = "blabla";
+
+// CONFIGURACION ADAFRUIT IO
+const char broker[]  = "io.adafruit.com";
+int        port      = 1883;
+const char* aio_user = "blabla";
+const char* aio_key  = "blabla";
+
+// Aqui llamamos al feed creado o se crea solo
+String feedTopic = String(aio_user) + "/feeds/conteo-lid";
+
+WiFiClient   wifiClient;
+MqttClient   mqttClient(wifiClient);
+
+// Comenzamos con el codigo, ¿que es lo que hace realmente?
+// ¿cuales son sus pasos?
+void setup() {
+  Serial.begin(115200);
+
+  // Inicializar anillo LED
+  ring.begin();
+  ring.setBrightness(50);
+  ring.show(); // apagado al inicio
+
+  // Conectar WiFi
+  Serial.print("Conectando a WiFi");
+  while (WiFi.begin(ssid, pass) != WL_CONNECTED) {
+    Serial.print(".");
+    delay(1000);
+  }
+  // Imprime si la conexion se realizo o no
+  Serial.println();
+  Serial.println("WiFi conectado");
+  Serial.print("IP: ");
+  Serial.println(WiFi.localIP());
+
+  // Conectar a Adafruit IO via MQTT
+  mqttClient.setUsernamePassword(aio_user, aio_key);
+
+  Serial.print("Conectando a Adafruit IO");
+  while (!mqttClient.connect(broker, port)) {
+    Serial.print(".");
+    delay(1000);
+  }
+  Serial.println();
+  Serial.println("Conectado a Adafruit IO");
+
+  // Suscribirse al feed
+  // da señales de que ya esta mandando datos a adafruit
+  mqttClient.subscribe(feedTopic);
+  Serial.print("Suscrito a: ");
+  Serial.println(feedTopic);
+}
+
+// Pasos del codigo
+void loop() {
+  mqttClient.poll();
+
+// Se realiza la conexion mqtt para captar los adatos de adafruit io
+  int messageSize = mqttClient.parseMessage();
+  if (messageSize > 0) {
+    String payload = "";
+    while (mqttClient.available()) {
+      payload += (char)mqttClient.read();
+    }
+
+// Al recibir los datos, los imprime como "conteo recibido"
+    int conteo = payload.toInt();
+    Serial.print("Conteo recibido: ");
+    Serial.println(conteo);
+
+// Si se llena el led y pasa una persona mas
+// el led vuelve a cero
+    actualizarAnillo(conteo);
+  }
+
+  // Reconexión si se pierde WiFi o MQTT
+  if (WiFi.status() != WL_CONNECTED) {
+    Serial.println("WiFi perdido, reconectando...");
+    WiFi.begin(ssid, pass);
+    delay(1000);
+  }
+
+  if (!mqttClient.connected()) {
+    Serial.println("MQTT desconectado, reconectando...");
+    if (mqttClient.connect(broker, port)) {
+      mqttClient.subscribe(feedTopic);
+    }
+    delay(1000);
+  }
+}
+
+// Enciende 'conteo' LEDs del anillo (de 0 a 16)
+// Color según nivel de ocupación:
+//   1-5   -> verde   (poco ocupado)
+//   6-10  -> amarillo (ocupación media)
+//   11-16 -> rojo    (casi lleno / lleno)
+
+void actualizarAnillo(int conteo) {
+  conteo = constrain(conteo, 0, NUM_LEDS);
+
+// Comienza el coteo oficial, cada vez que pasa alguien se suma 1
+  for (int i = 0; i < NUM_LEDS; i++) {
+    if (i < conteo) {
+      if (conteo <= 5) {
+        ring.setPixelColor(i, ring.Color(0, 255, 0));     // verde
+      } else if (conteo <= 10) {
+        ring.setPixelColor(i, ring.Color(255, 255, 0));   // amarillo
+      } else {
+        ring.setPixelColor(i, ring.Color(255, 0, 0));     // rojo
+      }
+    } else {
+      ring.setPixelColor(i, ring.Color(0, 0, 0));         // apagado
+    }
+  }
+  ring.show();
+}
+```
+
+`¿Qué cambió?:` Antes, cada vez que entraba al if de reconexión (línea 95-107 original), había delay(1000) que bloqueaba completamente el loop() por 1 segundo entero. Durante ese segundo, mqttClient.poll() no se llamaba, así que cualquier mensaje nuevo de Adafruit IO se acumulaba o se perdía. Ahora la revisión de conexión solo ocurre cada 5 segundos y sin delay(), dejando que mqttClient.poll() corra libremente en cada vuelta del loop
+
+- **Debemos tener en cuenta que:** la verdadera limitación es Adafruit IO, no el código. La cuenta gratuita de Adafruit IO tiene un límite de 30 mensajes por minuto (1 cada 2 segundos aprox). Si el sensor cuenta personas más rápido que eso, los mensajes se encolan o se descartan del lado del servidor, sin importar qué tan optimizado esté el Arduino.
+
 ---
 
-## INput - Sensor Infrarrojo (código en Raspberry)
+`Raspberry`
+
+- Por el lado de la Raspberry, la conexión fue demasiado inestable cuando la probamos en clases. Nos demoramos mucho en conectar al wifi y que mandara los datos a adafruit.
+- El puerto 8883 (SSL/MQTT) estaba siendo bloqueado por la red de la universidad, por eso salía el mensaje:
+
+```bash
+Exception: ('Unable to receive 1 bytes within 10 seconds.', None)
+```
+
+ - Esto se debe a que la conexión TCP nunca se completaba, los datos se enviaba pero nunca llegaba respuesta. Según claude: "Las redes académicas (eduroam y similares) suelen tener firewalls que solo permiten tráfico saliente por puertos estándar (80, 443) y bloquean o limitan puertos no comunes como 1883/8883, especialmente para dispositivos IoT no gestionados por la universidad."
+ - Por otra parte, el puerto serie quedaba "atrapado" por sesiones de screen sin cerrar:
+   - El error `Resource busy` que tuvimos varias veces fue porque cada vez que abríamos `screen` y lo cerrábamos mal (cerrando la ventana de Terminal en vez de salir con (Ctrl+A + K), la sesión quedaba corriendo en background, reteniendo el puerto. Esto no es un problema de la Pico ni de WiFi, es un problema de gestión de procesos en el Mac, pero genera la sensación de "se desconectó todo".
+- Y por último, `mqtt_client.reconnect()` no maneja bien fallos repetidos.
+  - En el código original, si fallaba la reconexión, simplemente lo volvíamos a intentar sin límites, esto puede generar bucles donde la Pico parece "colgada" pero en realidad está reintentando sin parar contra una red que sigue bloqueando el puerto.
+
+```cpp
+# PUENTE DIGITAL — Grupo 6
+# Raspberry Pi Pico 2W (CircuitPython)
+# Lee el Sensor Infrarrojo Evasor de Obstáculos y publica el
+# conteo de personas ("entrada") a Adafruit IO via MQTT.
+# y Arduino lee los valores para luego encender el Anillo led
+
+import time
+import board # type: ignore
+import digitalio # type: ignore
+import wifi # type: ignore
+import socketpool # type: ignore
+import ssl
+import adafruit_minimqtt.adafruit_minimqtt as MQTT # type: ignore
+
+# CONFIGURACION WIFI
+WIFI_SSID = "blabla"
+WIFI_PASSWORD = "blabla"
+
+# CONFIGURACION ADAFRUIT IO
+ADAFRUIT_IO_USER = "blabla"
+ADAFRUIT_IO_KEY  = "blabla"
+FEED_ID = "lid-conteo"   # nombre del feed creado en Adafruit IO
+
+# CONFIGURACION SENSOR INFRARROJO
+# El sensor IR evasor de obstáculos entrega:
+#  - HIGH (3.3V) cuando NO hay obstáculo
+#  - LOW  (0V)   cuando detecta un obstáculo (persona pasando)
+ir_sensor = digitalio.DigitalInOut(board.GP15)
+ir_sensor.direction = digitalio.Direction.INPUT
+ir_sensor.pull = digitalio.Pull.UP
+
+# VARIABLES DE CONTEO
+contador = 0
+MAX_CONTEO = 16          # tope = cantidad de LEDs del anillo
+estado_anterior = True   # True = sin obstáculo (reposo)
+
+# CONEXION WIFI
+print("Conectando a WiFi...")
+wifi.radio.connect(WIFI_SSID, WIFI_PASSWORD)
+print("WiFi conectado. IP:", wifi.radio.ipv4_address)
+
+# CONEXION MQTT (ADAFRUIT IO)
+# para mandar los valores a adafruit y que arduino los reciba
+pool = socketpool.SocketPool(wifi.radio)
+mqtt_client = MQTT.MQTT(
+    broker="io.adafruit.com",
+    port=1883,
+    username=ADAFRUIT_IO_USER,
+    password=ADAFRUIT_IO_KEY,
+    socket_pool=pool,
+    ssl_context=ssl.create_default_context(),
+)
+
+print("Conectando a Adafruit IO...")
+mqtt_client.connect()
+print("Conectado a Adafruit IO.")
+
+# Se crea el feed en adafruit o lo podemos crear nosotros
+feed_topic = ADAFRUIT_IO_USER + "/feeds/" + FEED_ID
+
+# BUCLE PRINCIPAL
+# viene siendo lo que hace realmente el codigo, sus pasos.
+while True:
+    try:
+        mqtt_client.loop()
+
+        estado_actual = ir_sensor.value
+
+        # Detecta flanco de bajada: HIGH -> LOW = persona pasando
+        if estado_anterior is True and estado_actual is False:
+            contador += 1
+
+            # Si llega al maximo, vuelve a 0 (ciclo)
+            if contador > MAX_CONTEO:
+                contador = 0
+
+            print("Persona detectada -> conteo:", contador)
+            mqtt_client.publish(feed_topic, contador)
+
+            # Antirebote: evita contar la misma persona dos veces
+            time.sleep(0.5)
+
+        estado_anterior = estado_actual
+        time.sleep(0.05)
+
+        # Si hay alguna falla, se vuelve a conectar
+    except (ValueError, RuntimeError) as e:
+        print("Error de conexión, reintentando...", e)
+        time.sleep(2)
+        mqtt_client.reconnect()
+```
+
+---
+
+## INput - Sensor Infrarrojo (código en Raspberry) / código que envía
 
 **Recomendaciones:**
 
 ---
 
-## OUTput - Anillo LED (código en Arduino)
+## OUTput - Anillo LED (código en Arduino) / código que recibe
 
 **Recomendaciones:**
 
