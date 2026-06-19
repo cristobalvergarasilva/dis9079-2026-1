@@ -323,7 +323,7 @@ const char* aio_user = "blabla";
 const char* aio_key  = "blabla";
 
 // Aqui llamamos al feed creado o se crea solo
-String feedTopic = String(aio_user) + "/feeds/conteo-lid";
+String feedTopic = String(aio_user) + "/feeds/lid-conteo";
 
 WiFiClient   wifiClient;
 MqttClient   mqttClient(wifiClient);
