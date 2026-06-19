@@ -4,9 +4,9 @@ Lunes 22 de junio.
 
 **Integrantes:**
 
-* Sofía Cartes Aravena / <https://github.com/sofiacartes> / investigación
-* Monserrat Paredes / <https://github.com/Monserrat-Paredes> / investigación
-* Valentina Ruz Pizarro / <https://github.com/vxlentiinaa> / código e investigación
+* Sofía Cartes Aravena / <https://github.com/sofiacartes> / github e investigación
+* Monserrat Paredes / <https://github.com/Monserrat-Paredes> / github e investigación
+* Valentina Ruz Pizarro / <https://github.com/vxlentiinaa> / código, github e investigación
 
 ---
 
