@@ -30,20 +30,20 @@ Buscamos hacer visible una dimensión cotidiana que suele pasar desapercibida: l
 1. Conectar Raspberry Pi Pico a WiFi
 2. Conectar Raspberry Pi Pico a Adafruit IO mediante MQTT
 -  MIENTRAS el sistema esté funcionando
-5. Leer datos del micrófono
-6. Calcular nivel de sonido
-7. Convertir nivel de sonido a porcentaje (0% a 100%)
-8. Enviar porcentaje al feed MQTT en adafruit
+3. Leer datos del micrófono
+4. Calcular nivel de sonido
+5. Convertir nivel de sonido a porcentaje (0% a 100%)
+6. Enviar porcentaje al feed MQTT en adafruit
 
 ## Pseudocódigo Touchdesigner (output)
 
 1. Conectarse a Adafruit IO mediante MQTT
 2. Suscribirse a los feeds de ambos lugares
 - CUANDO llegue un mensaje
-  4. Leer valor recibido
-  5. Identificar de qué lugar proviene
-  6. Actualizar la variable correspondiente
-  7. Mostrar el dato en la visualización
+3. Leer valor recibido
+4. Identificar de qué lugar proviene
+5. Actualizar la variable correspondiente
+6. Mostrar el dato en la visualización
 
 ## Primeros acercamientos
 
