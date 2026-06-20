@@ -18,69 +18,29 @@ Arduino R4 WiFi                                             Raspi Pico 2
                                   
 ```
 
-### Materiales 
-
-* Arduino UNO R4 WiFi (Edificio A — botones)
-* Raspberry Pi Pico 2 W (Edificio B — semáforo)
-* 2 botones
-* 1 módulo semáforo RGB (con pines GND, R, Y, G integrados, no necesita resistencias extra)
-* Protoboards y cables jumper
-* Resistencias de 10kΩ 
-
-### Proceso 
-
-Creamos un feed en Adafruit IO llamado ```pruebasemaforo```, posteriormente pasamos a el desarrollo de códigos en con ayuda de la IA.
-
-#### Proceso Raspberry Pi Pico 2 w 
-
-Como primer problema, la placa no se conectaba al WiFi. Se probó con distintos hotspots y ninguno dio resultados. Sin embargo, durante un momento creemos que sí logró conectarse a uno de ellos. No obstante, al volver a intentarlo con el teléfono de mi compañera, nuevamente no se conectaba.
-
-Al revisar el monitor serial, cuya instalación nos ayudó a realizar una compañera, nos dimos cuenta de que el código que estábamos utilizando no estaba ejecutando ninguna función. Esto se debía a que el código inicial estaba escrito en MicroPython, mientras que la placa tenía instalado CircuitPython. Finalmente, se reescribió todo el código en CircuitPython.
-
-Procedimos con la conexion del cableado y moódulo de semáforo: GP16→G, GP17→Y, GP18→R, GND→GND.
-
-Segundo problema, la Pico recibía bien los valores de Adafruit IO, pero ningún LED encendía.
-
-Se probó un código simple LED por LED, descartando errores de código. Se probó conectar un cable directo a 3.3V → tampoco prendía → se sospechó del GND y el cable de GND no estaba bien conectado. Al corregirlo, los 3 LEDs (verde, amarillo, rojo) parpadearon correctamente con un código de prueba simple.
-
-*Aún pendiente: probar el código completo (con conexión a Adafruit IO) ahora que el hardware del semáforo funciona.*
-
 Parámetros del semáforo 
 
 - 0-5 personas → 🟢 Verde
 - 6-10 personas → 🟡 Amarillo
 - 11+ personas → 🔴 Rojo
+  
 
-#### Proceso Arduino UNO R4 WiFI
+### Materiales 
 
-Conexión de cableado y botones con pull-down** (resistencia a GND, botón a 5 V)
+* Arduino UNO R4 WiFi 
+* Raspberry Pi Pico 2 W 
+* 2 botones
+* 1 módulo semáforo RGB (con pines GND, R, Y, G integrados)
+* Protoboards y cables jumper
+* Resistencias de 10kΩ 
 
-Primer problema, necesitábamos hacer que el Arduino se conectara al hotspot de un iPhone, pero no lo lograba. Por lo que averiguamos, una posible causa era que los iPhone comparten la conexión en 5 GHz, mientras que las placas se conectan en 2,4 GHz. Por ello, procedimos a activar la opción **"Maximizar compatibilidad"** en el teléfono.
+## Proceso 
 
-Segundo problema (aún sin resolver), el contador se actualiza si se conecta o desconecta el cable manualmente, pero no responde al presionar el botón físico. Al mover el Arduino, los valores fluctúan por sí solos (señal "flotante"), lo que indica que el circuito de pull-down no está cerrando correctamente hacia GND, aunque se revisó la disposición del circuito (A3 conectado a D2, B3 con una resistencia de 10 kΩ, C3 y E3 con las patitas del botón, y A8 conectado al riel positivo) y parecía estar correcta.
+Creamos un feed en Adafruit IO llamado ```pruebasemaforo```, posteriormente pasamos a el desarrollo de códigos en con ayuda de la IA.
 
+#### Proceso Raspberry Pi Pico 2 w 
 
-### Pseudocódigo
-
-#### Arduino 
-```
-INICIO
-  contador = 0 o +
-  conectarse a WiFi
-  conectarse a Adafruit IO
-
-  REPETIR SIEMPRE:
-    SI se aprieta botón "entró":
-      contador = contador + 1
-      publicar contador en Adafruit IO
-
-    SI se aprieta botón "salió":
-      SI contador > 0:
-        contador = contador - 1
-      publicar contador en Adafruit IO
-FIN
-```
-#### Raspberry 
+##### Pseudocódigo
 
 ```
 INICIO
@@ -106,6 +66,94 @@ INICIO
       encender LED ROJO
 FIN
 ```
+
+Una vez obtenido el código procedimos a probarlo en la placa y surgieron un par de problemas en el proceso 
+
+Como primer problema, la placa no se conectaba al WiFi. Se probó con distintos hotspots y ninguno dio resultados. Sin embargo, durante un momento creemos que sí logró conectarse a uno de ellos. No obstante, al volver a intentarlo con el teléfono de mi compañera, nuevamente no se conectaba.
+
+Al revisar el monitor serial, cuya instalación nos ayudó a realizar una compañera, nos dimos cuenta de que el código que estábamos utilizando no estaba ejecutando ninguna función. Esto se debía a que el código inicial estaba escrito en MicroPython, mientras que la placa tenía instalado CircuitPython. Finalmente, se reescribió todo el código en CircuitPython.
+
+Procedimos con la conexion del cableado y moódulo de semáforo: GP16→G, GP17→Y, GP18→R, GND→GND.
+
+Segundo problema, la Pico recibía bien los valores de Adafruit IO, pero ningún LED encendía.
+
+Se probó un código simple LED por LED, descartando errores de código. Se probó conectar un cable directo a 3.3V → tampoco prendía → se sospechó del GND y el cable de GND no estaba bien conectado. Al corregirlo, los 3 LEDs (verde, amarillo, rojo) parpadearon correctamente con un código de prueba simple.
+
+#### Código de prueba de los LEDS 
+
+```
+import time
+import board
+import digitalio
+
+led_verde = digitalio.DigitalInOut(board.GP16)
+led_verde.direction = digitalio.Direction.OUTPUT
+
+led_amarillo = digitalio.DigitalInOut(board.GP17)
+led_amarillo.direction = digitalio.Direction.OUTPUT
+
+led_rojo = digitalio.DigitalInOut(board.GP18)
+led_rojo.direction = digitalio.Direction.OUTPUT
+
+while True:
+    print("Verde ON")
+    led_verde.value = True
+    led_amarillo.value = False
+    led_rojo.value = False
+    time.sleep(1)
+
+    print("Amarillo ON")
+    led_verde.value = False
+    led_amarillo.value = True
+    led_rojo.value = False
+    time.sleep(1)
+
+    print("Rojo ON")
+    led_verde.value = False
+    led_amarillo.value = False
+    led_rojo.value = True
+    time.sleep(1)
+```
+
+*foto del proyecto, especifico del semáforo*
+
+#### Proceso Arduino UNO R4 WiFI
+
+
+#### Pseudocódigo
+
+```
+INICIO
+  contador = 0 o +
+  conectarse a WiFi
+  conectarse a Adafruit IO
+
+  REPETIR SIEMPRE:
+    SI se aprieta botón "entró":
+      contador = contador + 1
+      publicar contador en Adafruit IO
+
+    SI se aprieta botón "salió":
+      SI contador > 0:
+        contador = contador - 1
+      publicar contador en Adafruit IO
+FIN
+```
+
+
+Una vez obtenido el código para ARDUINO realizamos la prueba para ver si es que el código tenía algún fallo
+
+
+Primer problema, necesitábamos hacer que el Arduino se conectara al hotspot de un iPhone, pero no lo lograba. Por lo que averiguamos, una posible causa era que los iPhone comparten la conexión en 5 GHz, mientras que las placas se conectan en 2,4 GHz. Por ello, procedimos a activar la opción *"Maximizar compatibilidad"* en el teléfono.
+
+Posteriormente realizamos la conexión de cableado y botones (resistencia a GND, botón a 5 V)
+
+Segundo problema, el contador se actualiza si se conecta o desconecta el cable manualmente, pero no responde al presionar el botón físico. Al mover el Arduino, los valores fluctúan por sí solos (señal "flotante"), lo que indica que el circuito de pull-down no está cerrando correctamente hacia GND, aunque se revisó la disposición del circuito (A3 conectado a D2, B3 con una resistencia de 10 kΩ, C3 y E3 con las patitas del botón, y A8 conectado al riel positivo) y parecía estar correcta si embargo no era posible controlar el envio de datos, por lo que....
+
+
+*foto del proyecto, especifico ARDUINO+BOTONES*
+
+
 
 ### IA (claude.ai)
 
