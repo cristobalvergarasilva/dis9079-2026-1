@@ -343,5 +343,7 @@ Finalmente se le aplicó el protocolo UDP y solo tuvimos un problema con el pote
  "¡DISPARADA! Subiendo..."            carga del 1 % al 99 %
 ```
 
+* Se me olvidó mencionar que, para poder proporcionar información del proyecto de manera más profunda a mi grupo, creé un [NotebookLM](https://notebooklm.google.com/notebook/4f74ab24-d664-4222-bcea-7a99c820a673) en donde dejé todo el proceso, así como los errores, los códigos usados y el pseudocódigo. Lo dejaré aquí por si desean también verlo y preguntar acerca de algo más técnico sobre el proyecto.
+
 
 
