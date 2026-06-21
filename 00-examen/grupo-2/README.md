@@ -47,23 +47,31 @@ Buscamos hacer visible una dimensión cotidiana que suele pasar desapercibida: l
 
 ## Primeros acercamientos
 
-En un inicio se utilizaron varias
+En un inicio se utilizaron otros sensores de audio que necesitaban que el sonido estuviera muy cerca para poder detectar estas fluctuaciones, por lo que no funcionaba como esperábamos.
 
 ## Input: Micrófono 
 
-Para comenzar...
+### Qué hace
 
-### Código Micrófono
+Mide el sonido ambiente con dos micrófonos MAX9812, calcula qué tan fuerte fue ese sonido, y cada un segundo manda ese dato a Adafruit IO, que actúa como intermediario en la nube entre la Pico y TouchDesigner.
+
+---
+
+### Código Rasberry pi pico 2W
 
 ```cpp
 # ============================================================
-# SENSOR DE SONIDO - Raspberry Pi Pico 2W + MAX9812
+# SENSOR DE SONIDO - Raspberry Pi Pico 2W + 2x MAX9812
 # Examen interacciones inalambricas
 # ============================================================
-# CONEXIONES MAX9812:
-#   VCC  -> Pin 36 (3V3)
-#   GND  -> Pin 38 (GND)
-#   OUT  -> Pin 31 (GP26)
+# CONEXIONES MAX9812 A:
+#   VCC -> Pin 36 (3V3)
+#   GND -> Pin 38 (GND)
+#   OUT -> Pin 31 (GP26)
+# CONEXIONES MAX9812 B:
+#   VCC -> Pin 36 (3V3)
+#   GND -> Pin 33 (GND)
+#   OUT -> Pin 32 (GP27)
 # ============================================================
 
 import time
@@ -74,10 +82,10 @@ import socketpool
 import adafruit_minimqtt.adafruit_minimqtt as MQTT
 
 # ============================================================
-# CONFIGURACION - esto es lo unico que cambia entre las dos Raspberry
+# CONFIGURACION - esto es lo unico que cambia entre los dos picos
 # ============================================================
 
-EDIFICIO      = "grupo02-rep"   # nombre del feed, cambia segun el edificio
+EDIFICIO      = "grupo02-rep" #Solo cambia el nombre del feed 
 WIFI_SSID     = "Nombre wifi"
 WIFI_PASSWORD = "01234"
 
@@ -88,18 +96,18 @@ AIO_KEY       = "aio_secret"
 # PARAMETROS DE MEDICION
 # ============================================================
 
-RUIDO_PISO   = 150    # bajo este numero se considera silencio
-AMPLITUD_MAX = 5000   # esto es lo que se considera 100%
+RUIDO_PISO   = 150
+AMPLITUD_MAX = 5000
 
-NUM_MUESTRAS = 150    # cuantas lecturas toma por rafaga
-INTERVALO_S  = 1.0    # cada cuanto envia datos
+NUM_MUESTRAS = 150
+INTERVALO_S  = 1.0
 
 # ============================================================
-# SENSOR
+# SENSORES - dos microfonos en diferentes lugares de la FAAD
 # ============================================================
 
 PINES_SENSORES = [board.GP26]
-sensores       = [analogio.AnalogIn(pin) for pin in PINES_SENSORES]
+sensores        = [analogio.AnalogIn(pin) for pin in PINES_SENSORES]
 
 # ============================================================
 # RED
@@ -110,7 +118,6 @@ mqtt_cliente = None
 
 
 def estado_wifi():
-    # chequea si seguimos conectados
     try:
         return wifi.radio.connected
     except Exception:
@@ -133,7 +140,6 @@ def conectar_wifi():
 
 
 def crear_mqtt():
-    # arma una conexion mqtt nueva desde cero
     global pool, mqtt_cliente
     pool = socketpool.SocketPool(wifi.radio)
     mqtt_cliente = MQTT.MQTT(
@@ -167,7 +173,6 @@ def conectar_mqtt():
 
 
 def asegurar_conexiones():
-    # revisa que todo siga vivo, y si se cayo algo, lo reconstruye
     if not estado_wifi():
         print("wifi caido. reconectando todo...")
         try:
@@ -193,7 +198,6 @@ def asegurar_conexiones():
 
 
 def publicar(valor):
-    # manda el dato al feed de adafruit io
     try:
         asegurar_conexiones()
         mqtt_cliente.publish(f"{AIO_USERNAME}/feeds/{EDIFICIO}", str(valor))
@@ -209,21 +213,20 @@ def publicar(valor):
         conectar_mqtt()
 
 # ============================================================
-# MEDICION - toma el nivel mas alto
+# MEDICION - recorre ambos sensores y se queda con el mas fuerte
 # ============================================================
 
 def medir_nivel():
     """
-    recorre el arreglo de sensores.
-    en cada uno toma una rafaga rapida de 150 lecturas y se queda
-    con la diferencia entre el valor mas alto y el mas bajo.
-    eso es lo que indica que tan fuerte sono algo.
+    recorre el arreglo de sensores (2 microfonos).
+    cada uno mide su propia rafaga y calcula su propia amplitud.
+    al final se queda con el nivel mas alto entre los dos,
+    asi no importa de que lado venga el sonido, igual lo agarra.
     """
     niveles = []
 
     for i in range(len(sensores)):
 
-        # rafaga rapida, sin pausas entre lecturas
         maximo = 0
         minimo = 65535
         for j in range(NUM_MUESTRAS):
@@ -242,6 +245,7 @@ def medir_nivel():
             porcentaje = max(0, min(100, porcentaje))
 
         niveles.append(porcentaje)
+        print(f"    sensor {i + 1}: {porcentaje}%")
 
     return max(niveles)
 
@@ -253,8 +257,8 @@ conectar_wifi()
 crear_mqtt()
 conectar_mqtt()
 
-ultimo_envio   = 0
-nivel_maximo   = 0   # guarda el sonido mas fuerte detectado desde el ultimo envio
+ultimo_envio = 0
+nivel_maximo = 0
 
 print(f"\n=== [{EDIFICIO.upper()}] escuchando... ===\n")
 
@@ -264,19 +268,16 @@ print(f"\n=== [{EDIFICIO.upper()}] escuchando... ===\n")
 
 while True:
     try:
-        # mide todo el tiempo, sin parar
         nivel = medir_nivel()
 
-        # si este nivel es mas fuerte que el guardado, lo reemplaza
         if nivel > nivel_maximo:
             nivel_maximo = nivel
             print(f"    nuevo maximo detectado: {nivel_maximo}%")
 
-        # cada 2 segundos manda el nivel mas fuerte que pillo
         ahora = time.monotonic()
         if (ahora - ultimo_envio) >= INTERVALO_S:
             publicar(nivel_maximo)
-            nivel_maximo = 0   # se resetea para el siguiente ciclo
+            nivel_maximo = 0
             ultimo_envio = ahora
 
     except Exception as e:
@@ -293,14 +294,27 @@ while True:
 
 ## Output: Touchdesigner
 
+### Qué hace
+
+Recibe los datos que llegan desde Adafruit IO (los que mandan las dos Picos) y los deja disponibles como valores que se pueden usar dentro de la red de TouchDesigner para controlar las visuales.
+
+Este código vive dentro de un `Callbacks DAT`, conectado a un `MQTT Client DAT`. TouchDesigner llama automáticamente a estas funciones cuando ocurre el evento correspondiente.
+
+---
+
 ## Codigo Mqtt client / touch designer
 
 ```python
 # mqttclient1_callbacks
 
+FEEDS = {
+    'grupo02-rep': 'constant_rep',
+    'grupo02-ss':  'constant_ss',
+}
+
 def onConnect(dat, *args):
-    dat.subscribe('udpmontoyamoraga/feeds/grupo02-rep')
-    dat.subscribe('udpmontoyamoraga/feeds/grupo02-ss')
+    for feed in FEEDS:
+        dat.subscribe(f'udpmontoyamoraga/feeds/{feed}')
     print('MQTT conectado')
     return
 
@@ -315,13 +329,11 @@ def onMessage(dat, topic, payload, qos, retain):
     except:
         return
 
-    if 'rep180' in topic:
-        op('constant_rep').par.value0 = valor
-        print(f'[rep180] {valor:.0f}%')
-
-    elif topic.endswith('/ss'):
-        op('constant_ss').par.value0 = valor
-        print(f'[ss]     {valor:.0f}%')
+    for feed_name, chop_name in FEEDS.items():
+        if feed_name in topic:
+            op(chop_name).par.value0 = valor
+            print(f'[{feed_name}] {valor:.0f}%')
+            break
     return
 
 def onSubscribe(dat, *args):
@@ -386,6 +398,8 @@ J --> L[Actualizar visualización]
 K --> L
 ```
 
+---
+
 ## Investigaciones individuales
 
 Aportes, información y exploraciones personales compartidas con el equipo.
@@ -394,6 +408,18 @@ Aportes, información y exploraciones personales compartidas con el equipo.
 
 - [Vania Paredes.md](./persona-02.md)
 
+## Links a conversaciones con la IA durante el proceso de trabajo
+
+* <https://claude.ai/share/908f5fc8-04b0-407a-ad07-761d9c147662>
+* <https://chatgpt.com/share/6a270e2e-6ed0-83e9-9219-f21ec0dc3f2f>
+* <https://claude.ai/chat/7cd64083-1322-4b08-8168-85c80d8ea3de>
+
 ## Bibliografía
 
 * <https://learn.adafruit.com/series/adafruit-io-basics>
+* <https://www.youtube.com/watch?v=V_Q_fDukTI0>
+* <https://aws.amazon.com/es/what-is/api/>
+* <https://derivative.ca/UserGuide/OSC>
+* <https://mct-master.github.io/networked-music/2024/03/17/thomaseo-intro_to_OSC.html>
+* <https://ccrma.stanford.edu/groups/osc/index.html>
+*  <https://arduinomodules.info/ky-037-high-sensitivity-sound-detection-module/>
