@@ -3,20 +3,42 @@
 Monserrat-Paredes / https://github.com/Monserrat-Paredes
 
 
-# criterios individuales
+### criterios individuales
 
 - Investigación textual sobre API.
 - Bitácoras junio: evaluación de 4 sesiones (25 mayo, 01 junio, 08 de junio, 15 junio).
 - Bitácoras junio (la misma nota que punto anterior).
 
-## Investigación sobre API
+## Investigación sobre API (Interfaz de Programación de Aplicaciones)
 
-Una API (por sus siglas en inglés, Application Programming Interface o Interfaz de Programación de Aplicaciones) es un componente fundamental en el desarrollo de software moderno.
+¿Qué es una API?
+
+Una API (por sus siglas en inglés Application Programming Interface , en español Interfaz de Programación de Aplicaciones ) es un conjunto de definiciones, reglas y protocolos que permite la comunicación entre diferentes aplicaciones o softwares. A diferencia de una interfaz de usuario que conecta una persona con un ordenador, una API conecta dos softwares o partes de un software.
+
+En términos simples, una API es como un mensajero que actúa entre un cliente y un servidor: traduce el mensaje y entrega la respuesta.
+
+Analogía del restaurante: Para entenderlo mejor.
+
+El cliente = el usuario/app que hace la solicitud.
+
+El camarero = la API (transmite la orden).
+
+El cocinero = el servidor que procesa y responde con la información.
 
 
 ## Origen
 
 Aunque hoy asociamos las API a las páginas web, el concepto nació en 1968. Los científicos de computación Ira Cotton y Frank Greatorex crearon un sistema para que diferentes programas de software pudieran interactuar dentro de una misma computadora principal. Internet ni siquiera existía tal como lo conocemos.
+
+Aunque hoy asociamos las APIs casi exclusivamente a internet (Web APIs), el concepto es mucho más antiguo:
+
+Años 1960 : Las primeras APIs se usaron como bibliotecas en los sistemas operativos, permitiendo que los programas interactuaran con el sistema.
+
+1988 : RPC (Llamada a procedimiento remoto) desarrollado por SUN Microsystems, primer protocolo que ganó popularidad.
+
+Años 2000 (Revolución Web) : Roy Fielding describe en su tesis (2000) el estilo arquitectónico REST. Las API basadas en la red que utilizan HTTP se convirtieron en el estándar actual
+
+
 
 
 ## ¿Qué es una API?
