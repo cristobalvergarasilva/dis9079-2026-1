@@ -40,15 +40,15 @@ OWM_BASE_URL = "https://api.open-meteo.com/v1/forecast" # Dirección base de la 
 
 # Ciudades: (Nombre, latitud, longitud, nombre-del-feed)
 CIUDADES = [
-    ("Arica",               -18.48, -70.33,  "humedad-arica"),
-    ("Copiapo",             -27.37, -70.33,  "humedad-copiapo"),
-    ("Santiago",            -33.45, -70.67,  "humedad-santiago"),
-    ("Valparaiso",          -33.05, -71.62,  "humedad-valparaiso"),
-    ("Juan Fernandez",      -33.65, -78.83,  "humedad-juan-fernandez"),
-    ("Punta Arenas",        -53.16, -70.91,  "humedad-punta-arenas"),
-    ("Villa Las Estrellas", -62.19, -58.98,  "humedad-antartica"),
+    ("Arica",               -18.48,  -70.33,  "humedad-arica"),
+    ("Copiapo",             -27.37,  -70.33,  "humedad-copiapo"),
+    ("Santiago",            -33.45,  -70.67,  "humedad-santiago"),
+    ("Valparaiso",          -33.05,  -71.62,  "humedad-valparaiso"),
+    ("Isla de Pascua",      -27.11,  -109.35, "humedad-isla-pascua"), 
+    ("Juan Fernandez",      -33.65,  -78.83,  "humedad-juan-fernandez"),
+    ("Punta Arenas",        -53.16,  -70.91,  "humedad-punta-arenas"),
+    ("Villa Las Estrellas", -62.19,  -58.98,  "humedad-antartica"),
 ]
-
 
 # Define conexiones del hardware
 
