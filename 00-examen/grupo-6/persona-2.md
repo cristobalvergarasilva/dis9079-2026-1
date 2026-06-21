@@ -44,12 +44,14 @@ Analogía del restaurante: Para entenderlo mejor.
 - El cocinero = el servidor que procesa y responde con la información.
 
 
+
 ### El concepto de "Caja Negra" y Seguridad
 
 Las API permiten compartir únicamente la información necesaria para una solicitud específica, manteniendo ocultos los detalles internos del código, el servidor o la base de datos. Esto añade una capa crítica de seguridad, ya que los dispositivos externos no tienen acceso total al sistema, sino solo a pequeños paquetes de datos autorizados.
 
 
-## ¿Cómo funciona una API?
+
+### ¿Cómo funciona una API?
 
 El funcionamiento básico de una API sigue el modelo de Cliente y Servidor a través de la infraestructura de Internet, normalmente mediante el protocolo HTTP (sistema de reglas mediante el cual un cliente (como una app o web) y un servidor se comunican). 
 
@@ -72,6 +74,7 @@ El funcionamiento de una puede entenderse en cuatro pasos básicos:
 Un ejemplo cotidiano es cuando compras en una tienda online y seleccionas "Pagar con PayPal". La tienda no conoce tus claves bancarias; utiliza una API para comunicarse con PayPal, procesar el pago de forma segura y recibir de vuelta la confirmación de que el pago fue exitoso.
 
 
+
 ## Tipos de API
 
 IBM clasifica las API principalmente bajo dos criterios: su accesibilidad (casos de uso en la web) y su arquitectura técnica.
@@ -85,17 +88,28 @@ IBM clasifica las API principalmente bajo dos criterios: su accesibilidad (casos
 - API Compuestas: Combinan múltiples API de datos o servicios diferentes. Permiten que un programador haga una única llamada y obtenga información de varias fuentes a la vez (muy útil en arquitecturas de microservicios).
 
 
-| Tipo                      | Descripción                                                                     | Ejemplo                                                     |
-| ------------------------- | ------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| API Públicas/Abiertas     | Accesibles para cualquier desarrollador, generalmente requieren clave de acceso | API de Google Maps, API de OpenWeatheritsqmet               |
-| API Privadas              | Restringidas al uso interno de una organización                                 | Sistemas internos de una empresaitsqmet                     |
-| API Asociativas/de Socios | Disponibles solo para socios estratégicos                                       | Integraciones entre bancos y proveedores financierositsqmet |
+
+Existen muchos tipos de API:
+
+
+
+| Tipo de API               | Descripción                                                                                                                         |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| API Web                   | Se usan para crear aplicaciones web y móviles, accesibles mediante HTTP [información proporcionada]                                 |
+| API de Biblioteca         | Permiten acceder a bibliotecas de código con funcionalidad específica para nuevas aplicaciones [información proporcionada]          |
+| API del Sistema Operativo | Permiten que el software interactúe con un sistema operativo subyacente [información proporcionada]                                 |
+| API Abiertas (o Públicas) | Crear desarrolladores externos, permiten que cualquier persona acceda y utilice un sitio web/aplicación [información proporcionada] |
+| API de Partners (Socios)  | Permiten comunicación entre sistemas de empresas y socios empresariales con relación distinta [información proporcionada]           |
+| API Privadas (o Internas) | Permiten transferir datos entre equipos o conectar aplicaciones/sistemas internos de una empresa [información proporcionada]        |
+| API Compuestas            | Combinan varias API de varios servidores/origenes para crear conexión unificada a un único sistema [información proporcionada]      |
+| API de Servicios Web      | Interfaces entre navegadores web y servidores web [información proporcionada]                                                       |
+| API de Nube               | Permiten que aplicaciones de nube se comuniquen entre sí [información proporcionada]                                                |
+| API Remotas               | Permiten que aplicaciones en diferentes equipos interactúen mediante comunicación remota [información proporcionada]                |
 
 
 
 
-
-## Protocolos y estilos arquitectónicos:
+### Protocolos y estilos arquitectónicos:
 
 - REST (Representational State Transfer): Es el estilo más común en las API web modernas. Utiliza el protocolo HTTP, es ligero y es compatible con múltiples lenguajes de programación y formatos como JSON.
 
