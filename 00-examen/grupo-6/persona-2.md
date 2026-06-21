@@ -28,7 +28,7 @@ Una API (por sus siglas en inglés Application Programming Interface , en españ
 
 En términos simples, una API es como un mensajero que actúa entre un cliente y un servidor: traduce el mensaje y entrega la respuesta.
 
-Analogía del restaurante: Para entenderlo mejor.
+Analogía del restaurante (Para entenderlo mejor):
 
 - El cliente = el usuario/app que hace la solicitud.
 
@@ -154,7 +154,22 @@ La plataforma de OpenWeather muestra los tres pasos estándar de la industria pa
 En resumen, las API son el tejido conectivo de internet. Permiten que un diseñador o programador cree una aplicación que muestre mapas interactivos, procese pagos o dé el pronóstico del tiempo en tiempo real, delegando la complejidad de los datos a servicios expertos externos.
 
 
+
 ### Conclusión
 Las API son un pilar del desarrollo de software moderno que promueven la conectividad y la innovación. Desde aplicaciones móviles hasta sistemas empresariales, su capacidad para integrar funcionalidades y servicios las hace imprescindibles. Comprender y aprovechar las API no solo mejora la eficiencia del desarrollo, sino que también abre puertas a nuevas oportunidades en el mundo digital. 
 
+
+
 ## Bibliografia
+
+Instituto Superior Tecnológico Quito Metropolitano [ITSQMET]. (s.f.). ¿Qué es una API y para qué sirve? https://itsqmet.edu.ec/api/
+
+Outvio. (s.f.). ¿Qué es una API y cómo funciona en desarrollo y logística? https://outvio.com/es/blog/que-es-una-api/
+
+OpenWeatherMap. (s.f.). Weather API: Current weather data and forecast. https://openweathermap.org/api
+
+Wikipedia. (2026, 21 de junio). API. https://en.wikipedia.org/wiki/API
+
+Recluit. (s.f.). Historia y evolución de las API. https://recluit.com/historia-y-evolucion-de-las-api/
+
+Akamai. (s.f.). ¿Cómo funcionan las API? Conceptos básicos y seguridad. Recuperado el 21 de junio de 2026, de https://www.akamai.com/es/glossary/how-do-apis-work
