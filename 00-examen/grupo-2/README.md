@@ -356,7 +356,7 @@ Este video fué grabado con uno de los micrófonos en el Laboratorio de interacc
 
 [![Ver video](https://img.youtube.com/vi/wxTEaNKYboA/maxresdefault.jpg)](https://youtube.com/shorts/wxTEaNKYboA)
 
-[![Ver video](https://img.youtube.com/vi/n-fH_hPftp4/maxresdefault.jpg)](https://youtu.be/n-fH_hPftp4)
+[![Ver video](https://img.youtube.com/vi/n-fH_hPftp4/maxresdefault.jpg)](https://youtu.be/jCxNm1AnnEM)
 
 ---
 
