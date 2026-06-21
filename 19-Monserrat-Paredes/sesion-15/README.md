@@ -31,13 +31,13 @@ Conectar el sensor infrarojo a la Raspberry PI
 - Arrastrar el archivo *.uf2* a la carpeta de la Raspberry desde el Finder.
 
 - La Pico se reiniciará y aparecerá como una nueva unidad llamada CIRCUITPY.
-  
+
 - Subir el código UNA vez con Circuit python de la siguiente manera.
 
-# Ver dónde está montada
+- Ver dónde está montada
 ls /Volumes/
 
-# Copiar tu código (debe llamarse exactamente "code.py")
+- Copiar tu código (debe llamarse exactamente "code.py")
 cp pico_sensor_entrada.py /Volumes/CIRCUITPY/code.py
 
 - Para instalar la librería adafruit_minimqtt, desde la terminal
@@ -46,10 +46,10 @@ bashcp -r adafruit_minimqtt /Volumes/CIRCUITPY/lib/
 
 - Para ver donde se ubica el usb es:
 
-# Encuentra el puerto serie
+Encuentra el puerto serie
 ls /dev/tty.*
 
-# Conéctate (ajusta el nombre del puerto)
+- Conéctate (ajusta el nombre del puerto)
 screen /dev/tty.usbmodem* 115200
 
 - Para verificar que el archivo está ahí:
