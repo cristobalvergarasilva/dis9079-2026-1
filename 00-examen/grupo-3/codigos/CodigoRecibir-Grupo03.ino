@@ -1,4 +1,4 @@
-//  EXPERIENCIA INMERSIVA DE HUMEDAD
+//  PROYECTO BRUMA COMPACTA 
 //  El Arduino escucha los datos de humedad que la Raspberry Pi Pico 2W
 //  publica en Adafruit IO. Cuando llegan los 8 datos (uno por ciudad),
 //  hace una ruleta con los LEDs para elegir una ciudad al azar y muestra
