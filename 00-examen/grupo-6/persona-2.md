@@ -3,13 +3,6 @@
 Monserrat-Paredes / https://github.com/Monserrat-Paredes
 
 
-### criterios individuales
-
-- Investigación textual sobre API.
-- Bitácoras junio: evaluación de 4 sesiones (25 mayo, 01 junio, 08 de junio, 15 junio).
-- Bitácoras junio (la misma nota que punto anterior).
-
-
 ## Investigación sobre API (Interfaz de Programación de Aplicaciones)
 
 
