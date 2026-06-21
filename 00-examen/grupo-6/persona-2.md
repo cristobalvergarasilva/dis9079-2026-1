@@ -44,6 +44,9 @@ Analogía del restaurante: Para entenderlo mejor.
 - El cocinero = el servidor que procesa y responde con la información.
 
 
+<img width="654" height="605" alt="api3" src="https://github.com/user-attachments/assets/e738b63f-c125-4ba0-a14a-ca3196c8c5e6" />
+
+
 
 ### El concepto de "Caja Negra" y Seguridad
 
@@ -63,62 +66,89 @@ Cliente / App  --- (1) Envía Petición (URI/HTTP) --->  API ---> (2) Llama al p
 Cliente / App <--- (4) Entrega Datos en Pantalla <-- Bridge  <--- (3) Responde con la información <--- Servidor Externo
 
 
+
 El funcionamiento de una puede entenderse en cuatro pasos básicos:
 
-1. Solicitud: Una aplicación envía una solicitud, especificando qué información o acción necesita.
-2. Procesamiento: La API recibe la solicitud y la procesa, validando que los permisos sean correctos.
-3. Respuesta: La API recupera los datos o ejecuta la acción requerida.
-4. Devolución: Los datos o resultados son enviados de vuelta a la aplicación solicitante en un formato entendible (como JSON o XML).
 
+1. Solicitud: Una aplicación envía una solicitud, especificando qué información o acción necesita.
+
+2. Procesamiento: La API recibe la solicitud y la procesa, validando que los permisos sean correctos.
+   
+3. Respuesta: La API recupera los datos o ejecuta la acción requerida.
+   
+4. Devolución: Los datos o resultados son enviados de vuelta a la aplicación solicitante en un formato entendible (como JSON o XML).
 
 Un ejemplo cotidiano es cuando compras en una tienda online y seleccionas "Pagar con PayPal". La tienda no conoce tus claves bancarias; utiliza una API para comunicarse con PayPal, procesar el pago de forma segura y recibir de vuelta la confirmación de que el pago fue exitoso.
 
 
-
-## Tipos de API
-
-IBM clasifica las API principalmente bajo dos criterios: su accesibilidad (casos de uso en la web) y su arquitectura técnica.
-
-- API Abiertas (o Públicas): Son de código abierto y cualquier desarrollador puede acceder a ellas a través del protocolo HTTP. Tienen puntos de conexión (endpoints) y formatos de respuesta definidos públicamente.
-
-- API de Socios (Partner APIs): Diseñadas para conectar con socios estratégicos de negocio. Se accede a ellas mediante portales específicos de desarrolladores, pero requieren un proceso de validación y credenciales de inicio de sesión específicas.
-
-- API Internas (o Privadas): Permanecen ocultas para el público general. Las empresas las utilizan internamente para comunicar diferentes componentes o departamentos de desarrollo y mejorar la productividad.
-
-- API Compuestas: Combinan múltiples API de datos o servicios diferentes. Permiten que un programador haga una única llamada y obtenga información de varias fuentes a la vez (muy útil en arquitecturas de microservicios).
+<img width="645" height="285" alt="api1" src="https://github.com/user-attachments/assets/63890e96-2b1a-448a-9591-995a404ca794" />
 
 
 
-Existen muchos tipos de API:
+### Tipos de API -> Quién las usa
+
+Según su Alcance y Accesibilidad. IBM (International Business Machines) clasifica las API principalmente bajo dos criterios: su accesibilidad (casos de uso en la web) y su arquitectura técnica.
 
 
+| Tipo de API | Descripción Técnica | Caso de Uso Principal |
+| :--- | :--- | :--- |
+| **API Abiertas (Públicas)** | Son de **acceso público** y cualquier desarrollador puede utilizarlas a través del protocolo HTTP. Tienen puntos de conexión (*endpoints*) y formatos de respuesta definidos abiertamente. | Integrar servicios globales como mapas, datos climáticos o inicios de sesión sociales (Google/Facebook). |
+| **API de Socios (Partner APIs)** | Diseñadas para conectar con socios estratégicos de negocio. Se accede a ellas mediante portales específicos, pero requieren un proceso de validación y credenciales de autenticación obligatorias. | Integrar sistemas de pasarelas de pago (Stripe) o empresas de logística con tiendas de comercio electrónico. |
+| **API Internas (Privadas)** | Permanecen completamente ocultas para el público general. Las empresas las desarrollan y utilizan internamente para comunicar sus propios sistemas o bases de datos. | Conectar el departamento de inventario con el sistema de ventas de una misma empresa para mejorar la productividad. |
+| **API Compuestas** | Combinan múltiples APIs de datos o servicios diferentes. Permiten que un programador haga una única llamada y obtenga información agrupada de varias fuentes a la vez. | Optimizar el rendimiento en arquitecturas de microservicios, reduciendo el tráfico de red en aplicaciones móviles. |
 
-| Tipo de API               | Descripción                                                                                                                         |
-| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| API Web                   | Se usan para crear aplicaciones web y móviles, accesibles mediante HTTP [información proporcionada]                                 |
-| API de Biblioteca         | Permiten acceder a bibliotecas de código con funcionalidad específica para nuevas aplicaciones [información proporcionada]          |
-| API del Sistema Operativo | Permiten que el software interactúe con un sistema operativo subyacente [información proporcionada]                                 |
-| API Abiertas (o Públicas) | Crear desarrolladores externos, permiten que cualquier persona acceda y utilice un sitio web/aplicación [información proporcionada] |
-| API de Partners (Socios)  | Permiten comunicación entre sistemas de empresas y socios empresariales con relación distinta [información proporcionada]           |
-| API Privadas (o Internas) | Permiten transferir datos entre equipos o conectar aplicaciones/sistemas internos de una empresa [información proporcionada]        |
-| API Compuestas            | Combinan varias API de varios servidores/origenes para crear conexión unificada a un único sistema [información proporcionada]      |
-| API de Servicios Web      | Interfaces entre navegadores web y servidores web [información proporcionada]                                                       |
-| API de Nube               | Permiten que aplicaciones de nube se comuniquen entre sí [información proporcionada]                                                |
-| API Remotas               | Permiten que aplicaciones en diferentes equipos interactúen mediante comunicación remota [información proporcionada]                |
 
+Existen muchos tipos de API: segun du entorno Tecnológico (Dónde operan)
+
+- API web se utilizan para crear aplicaciones web y móviles, y se accede a ellas a través de la web mediante protocolos estándar como HTTP.
+  
+- API de biblioteca permiten a los programadores acceder a bibliotecas de código que pueden proporcionar una funcionalidad específica a medida que crean nuevas aplicaciones.
+
+ - API del sistema operativo permiten que el software interactúe con un sistema operativo subyacente.
+  
+- API abiertas (o API públicas) las crean desarrolladores externos y permiten que cualquier persona acceda a un sitio web o una aplicación, y pueda usarlos.
+  
+- API de partners permiten la comunicación entre los sistemas de las empresas y los partners empresariales que tienen una relación distinta.
+  
+- API privadas o internas permiten a los usuarios de una empresa transferir datos entre equipos o conectar varias aplicaciones y sistemas internos.
+  
+- API compuestas combinan varias API de varios servidores u orígenes para crear una conexión unificada a un único sistema.
+  
+- API de servicios web son interfaces entre los navegadores web y los servidores web.
+  
+- API de nube permiten que las aplicaciones de nube se comuniquen entre sí.
+
+- API remotas permiten que las aplicaciones que se ejecutan en diferentes equipos interactúen mediante la comunicación remota.
 
 
 
 ### Protocolos y estilos arquitectónicos:
 
-- REST (Representational State Transfer): Es el estilo más común en las API web modernas. Utiliza el protocolo HTTP, es ligero y es compatible con múltiples lenguajes de programación y formatos como JSON.
+ `REST` Arquitectura web altamente escalable que transmite datos mediante el protocolo HTTP. Se caracteriza por **no tener estado** (*stateless*), lo que significa que el servidor no almacena datos del cliente entre solicitudes, facilitando conexiones rápidas y ligeras.
 
-- SOAP (Simple Object Access Protocol): Un protocolo de mensajería rígido y altamente estructurado basado estrictamente en XML, muy utilizado en entornos empresariales que requieren alta seguridad y contratos de datos estrictos.
+ `SOAP` Protocolo estricto que permite compartir datos entre aplicaciones escritas en diferentes lenguajes y entornos. Define reglas exactas sobre cómo empaquetar, enviar y transmitir los mensajes a través de la red.
 
-- RPC (Remote Procedure Call): Protocolos orientados a ejecutar procedimientos o tareas en sistemas remotos como si fuesen locales (pueden basarse en XML o JSON).
+`RPC` Modelo diseñado para ejecutar código directamente en redes o servidores remotos, simulando una ejecución local.
+
+`GraphQL` Lenguaje de consulta optimizado para conexiones lentas o inestables. Permite al cliente pedir exactamente los datos que necesita usando **un único endpoint**, evitando hacer múltiples solicitudes al servidor.
+
+`Webhooks` Herramientas orientadas a eventos que envían información de forma automática e inmediata en el momento exacto en que ocurre una acción activadora.
 
 
-## ¿Cómo se empieza a usar una API?
+
+### ¿Qué ventajas ofrecen las API?
+
+Para muchas empresas, las API son activos esenciales para el negocio que ayudan a digitalizar los procesos, permitir la automatización, acelerar los flujos de trabajo, conectar personas y aplicaciones, e innovar en nuevos productos y servicios. Las API pueden ayudar a ofrecer experiencias de cliente excepcionales y mejorar la agilidad operativa.
+
+
+
+### ¿A qué amenazas se enfrentan las API?
+
+Las APIs son blancos atractivos para los hackers porque actúan como puertas de acceso a datos valiosos. Si carecen de la seguridad adecuada o están obsoletas (heredadas), los atacantes las explotan para robar información confidencial, tumbar servicios (interrupción) o secuestrar sistemas.
+
+
+
+### ¿Cómo se empieza a usar una API?
 
 La plataforma de OpenWeather muestra los tres pasos estándar de la industria para trabajar con este recurso:
 
@@ -130,5 +160,8 @@ La plataforma de OpenWeather muestra los tres pasos estándar de la industria pa
 
 En resumen, las API son el tejido conectivo de internet. Permiten que un diseñador o programador cree una aplicación que muestre mapas interactivos, procese pagos o dé el pronóstico del tiempo en tiempo real, delegando la complejidad de los datos a servicios expertos externos.
 
+
+### Conclusión
+Las API son un pilar del desarrollo de software moderno que promueven la conectividad y la innovación. Desde aplicaciones móviles hasta sistemas empresariales, su capacidad para integrar funcionalidades y servicios las hace imprescindibles. Comprender y aprovechar las API no solo mejora la eficiencia del desarrollo, sino que también abre puertas a nuevas oportunidades en el mundo digital. 
 
 ## Bibliografia
