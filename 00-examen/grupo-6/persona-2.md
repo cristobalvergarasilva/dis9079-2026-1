@@ -3,19 +3,13 @@
 Monserrat-Paredes / https://github.com/Monserrat-Paredes
 
 
-## criterios individuales
+# criterios individuales
 
 - Investigación textual sobre API.
 - Bitácoras junio: evaluación de 4 sesiones (25 mayo, 01 junio, 08 de junio, 15 junio).
 - Bitácoras junio (la misma nota que punto anterior).
 
 ## Investigación sobre API
-
-Información sacada de: 
-
-https://openweathermap.org/api
-
-https://www.ibm.com/es-es/think/topics/api
 
 Una API (por sus siglas en inglés, Application Programming Interface o Interfaz de Programación de Aplicaciones) es un componente fundamental en el desarrollo de software moderno.
 
