@@ -53,7 +53,6 @@ Fuente: <https://www.redhat.com/es/topics/api/what-is-a-rest-api>
 Fuente: <https://www.json.org/json-es.html>
 
 ---
-está super yo creo - josefa
 
 # Proceso 
 
@@ -156,42 +155,61 @@ Luego de crear nuestro pseudocódigo, decidir los componentes y elegir la API, c
 Primero decidimos redactar un panorama completo de lo que era nuestro proyecto hasta ese entonces, asi que le escribimos lo siguiente:
 
 Queremos conectar una Raspberry Pi Pico 2 W con un Botón push 4 pines y una luz led
-Necesitamos que nuestro código de python use OpenWeatherMap y que en Adafruit IO use un feed por ciudad (ciudades: Arica, Copiapó, Santiago, Valparaíso, Isla de Pascua, Juan Fernández, Punta Arenas, Antártica) y la Raspberry Pi Pico 2W publicará en esos feeds los datos de la humedad.
-El botón se usaría para empezar a enviar los datos y la luz led para mostrar que se están enviando.
+
+Necesitamos que nuestro código de python use OpenWeatherMap y que en Adafruit IO use un feed por ciudad (ciudades: Arica, Copiapó, Santiago, Valparaíso, Isla de Pascua, Juan Fernández, Punta Arenas, Antártica) y la Raspberry Pi Pico 2W publicará en esos feeds los datos de la humedad. El botón se usaría para empezar a enviar los datos y la luz led para mostrar que se están enviando.
+
 Recibiendo estaría un Arduino UNO R4 WiFi conectado a un Módulo RGB led de 8 bits 505 (cada led representaría una ciudad) sorteará los datos de las ciudades mediante un dado digital mostrando este sorteo en el modulo rgb tipo una ruleta, se iluminarán de manera aleatoria las luces y se detendrá en una indicando la ciudad seleccionada la cual según el porcentaje de humedad actuará el KIT Humidificador USB (Placa de control para humidificador y membrana ultrasónica) todas estas conecciones en una Protoboard 400 puntos, esto pero con putty, en 115200 bauds y en circuitpython
-
-
-
 
 #### Respuesta 1
 Lado emisor (Raspberry Pi Pico 2 W, CircuitPython):
- Botón presiona → enciende LED → se conecta a WiFi → consulta OpenWeatherMap para las 8 ciudades → publica cada humedad en su feed de Adafruit IO → apaga LED.
+
+Botón presiona → enciende LED → se conecta a WiFi → consulta OpenWeatherMap para las 8 ciudades → publica cada humedad en su feed de Adafruit IO → apaga LED.
+
 Lado receptor (Arduino UNO R4 WiFi):
- Se suscribe a los 8 feeds vía MQTT → cada cierto tiempo corre la animación de "ruleta" en el módulo RGB de 8 LEDs (barrido que va frenando hasta caer en una ciudad al azar) → revisa la humedad de esa ciudad → si es mayor a 35%, activa el humidificador a través del transistor/relé.
+
+Se suscribe a los 8 feeds vía MQTT → cada cierto tiempo corre la animación de "ruleta" en el módulo RGB de 8 LEDs (barrido que va frenando hasta caer en una ciudad al azar) → revisa la humedad de esa ciudad → si es mayor a 35%, activa el humidificador a través del transistor/relé.
+
 Pico 2 W: botón en GP15, LED en GP16
+
 Arduino: módulo RGB en D2, control del relé (vía transistor) en pin 5, igual a como ya lo tenías armado
+
 Created 2 files, ran a command
 Created 2 files, ran a command
+
 Ahora el receptor en el Arduino UNO R4 WiFi:
+
 Created a file, ran a command, read a file
 Created a file, ran a command, read a file
+
 Cómo instalarlo:
+
 Pico 2 W: copia code.py a la raíz del Pico, renombra settings_example.toml a settings.toml, complétalo con tus credenciales reales, y copia en /lib las librerías adafruit_requests, adafruit_io (carpeta completa) y adafruit_connection_manager desde el bundle de CircuitPython.
+
 Arduino UNO R4 WiFi: instala desde el Library Manager Adafruit MQTT Library y Adafruit NeoPixel, completa SSID/password y usuario/key de Adafruit IO arriba del archivo, y sube el sketch.
+
 Verifica los nombres de feed: en el código asumí que tus 8 feeds se llaman arica, copiapo, santiago, valparaiso, isla-de-pascua, juan-fernandez, punta-arenas, antartica. Si en Adafruit IO los nombraste distinto, son fáciles de cambiar en el diccionario CIUDADES (Pico) y el arreglo FEEDS_CIUDADES (Arduino).
+
 Pines: botón en GP15 y LED en GP16 del Pico; módulo RGB en D2 y relé en pin 5 del Arduino (igual al transistor/relé que ya tenías armado). Si tu protoboard usa otros pines, son una sola línea para cambiar arriba de cada archivo.
 
 Como hago las conexiones?
+
 Transistor BC547 (o 2N2222):
+
 Base → resistencia 10kΩ → pin D2 del Arduino
+
 Emisor → GND Arduino
+
 Colector → pad SW1 del botón en la placa del humidificador
+
 El otro pad del botón (SW2) → GND Arduino (cierra el circuito del switch)
+
 Alimentación del humidificador:
+
 Pin +5V de la placa → fuente externa 5V (recomendado) o pin 5V del Arduino si tu fuente lo soporta
+
 GND de la placa → GND común
 
-Codigos sugeridos por Claude
+# Codigos sugeridos por Claude
 
 Raspberry pi, envío 
 ```ccp
@@ -267,3 +285,332 @@ def conectar_wifi():
  
 pool = socketpool.SocketPool(wifi.radio)
 requests = adafruit_requests.Session(pool, ssl.create_default_context())
+
+io = None  # se inicializa después de conectar wifi
+ 
+def conectar_adafruit_io():
+   global io
+   if io is None:
+       io = IO_HTTP(AIO_USERNAME, AIO_KEY, requests)
+       print("Adafruit IO listo")
+ 
+# ---------------- LÓGICA ----------------
+ 
+def obtener_humedad(lat, lon):
+   url = (
+       "https://api.openweathermap.org/data/2.5/weather"
+       "?lat={}&lon={}&units=metric&appid={}".format(lat, lon, OPENWEATHER_API_KEY)
+   )
+   try:
+       respuesta = requests.get(url)
+       datos = respuesta.json()
+       respuesta.close()
+       return datos["main"]["humidity"]
+   except Exception as e:
+       print("Error consultando clima:", e)
+       return None
+ 
+def enviar_ronda():
+   led.value = True
+   conectar_wifi()
+   conectar_adafruit_io()
+ 
+   for nombre, info in CIUDADES.items():
+       humedad = obtener_humedad(info["lat"], info["lon"])
+       if humedad is not None:
+           try:
+               feed = io.get_feed(info["feed"])
+               io.send_data(feed["key"], humedad)
+               print("{}: {}% -> feed '{}' OK".format(nombre, humedad, info["feed"]))
+           except AdafruitIO_RequestError as e:
+               print("Error publicando en feed '{}':".format(info["feed"]), e)
+       else:
+           print("{}: sin dato, se omite".format(nombre))
+ 
+       time.sleep(PAUSA_ENTRE_CIUDADES)
+ 
+   led.value = False
+   print("Ronda completa.\n")
+ 
+# ---------------- LOOP PRINCIPAL ----------------
+ 
+print("Listo. Presiona el botón para enviar humedad de las 8 ciudades.")
+ 
+boton_anterior = True  # no presionado (pull-up)
+ 
+while True:
+   boton_actual = boton.value
+ 
+   # Flanco de bajada: de no-presionado a presionado
+   if boton_anterior and not boton_actual:
+       print("Boton presionado, iniciando ronda...")
+       enviar_ronda()
+       time.sleep(ANTI_REBOTE_RONDA)
+ 
+   boton_anterior = boton_actual
+   time.sleep(0.05)
+ ```
+
+
+Settings exapmle
+
+
+```ccp
+
+
+# settings.toml
+# Este archivo va en la RAÍZ del Pico 2 W (junto a code.py).
+# CircuitPython lo lee automáticamente con os.getenv().
+# Completa tus datos reales y renómbralo (o cópialo) a "settings.toml".
+
+
+CIRCUITPY_WIFI_SSID = "NOMBRE_DE_TU_RED"
+CIRCUITPY_WIFI_PASSWORD = "CONTRASEÑA_DE_TU_RED"
+
+
+OPENWEATHER_API_KEY = "TU_API_KEY_DE_OPENWEATHERMAP"
+
+
+AIO_USERNAME = "TU_USUARIO_DE_ADAFRUIT_IO"
+AIO_KEY = "TU_AIO_KEY"
+
+
+
+
+#### Prompt 2
+
+en este código se administra la info de los sensores y actuadores con arreglos y bucles (arrays y for)? de no ser así, haz que lo tenga 
+
+#### Respuesta 2
+
+Revisando tu código, ya usa arreglos y bucles en varios lugares clave:
+CIUDADES es un arreglo (lista de tuplas) con las 8 ciudades y sus datos
+for nombre, lat, lon, feed in CIUDADES: es el bucle que itera sobre ese arreglo en publicar_todas()
+Sin embargo, los sensores/actuadores (switch y LED) están declarados como variables sueltas, sin estructura de arreglo ni bucle. Si el proyecto crece con más switches o LEDs, eso no escala bien.
+Te propongo refactorizarlo para que también los actuadores y sensores usen arreglos y bucles:
+Aquí está el código refactorizado. El cambio clave es que ahora los sensores y actuadores también se administran con arreglos y bucles, igual que las ciudades:
+V
+visualize
+V
+visualize show_widget
+Y aquí el código refactorizado completo:
+```ccp
+import time
+import wifi
+import socketpool
+import ssl
+import board
+import digitalio
+import adafruit_requests
+import adafruit_minimqtt.adafruit_minimqtt as MQTT
+
+# ─── COMUNICACIÓN SERIAL ─────────────────────────────────────────────────────
+BAUD_RATE = 115200
+print(f"Baudios: {BAUD_RATE}")
+
+# ─── CONFIGURACIÓN ───────────────────────────────────────────────────────────
+WIFI_SSID     = "si"
+WIFI_PASSWORD = "mailo-6192"
+
+AIO_USER   = "nicolasvgreve"
+AIO_KEY    = "aio_key"
+AIO_BROKER = "io.adafruit.com"
+AIO_PORT   = 1883
+
+OWM_BASE_URL = "https://api.open-meteo.com/v1/forecast"
+
+# Ciudades: (Nombre, latitud, longitud, nombre-del-feed)
+CIUDADES = [
+    ("Arica",               -18.48, -70.33,  "arica-humidity"),
+    ("Copiapo",             -27.37, -70.33,  "copiapo-humidity"),
+    ("Santiago",            -33.45, -70.67,  "santiago-humidity"),
+    ("Valparaiso",          -33.05, -71.62,  "valparaiso-humidity"),
+    ("Isla de Pascua",      -27.11, -109.35, "isla-pascua-humidity"),
+    ("Juan Fernandez",      -33.65, -78.83,  "juan-fernandez-humidity"),
+    ("Punta Arenas",        -53.16, -70.91,  "punta-arenas-humidity"),
+    ("Villa Las Estrellas", -62.19, -58.98,  "antartica-humidity"),
+]
+
+# ─── HARDWARE ────────────────────────────────────────────────────────────────
+# Cada sensor: (pin, pull, descripción)
+# Pull.UP → valor False = activado (conectado a GND)
+SENSORES = [
+    {"pin": board.GP14, "pull": digitalio.Pull.UP, "nombre": "switch-principal"},
+]
+
+# Cada actuador: (pin, descripción)
+ACTUADORES = [
+    {"pin": board.GP16, "nombre": "led-principal"},
+]
+
+# Inicializar sensores con bucle
+for s in SENSORES:
+    dio = digitalio.DigitalInOut(s["pin"])
+    dio.direction = digitalio.Direction.INPUT
+    dio.pull = s["pull"]
+    s["io"] = dio          # guardar objeto DigitalInOut dentro del dict
+
+# Inicializar actuadores con bucle
+for a in ACTUADORES:
+    dio = digitalio.DigitalInOut(a["pin"])
+    dio.direction = digitalio.Direction.OUTPUT
+    dio.value = False
+    a["io"] = dio          # guardar objeto DigitalInOut dentro del dict
+
+# Accesos rápidos (para no cambiar el resto del código)
+switch = SENSORES[0]["io"]
+led    = ACTUADORES[0]["io"]
+
+# ─── HELPERS DE HARDWARE ─────────────────────────────────────────────────────
+
+def set_todos_actuadores(valor: bool):
+    """Enciende o apaga todos los LEDs del arreglo."""
+    for a in ACTUADORES:
+        a["io"].value = valor
+
+def parpadeo_actuadores(n: int = 3, intervalo: float = 0.2):
+    """Hace parpadear todos los LEDs n veces."""
+    for _ in range(n):
+        set_todos_actuadores(True)
+        time.sleep(intervalo)
+        set_todos_actuadores(False)
+        time.sleep(intervalo)
+
+def leer_sensores() -> list:
+    """Devuelve lista de (nombre, valor) para cada sensor."""
+    return [(s["nombre"], s["io"].value) for s in SENSORES]
+
+# ─── FUNCIONES DE RED ────────────────────────────────────────────────────────
+
+def conectar_wifi():
+    print(f"Conectando a {WIFI_SSID}...")
+    intentos = 0
+    while not wifi.radio.connected and intentos < 20:
+        try:
+            wifi.radio.connect(WIFI_SSID, WIFI_PASSWORD)
+        except Exception as e:
+            print(f"  Intento {intentos + 1} fallido: {e}")
+        intentos += 1
+        # Parpadear todos los actuadores durante la conexión
+        for a in ACTUADORES:
+            a["io"].value = not a["io"].value
+        time.sleep(0.5)
+
+    if wifi.radio.connected:
+        set_todos_actuadores(False)
+        print(f"WiFi conectado: {wifi.radio.ipv4_address}")
+        return True
+
+    print("ERROR: no se pudo conectar al WiFi")
+    return False
+
+def obtener_humedad(requests, nombre, lat, lon):
+    url = (
+        f"{OWM_BASE_URL}"
+        f"?latitude={lat}"
+        f"&longitude={lon}"
+        f"&current=relative_humidity_2m"
+    )
+    try:
+        res = requests.get(url)
+        datos = res.json()
+        res.close()
+        humedad = datos["current"]["relative_humidity_2m"]
+        print(f"  {nombre}: {humedad}%")
+        return humedad
+    except Exception as e:
+        print(f"  {nombre}: error → {e}")
+    return None
+
+# ─── FUNCIÓN PRINCIPAL ───────────────────────────────────────────────────────
+
+def publicar_todas(requests, mqtt):
+    print("\n── Iniciando ciclo de publicación ──")
+    set_todos_actuadores(True)   # encender todos los LEDs
+
+    if not mqtt.is_connected():
+        try:
+            mqtt.connect()
+            print("MQTT conectado a Adafruit IO")
+        except Exception as e:
+            print(f"Error MQTT: {e}")
+            set_todos_actuadores(False)
+            return
+
+    # Iterar sobre el arreglo de ciudades (ya existía)
+    for nombre, lat, lon, feed in CIUDADES:
+        humedad = obtener_humedad(requests, nombre, lat, lon)
+        if humedad is not None:
+            topic = f"{AIO_USER}/feeds/{feed}"
+            try:
+                mqtt.publish(topic, str(humedad))
+                print(f"  → Publicado {feed}: {humedad}%")
+            except Exception as e:
+                print(f"  → Error publicando {feed}: {e}")
+        time.sleep(0.5)
+
+    set_todos_actuadores(False)  # apagar todos los LEDs
+    print("── Ciclo completado ──\n")
+
+# ─── SETUP ───────────────────────────────────────────────────────────────────
+
+if not conectar_wifi():
+    while True:
+        parpadeo_actuadores(intervalo=0.2)
+
+pool     = socketpool.SocketPool(wifi.radio)
+requests = adafruit_requests.Session(pool, ssl.create_default_context())
+
+mqtt = MQTT.MQTT(
+    broker=AIO_BROKER,
+    port=AIO_PORT,
+    username=AIO_USER,
+    password=AIO_KEY,
+    socket_pool=pool,
+)
+
+try:
+    mqtt.connect()
+    print("MQTT conectado a Adafruit IO")
+except Exception as e:
+    print(f"Error MQTT inicial: {e}")
+
+print("Sistema listo. Activa el switch para publicar datos.")
+
+# ─── LOOP PRINCIPAL ──────────────────────────────────────────────────────────
+
+ultimo_estado = [True] * len(SENSORES)   # un estado por sensor
+DEBOUNCE_SEG  = 0.05
+
+while True:
+    time.sleep(DEBOUNCE_SEG)
+
+    # Leer todos los sensores con bucle
+    for i, s in enumerate(SENSORES):
+        estado_actual = s["io"].value   # False = ON, True = OFF
+
+        # Switch recién activado (OFF → ON)
+        if not estado_actual and ultimo_estado[i]:
+            print(f"[{s['nombre']}] activado → publicando datos...")
+            publicar_todas(requests, mqtt)
+
+        # Switch apagado
+        if estado_actual and not ultimo_estado[i]:
+            set_todos_actuadores(False)
+            print(f"[{s['nombre']}] apagado.")
+
+        ultimo_estado[i] = estado_actual
+```
+Los cambios concretos que se hicieron:
+
+SENSORES — arreglo de dicts con pin, pull, nombre e io (el objeto DigitalInOut se guarda ahí mismo al inicializar con un for).
+
+ACTUADORES — igual: arreglo de dicts con pin, nombre e io.
+
+Inicialización — dos bucles for configuran todos los pines al arrancar, en vez de hacerlo a mano variable por variable.
+
+Helpers nuevos — set_todos_actuadores(), parpadeo_actuadores() y leer_sensores() operan sobre los arreglos, así cualquier función que necesite tocar el hardware no necesita saber cuántos hay.
+
+Loop principal — ahora itera sobre SENSORES con for i, s in enumerate(SENSORES) y mantiene ultimo_estado como arreglo paralelo.
+
+Para agregar un segundo LED o switch basta con añadir una línea al arreglo correspondiente, sin tocar ninguna otra función
