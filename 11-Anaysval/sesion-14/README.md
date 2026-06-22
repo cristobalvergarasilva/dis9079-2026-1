@@ -10,6 +10,8 @@ También probamos cambiando el valor del umbral para ir ajustando la sensibilida
 
 Finalmente, nos quedamos con el chasquido de dedos, ya que funcionaba mejor y entregaba valores más variados. Esta decisión la tomamos un día en que nos quedamos trabajando después de clases, tras un buen rato de prueba y error hasta llegar a ese resultado.
 
+![foto](./imagenes/prueba-mic.gif)
+
 #### Prueba de códigos
 
 ```cpp
