@@ -648,7 +648,7 @@ Solución final aplicada:
 
 Una vez adoptado HiveMQ, fue necesario configurar el código de Arduino correctamente, lo que implicó resolver distintos errores que fueron apareciendo durante la integración. Se descubrió que era necesario agregar las credenciales específicas de HiveMQ (host, usuario y contraseña del clúster) directamente en el código del Arduino para que la conexión MQTT con TLS se autenticara correctamente.
 
-![errorhivemq](./ïmagenes/hivemqError1.JPG)
+![errorhivemq](./ïmagenes/hivemq-error1.jpg)
 
 **Imagen 30** *Error al utilizar HiveMQ en Arduino*
 
