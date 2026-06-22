@@ -138,12 +138,6 @@ Lo más interesante de los referentes que encontré, especialmente los de Everes
 - The Met Collection API — Documentación técnica.  
   [https://metmuseum.github.io](https://metmuseum.github.io)
 
-- Public APIs — Repositorio de APIs públicas (GitHub).  
-  [https://github.com/public-apis/public-apis](https://github.com/public-apis/public-apis)
-
-- Repositorio del curso Diseño UDP — DIS8645.  
-  [https://github.com/disenoUDP/dis8645-2025-2-proyectos](https://github.com/disenoUDP/dis8645-2025-2-proyectos)
-
 - Everest Pipkin — *Corsicana*.  
   [https://everest-pipkin.com/projects/corsicana](https://everest-pipkin.com/projects/corsicana)
 
