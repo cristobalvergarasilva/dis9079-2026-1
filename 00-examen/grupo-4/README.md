@@ -29,7 +29,6 @@ El desarrollo integra hardware, programación y comunicación en la nube en una 
 
 
 ## Proceso de Proyecto
----
 
 ### Lunes 01 de Junio 
 
