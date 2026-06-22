@@ -4,21 +4,21 @@ josefa-kristina
 
 # APIs 
 
-— ¿Qué son y para qué sirven?
+¿Qué son y para qué sirven?
 
 
 API viene de *Application Programming Interface*, que traducido al español sería Interfaz de Programación de Aplicaciones. Es un intermediario que
 permite que dos programas o sistemas se comuniquen entre sí sin que el usuario
 vea lo que está pasando.
 
-
+![Como funciona una API , gráfico de Cecilia Aguilera](./imagenes/como-funciona-api.jpeg)
 
 Una API funciona como un contrato entre dos aplicaciones, si una manda una
 solicitud de cierta forma, la otra sabe exactamente cómo responder. Hay reglas
 claras para ambos lados. Lo que más me llamó la atención al investigar esto es
 que las APIs están en absolutamente todos lados, cuando uno inicia sesión con Google en otra plataforma, cuando una app muestra el clima, cuando se paga con WebPay en una tienda online, en todos esos casos hay una API funcionando en el fondo.
 
-agregar foto
+![Como funciona el API de inicio sesión de Goole, gráfico de la documentación de Google](./imagenes/api-google.jpeg)
 
 Desde el punto de vista del desarrollo, las APIs evitan tener que construir todo
 desde cero. Si necesito integrar un sistema de pagos o geolocalización, puedo
@@ -55,7 +55,7 @@ mientras la API se comporte igual.
 
 ## sobre API REST
 
-agregar foto
+![Como funciona la API REST, gráfico de TekniskFOKUS](./imagenes/rest-api-grafico.jpeg)
 
 REST viene de Representational State Transfer y es con diferencia el tipo de
 API más popular en la web hoy en día. No es un protocolo rígido sino un estilo
@@ -66,10 +66,10 @@ ser cualquier cosa, un usuario, un producto, una imagen, un pedido y cada
 uno tiene su propia dirección única llamada URI (como una URL pero para datos).
 Para interactuar con esos recursos se usan métodos HTTP estándar:
 
-- **GET** — para obtener información
-- **POST** — para crear algo nuevo
-- **PUT** — para actualizar algo existente
-- **DELETE** — para eliminar algo
+- **GET** > para obtener información
+- **POST** > para crear algo nuevo
+- **PUT** > para actualizar algo existente
+- **DELETE** > para eliminar algo
 
 Por ejemplo, si una tienda online tiene una API REST, obtener la información del
 producto número 42 podría verse así:
