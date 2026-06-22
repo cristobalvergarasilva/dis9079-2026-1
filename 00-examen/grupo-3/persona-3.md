@@ -35,6 +35,11 @@ Las APIs definen cómo interactúan las aplicaciones entregando detalles que inc
 
 #### ¿Qué pueden hacer?
 
+Antes de partir, les dejo aquí una página en donde hay un listado enorme de APIs por si les interesa:
+
+![Listado de APIs](./imagenes/lista-apis.png)
+Para entrar, hagan click en el siguiente link: <https://developer.mozilla.org/es/docs/Web/API>
+
 Hay distintos tipos de APIs, por lo que cada una hace una cosa distinta. Las que se utilizan con más frecuencia son las siguientes:
 
 + APIs para manipular documentos cargados en el navegador: Un ejemplo de esto es [API DOM (_Document Object Model_)](<https://developer.mozilla.org/es/docs/Web/API/Document_Object_Model>), el cual te permite manipular HTML y CSS, ya sea crear, eliminar, modificar HTML o aplicar distintos estilos a una página. Cada vez que ves una ventana emergente dentro de una página, es el DOM haciendo su trabajo.
