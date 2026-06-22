@@ -6,6 +6,8 @@
 
 ## Archivo Retro
 
+![Archivo Retro](./imagenes/archivoretro-01.png)
+
 ### Descripción del proyecto
 
 Es un proyecto electrónico interactivo que fusiona la fotografía digital con el estilo gráfico de las consolas antiguas. Funciona de manera inalámbrica mediante 2 microcontroladores; un Arduino (UNO R4 WiFi) y una Raspberry (PI Pico 2W), y además un módulo ESP32 con cámara integrada que funciona de manera independiente. 
