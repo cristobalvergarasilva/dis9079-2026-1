@@ -264,6 +264,7 @@ también agregamos un botón para poder demostrar el funcionamiento del sistema 
 
 esto nos permitió probar y mostrar el proyecto de forma más simple y controlada. yeiii 
 
+![imagenes](./imagenes/estudia.jpeg)
 
-
+> portada de mi playlist que nos dio animo para trabajar
 
