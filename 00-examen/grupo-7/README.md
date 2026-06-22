@@ -652,7 +652,7 @@ Una vez adoptado HiveMQ, fue necesario configurar el código de Arduino correcta
 
 **Imagen 30** *Error al utilizar HiveMQ en Arduino*
 
-![errorhivemq2](./imagenes/hivemqError2.JPG)
+![errorhivemq2](./imagenes/hivemq-error2.jpg)
 
 **Imagen 31** *Error al utilizar HiveMQ en Arduino*
 
