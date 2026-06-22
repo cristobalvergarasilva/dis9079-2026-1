@@ -36,8 +36,8 @@ El **Tótem 02** funciona como dispositivo receptor. Cuando la presencia es reco
 
 ## Diagrama de flujo
 
-<img src="img/diagrama_totem01.jpg" width="700">
-<img src="img/diagrama_de_flujo.png" width="700">
+<img src="imagenes/diagrama_de_flujo.png" width="700">
+<img src="imagenes/diagrama_totem01.jpg" width="700">
 
 
 
