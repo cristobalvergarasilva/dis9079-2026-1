@@ -158,6 +158,14 @@ Posteriormente realizamos la conexión de cableado y botones (resistencia a GND,
 
 Segundo problema, el contador se actualiza si se conecta o desconecta el cable manualmente, pero no responde al presionar el botón físico. Al mover el Arduino, los valores fluctúan por sí solos (señal "flotante"), lo que indica que el circuito de pull-down no está cerrando correctamente hacia GND, aunque se revisó la disposición del circuito (A3 conectado a D2, B3 con una resistencia de 10 kΩ, C3 y E3 con las patitas del botón, y A8 conectado al riel positivo) y parecía estar correcta si embargo no era posible controlar el envio de datos, por lo que buscamos otras opciones para los botones y al buscar otras opciones nos quedamos esta opcion que no se necesita necesita resistencias.
 
+|Componente | Pin del componente	| Conecta a |
+|-----------|---------------------|-----------|
+|Botón SUMA |	Pin 1	| Pin D2 del Arduino|
+Botón SUMA |	Pin 2	| Riel GND de la protoboard|
+Botón RESTA	|Pin 1	| Pin D3 del Arduino|
+Botón RESTA	|Pin 2 |	Riel GND de la protoboard|
+Protoboard|	Riel GND |	Pin GND del Arduino|
+
 
 *foto del proyecto, especifico ARDUINO+BOTONES*
 <img width="900" height="1600" alt="WhatsApp Image 2026-06-22 at 11 10 36 (1)" src="https://github.com/user-attachments/assets/60f0d5c3-d86c-46fb-8795-d79f75d66b1c" />
