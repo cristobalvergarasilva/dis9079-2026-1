@@ -170,10 +170,16 @@ void actualizarAnillo(float nivelEnergia) {
 Resultado visual: Si el LID está vacío, el anillo estará completamente apagado. Si entra un grupo de 3 personas seguidas, el anillo se encenderá de golpe hasta la mitad en color naranja. Si el flujo se detiene, se vera cómo los LEDs se van apagando uno a uno, como un eco que se desvanece, reflejando que el ritmo bajó. Si la sala se llena por completo de eventos, los 16 LEDs brillarán en un rojo intenso estático.
 
 Si el aforo es 0, el anillo en la FADD está apagado. Si el aforo sube a 15, el anillo se enciende hasta la mitad. Si hay un evento en el LID y entra mucha gente, el anillo se completará y brillará por completo en República 180, alertando del "desborde".
-       
 
 
-## Investigación sobre Apis
+## Puntos importantes
+
+Adafruit IO: genera un feed llamado lid-conteo, y obtén mi AIO Username y AIO Key desde la sección "My Key" del tablero. Reemplazar esos valores en ambos códigos junto con el SSID/contraseña de WiFi.
+Lógica del sensor: el código actual incrementa el contador cada vez que detecta un objeto (cada persona = +1) y reinicia a 0 al llegar a 16. Si quieren un conteo neto real (entradas - salidas), necesitarían dos sensores (uno detectando dirección de entrada, otro de salida) ya que un solo sensor IR no puede distinguir la dirección del movimiento.
+Colores del anillo: verde (1-5 personas), amarillo (6-10), rojo (11-16). Pueden cambiar los rangos o usar un solo color según su mensaje visual.
+
+
+## Primera investigación sobre API
 
 Información sacada de: 
 
@@ -258,3 +264,28 @@ La plataforma de OpenWeather muestra los tres pasos estándar de la industria pa
 - Integración: Se programa la llamada dentro del código de la aplicación para automatizar la solicitud de datos.
 
 En resumen, las API son el tejido conectivo de internet. Permiten que un diseñador o programador cree una aplicación que muestre mapas interactivos, procese pagos o dé el pronóstico del tiempo en tiempo real, delegando la complejidad de los datos a servicios expertos externos.
+
+
+## Bibliografía
+
+Instituto Superior Tecnológico Quito Metropolitano [ITSQMET]. (sf). ¿Qué es una API y para qué sirve? https://itsqmet.edu.ec/api/
+
+Outvio. (sf). ¿Qué es una API y cómo funciona en desarrollo y logística? https://outvio.com/es/blog/que-es-una-api/
+
+OpenWeatherMap. (sf). API meteorológico: Datos meteorológicos actuales y pronósticos. https://openweathermap.org/api
+
+Wikipedia. (2026, 21 de junio). API. https://en.wikipedia.org/wiki/API
+
+Reclutar. (sf). Historia y evolución de las API. https://recluit.com/historia-y-evolucion-de-las-api/
+
+Akamai. (sf). ¿Cómo funcionan las API? Conceptos básicos y seguridad. Recuperado el 21 de junio de 2026, de https://www.akamai.com/es/glossary/how-do-apis-work
+
+Afel Electrónica. (sf). Inicio: Componentes electrónicos y robótica en Chile. Recuperado el 21 de junio de 2026, de https://afel.cl/
+
+Industrias Adafruit. (sf). Adafruit: Electrónica, kits y hardware de código abierto. Recuperado el 21 de junio de 2026, de https://www.adafruit.com/
+
+Arduino. (sf). Arduino: plataforma de creación de prototipos electrónicos de código abierto. Recuperado el 21 de junio de 2026, de https://www.arduino.cc/
+
+Electrónica MCI. (sf). MCI Electronics: Soluciones tecnológicas y componentes para ingeniería. Recuperado el 21 de junio de 2026, de https://mcielectronics.cl/
+
+Fundación Raspberry Pi. (sf). Raspberry Pi: Computación para todos. Recuperado el 21 de junio de 2026, de https://www.raspberrypi.com/
