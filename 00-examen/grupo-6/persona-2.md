@@ -39,6 +39,8 @@ Analogía del restaurante (Para entenderlo mejor):
 
 <img width="654" height="605" alt="api3" src="https://github.com/user-attachments/assets/e738b63f-c125-4ba0-a14a-ca3196c8c5e6" />
 
+Imagen sacada de: https://itsqmet.edu.ec/api/
+
 
 
 ### El concepto de "Caja Negra" y Seguridad
@@ -77,6 +79,8 @@ Un ejemplo cotidiano es cuando compras en una tienda online y seleccionas "Pagar
 
 
 <img width="645" height="285" alt="api1" src="https://github.com/user-attachments/assets/63890e96-2b1a-448a-9591-995a404ca794" />
+
+Imagen sacada de: https://outvio.com/es/blog/que-es-una-api/
 
 
 
